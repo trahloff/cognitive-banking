@@ -1,0 +1,30 @@
+version: '2'
+
+networks:
+  default:
+    external:
+      name: cb
+
+
+services:
+
+  cb_db:
+    container_name: cb_db
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=passwd
+      - POSTGRES_USER=root
+    ports:
+      - "5432:5432"
+    volumes:
+      - "/mnt/cognitive-banking/postgres:/var/lib/postgresql/data"
+
+  # cb_api:
+  #   container_name: cb_api
+  #   build: ./cb-api
+  #   image: trahloff/cb_api
+  #   depends_on:
+  #     - kafka_broker
+  #     - kafka_db
+  #   ports:
+  #     - "54321:54321"
