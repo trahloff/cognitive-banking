@@ -8,8 +8,8 @@ networks:
 
 services:
 
-  cb_db:
-    container_name: cb_db
+  cb-db:
+    container_name: cb-db
     image: postgres
     environment:
       - POSTGRES_PASSWORD=passwd
@@ -19,12 +19,22 @@ services:
     volumes:
       - "/mnt/cognitive-banking/postgres:/var/lib/postgresql/data"
 
-  # cb_api:
-  #   container_name: cb_api
+  # cb-api:
+  #   container_name: cb-api
   #   build: ./cb-api
-  #   image: trahloff/cb_api
+  #   image: trahloff/cb-api
   #   depends_on:
   #     - kafka_broker
   #     - kafka_db
   #   ports:
-  #     - "54321:54321"
+  #     - "8081:8081"
+
+  # cb-frontend:
+  #     container_name: cb-frontend
+  #     build: ./cb-frontend
+  #     image: trahloff/cb-frontend
+  #     depends_on:
+  #      - cb-db
+  #      - cb-api
+  #     ports:
+  #     - "8082:8082"

@@ -1,0 +1,17 @@
+{
+  "name": "cb-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "1.16.1",
+    "express": "4.14.0",
+    "pg": "^6.1.5"
+  },
+  "devDependencies": {},
+  "license": "LGPL-3.0",
+  "author": "Tobias Rahloff <tobias.rahloff@de.ibm.com>"
+}

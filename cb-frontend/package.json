@@ -1,0 +1,24 @@
+{
+  "name": "cb-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "angular": "1.5.1",
+    "angular-animate": "1.5.8",
+    "angular-aria": "1.5.11",
+    "angular-material": "1.1.1",
+    "angular-messages": "1.6.1",
+    "angular-ui-router": "0.3.2",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "pg": "^6.2.2",
+    "socketio": "^1.0.0"
+  },
+  "devDependencies": {},
+  "license": "LGPL-3.0",
+  "author": "Tobias Rahloff <rahloff@gmail.com>"
+}

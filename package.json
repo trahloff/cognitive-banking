@@ -1,0 +1,32 @@
+{
+  "name": "cognitive-banking",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha && standard --verbose --fix | snazzy",
+    "cover": "istanbul cover node_modules/mocha/bin/_mocha"
+  },
+  "author": [
+    "Tobias Rahloff <rahloff@gmail.com>"
+  ],
+  "license": "LGPL-3.0",
+  "dependencies": {},
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.1",
+    "snazzy": "^7.0.0",
+    "standard": "8.6.0"
+  },
+  "standard": {
+    "ignore": [
+      "**/test/**"
+    ],
+    "globals": [
+      "angular",
+      "io",
+      "$"
+    ]
+  }
+}
