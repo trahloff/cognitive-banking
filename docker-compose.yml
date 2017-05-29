@@ -1,9 +1,9 @@
 version: '2'
 
+# external network allows for better
 networks:
   default:
-    external:
-      name: cb
+    - cb
 
 
 services:
@@ -19,15 +19,15 @@ services:
     volumes:
       - "/mnt/cognitive-banking/postgres:/var/lib/postgresql/data"
 
-  # cb-api:
-  #   container_name: cb-api
-  #   build: ./cb-api
-  #   image: trahloff/cb-api
-  #   depends_on:
-  #     - kafka_broker
-  #     - kafka_db
-  #   ports:
-  #     - "8081:8081"
+  cb-api:
+    container_name: cb-api
+    build: ./cb-api
+    image: trahloff/cb-api
+    depends_on:
+      - kafka_broker
+      - kafka_db
+    ports:
+      - "8081:8081"
 
   # cb-frontend:
   #     container_name: cb-frontend
