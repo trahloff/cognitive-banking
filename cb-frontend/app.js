@@ -1,17 +1,15 @@
 'use strict'
-const exampleModule = require('./components/exampleModule.js')
-const config = require('./components/config/express.json')
 const express = require('express')
 const app = express()
 const server = require('http').Server(app)
-const io = require('socket.io')(server)
+// const io = require('socket.io')(server)
 const bodyParser = require('body-parser')
 const fs = require('fs')
 const PORT = process.env.PORT || 8082
 
 /* -------------------------Express Config------------------------- */
 const allowCrossDomain = (req, res, next) => {   // CORS middleware
-  res.header('Access-Control-Allow-Origin', `http://localhost:12345`)
+  res.header('Access-Control-Allow-Origin', 'http://localhost:12345')
   res.header('Access-Control-Allow-Headers', 'Content-Type, Cache-Control')
   res.header('Access-Control-Allow-Credentials', true)
   next()
@@ -34,6 +32,6 @@ fs
 /* -------------------------Socket.io Stuff------------------------- */
 
 /* istanbul ignore if  */
-if (require.main === module) app.listen(PORT, '0.0.0.0')
+if (require.main === module) server.listen(PORT, '0.0.0.0')
 
 module.exports = app

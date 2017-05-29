@@ -1,7 +1,6 @@
 'use strict'
 const app = require('express')()
 const bodyParser = require('body-parser')
-const bcryptUtil = require('./components/bcryptUtil')
 const PORT = 8081
 
 app

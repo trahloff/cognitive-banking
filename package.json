@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha && standard --verbose --fix | snazzy",
+    "test": "standard --verbose --fix | snazzy",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha"
   },
   "author": [
@@ -24,6 +24,7 @@
       "**/test/**"
     ],
     "globals": [
+      "alert",
       "angular",
       "io",
       "$"
