@@ -1,6 +1,6 @@
 version: '2'
 
-# external network allows for better
+# creates a shared network for all services on startup
 networks:
   default:
     driver: bridge
@@ -17,7 +17,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - "/mnt/cognitive-banking/postgres:/var/lib/postgresql/data"
+      - "./postgres-data:/var/lib/postgresql/data"
 
   cb-api:
     container_name: cb-api
