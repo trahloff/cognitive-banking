@@ -3,7 +3,7 @@ version: '2'
 # external network allows for better
 networks:
   default:
-    - cb
+    driver: bridge
 
 
 services:
@@ -23,9 +23,6 @@ services:
     container_name: cb-api
     build: ./cb-api
     image: trahloff/cb-api
-    depends_on:
-      - kafka_broker
-      - kafka_db
     ports:
       - "8081:8081"
 
