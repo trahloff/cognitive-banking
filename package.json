@@ -20,11 +20,15 @@
     "standard": "8.6.0"
   },
   "standard": {
+    "env": {
+      "browser": true,
+      "mocha":true,
+      "node": true
+    },
     "ignore": [
       "**/test/**"
     ],
     "globals": [
-      "alert",
       "angular",
       "io",
       "$"
