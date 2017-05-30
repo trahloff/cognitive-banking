@@ -27,9 +27,15 @@ exports.login = (user, callback) => {
     if (err) console.error(err)
     client.query(`SELECT passwd FROM public."logins" WHERE name=$1;`, [user.name], (err, result) => {
       done(err)
-      bcryptUtil.comparePasswd(user.passwd, result.rows[0].passwd, authorized => {
-        callback(err, authorized)
-      })
+      if (result && result.rows[0] && result.rows[0].passwd) { // valid user exists
+        bcryptUtil.comparePasswd(user.passwd, result.rows[0].passwd, authorized => {
+          callback(err, authorized)
+        })
+      } else { // user does not exist. compare passwd attempt with hash and send "unauthorized" in order to prevent side-channel-attacks (i.e., timing)
+        bcryptUtil.comparePasswd(user.passwd, '$2a$10$000', authorized => { // invalid hash
+          callback(err, false)
+        })
+      }
     })
   })
 }
