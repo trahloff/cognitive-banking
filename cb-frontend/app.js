@@ -8,7 +8,13 @@ const fs = require('fs')
 const PORT = process.env.PORT || 8082
 
 /* -------------------------Express Config------------------------- */
-const allowCrossDomain = (req, res, next) => {   // CORS middleware
+/**
+ * CORS Middleware
+ * @param {object} req - Request Object
+ * @param {object} res - Response Object
+ * @param {function()} next - Executes normal Route logic
+ */
+const allowCrossDomain = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:12345')
   res.header('Access-Control-Allow-Headers', 'Content-Type, Cache-Control')
   res.header('Access-Control-Allow-Credentials', true)
@@ -25,7 +31,7 @@ app
 /* -------------------------Route Definitions------------------------- */
 fs
     .readdirSync('./components/routes')
-    .forEach(file => {
+    .forEach(file => { // reads every route definition and imports it
       app.use('/' + file.replace('.js', ''), require('./components/routes/' + file))
     })
 
