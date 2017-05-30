@@ -21,7 +21,12 @@ api
     })
     .post('/createUser', (req, res) => {
       dbUtil.createUser(req.body, (err, result) => {
-        err ? res.status(500).send(err.detail) : res.status(200).send('ok') // send HTTP500 if DB Transaction fails
+        if (err) {
+          if (err.detail.indexOf('already exists') !== -1) err.detail = `"${req.body.name}" already exists`
+          res.status(500).send(err.detail)
+        } else {
+          res.status(200).send('ok')
+        }
       })
     })
 
