@@ -42,7 +42,6 @@
               <label>Password</label>
               <input id='pwd' name="password" ng-click="chill('pwd')" type="password" ng-model="user.password" required/>
               <div ng-messages="userForm.password.$error">
-                <!--dieses div macht ne rote message wenn man password vergisst einzutragen-->
                 <div ng-message="required">This is required.</div>
               </div>
             </md-input-container>

@@ -9,6 +9,7 @@ const dbUtil = require('../dbUtil')
  * @param {function()} next - Executes normal Route logic
  */
 const validator = (req, res, next) => {
+  console.log(req.body);
   (req.body.name && req.body.passwd) ? next() : res.status(400).send('Bad Request')
 }
 

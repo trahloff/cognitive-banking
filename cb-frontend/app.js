@@ -27,7 +27,6 @@ app
     .use(bodyParser.urlencoded({'extended': 'true'}))
     .use('/', express.static('./public'))
     .use('/node_modules', express.static('./node_modules'))
-    .use((req, res) => res.redirect('/')) // redirects invalid requests to landing page
 
 /* -------------------------Route Definitions------------------------- */
 fs
@@ -35,6 +34,7 @@ fs
     .forEach(file => { // reads every route definition and imports it
       app.use('/' + file.replace('.js', ''), require('./components/routes/' + file))
     })
+app.use((req, res) => res.redirect('/')) // redirects invalid requests to landing page
 
 /* -------------------------Socket.io Stuff------------------------- */
 
