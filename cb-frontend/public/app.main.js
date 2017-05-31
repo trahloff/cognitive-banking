@@ -6,12 +6,11 @@ angular
     // tools
     'ui.router', 'ngMaterial',
     // components
-    'mainComponentCtrls', 'mainComponentRoutes'
+    'mainComponentCtrls', 'routes', 'loginCtrls',
   ])
   .config(['$mdThemingProvider', '$urlRouterProvider', '$qProvider', function ($mdThemingProvider, $urlRouterProvider, $qProvider) {
     $mdThemingProvider
           .theme('default')
-          .primaryPalette('deep-orange')
-          .accentPalette('light-blue')
-    $urlRouterProvider.otherwise('/start') // if the user types some gibberish for an url he gets redirected to this page
+          .primaryPalette('green',{default: 'A700'})
+    $urlRouterProvider.otherwise('/login') // if the user types some gibberish for an url he gets redirected to this page
   }])
