@@ -3,7 +3,7 @@ angular
     .config(['$stateProvider', function ($stateProvider) {
       $stateProvider
             .state('landing', {
-              templateUrl: '/components/mainComponent/landing.html',
+              templateUrl: '/components/templates/landing.html',
               controller: 'landingControl',
               url: '/start'
             })
