@@ -27,6 +27,7 @@ app
     .use(bodyParser.urlencoded({'extended': 'true'}))
     .use('/', express.static('./public'))
     .use('/node_modules', express.static('./node_modules'))
+    .use((req, res) => res.redirect('/')) // redirects invalid requests to landing page
 
 /* -------------------------Route Definitions------------------------- */
 fs
