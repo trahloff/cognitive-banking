@@ -14,6 +14,8 @@
   "license": "LGPL-3.0",
   "dependencies": {},
   "devDependencies": {
+    "chai": "^4.0.0",
+    "chai-http": "^3.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.4.1",
     "snazzy": "^7.0.0",
@@ -22,7 +24,7 @@
   "standard": {
     "env": {
       "browser": true,
-      "mocha":true,
+      "mocha": true,
       "node": true
     },
     "ignore": [
