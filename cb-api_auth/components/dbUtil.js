@@ -41,7 +41,7 @@ exports.login = (user, callback) => {
     client.query(`SELECT passwd FROM public."logins" WHERE name=$1;`, [user.name], (err, result) => {
       done(err)
       // when a valid user is entered, the passwd attempt and stored passwd hash will be compared
-      // if not, the passwd will be compared with an invalid hash in order to mitigate side-channel attacks (i.e., timing)
+      // if not, the passwd will be compared with an empty hash in order to mitigate side-channel attacks (i.e., timing)
       const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
       bcrypt
           .compare(user.passwd, hash)

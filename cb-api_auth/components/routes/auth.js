@@ -22,7 +22,7 @@ api
     .post('/createUser', (req, res) => {
       dbUtil.createUser(req.body, (err, result) => {
         if (err) {
-          if (err.detail.indexOf('already exists') !== -1) err.detail = `"${req.body.name}" already exists`
+          if (err.detail.includes('already exists')) err.detail = `"${req.body.name}" already exists`
           res.status(500).send(err.detail)
         } else {
           res.status(200).send('ok')
