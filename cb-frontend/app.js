@@ -4,6 +4,9 @@ const app = express()
 const server = require('http').Server(app)
 // const io = require('socket.io')(server)
 const bodyParser = require('body-parser')
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
+const uuid = require('uuid/v4')
 const fs = require('fs')
 const PORT = process.env.PORT || 8082
 
@@ -25,6 +28,16 @@ app
     .use(allowCrossDomain)
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({'extended': 'true'}))
+    .use(cookieParser())
+    .use(session({
+      secret: 'wellThisStringIsSoDamnSecureIcanTotallyHardcodeIt', // works for the demo. use vault and deployment pipeline to inject prod secret
+      resave: false,
+      saveUninitialized: true,
+      cookie: { secure: false },
+      genid: function (req) {
+        return uuid() // give every session a unique ID
+      }
+    }))
     .use('/', express.static('./public'))
     .use('/node_modules', express.static('./node_modules'))
 

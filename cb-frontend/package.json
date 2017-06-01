@@ -15,9 +15,12 @@
     "angular-ui-router": "0.3.2",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
+    "express-session": "^1.15.3",
     "pg": "^6.2.3",
-    "socketio": "^1.0.0"
+    "socketio": "^1.0.0",
+    "uuid": "^3.0.1"
   },
   "license": "LGPL-3.0",
   "author": "Tobias Rahloff <rahloff@gmail.com>"
