@@ -34,7 +34,7 @@ app
       resave: false,
       saveUninitialized: true,
       cookie: { secure: false },
-      genid: function (req) {
+      genid: req => {
         return uuid() // give every session a unique ID
       }
     }))
@@ -52,6 +52,10 @@ app.use((req, res) => res.redirect('/')) // redirects invalid requests to landin
 /* -------------------------Socket.io Stuff------------------------- */
 
 /* istanbul ignore if  */
-if (require.main === module) server.listen(PORT, '0.0.0.0')
+if (require.main === module) {
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server listening on port ${PORT}`)
+  })
+}
 
 module.exports = app

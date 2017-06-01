@@ -9,18 +9,20 @@ const dbUtil = require('../dbUtil')
  * @param {function()} next - Executes normal Route logic
  */
 const validator = (req, res, next) => {
-  console.log(req.body);
   (req.body.name && req.body.passwd) ? next() : res.status(400).send('Bad Request')
 }
 
 api
-    .use(validator)
-    .post('/login', (req, res) => {
+    .post('/login', validator, (req, res) => {
       dbUtil.login(req.body, (err, result) => {
         err ? res.status(500).send(err.detail) : res.status(200).send(result) // send HTTP500 if DB Transaction fails
       })
     })
-    .post('/createUser', (req, res) => {
+    .get('/loggedin', (req, res) => {
+      console.log(req);
+      res.status(200).send('0')
+    })
+    .post('/createUser', validator, (req, res) => {
       dbUtil.createUser(req.body, (err, result) => {
         if (err) {
           if (err.detail.includes('already exists')) err.detail = `"${req.body.name}" already exists`
@@ -30,7 +32,7 @@ api
         }
       })
     })
-    .delete('/deleteUser', (req, res) => {
+    .delete('/deleteUser', validator, (req, res) => {
       dbUtil.deleteUser(req.body, (err, result) => {
         if (err || result.rowCount === 0) {
           res.status(500).send('wrong credentials')

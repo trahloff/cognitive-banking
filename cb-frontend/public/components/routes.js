@@ -1,19 +1,26 @@
 angular
     .module('routes', [])
     .config(['$stateProvider', function ($stateProvider) {
-      const checkLoggedin = function ($q) {
+      const checkLoggedin = function ($q, $http, $location) {
         // Initialize a new promise
         const deferred = $q.defer()
+
         // Make an AJAX call to check if the user is logged in
-        $http.get('/loggedin').success(function (user) {
-          // Authenticated
-          if (user !=== '0') {
+        $http({
+          method: 'GET',
+          url: '/auth/loggedin'
+        }).then(successCallback = response => {
+          if (response.data !== '0') {
             deferred.resolve()
           } else {
+            $location.url('/login')
             deferred.reject()
-            $location.url('/start')
           }
+        }, errorCallback = response => {
+          $location.url('/login')
+          deferred.reject()
         })
+
         return deferred.promise
       }
 
@@ -21,11 +28,11 @@ angular
             .state('landing', {
               templateUrl: '/components/templates/landing.html',
               controller: 'landingControl',
-              url: '/start'
+              url: '/start',
+              resolve: { loggedin: checkLoggedin }
             })
             .state('login', {
               templateUrl: '/components/templates/login.html',
-              url: '/login',
-              resolve: { loggedin: checkLoggedin }
+              url: '/login'
             })
     }])
