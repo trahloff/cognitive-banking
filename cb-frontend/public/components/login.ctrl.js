@@ -1,9 +1,6 @@
 'use strict'
 angular
     .module('loginCtrls', ['ngMaterial', 'ngMessages'])
-    .controller('loginCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('loginCtrl', function ($scope, Notification) {
 
-
-
-    
-    }])
+    })

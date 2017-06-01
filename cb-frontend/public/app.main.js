@@ -4,13 +4,21 @@ angular
     .module('Angular-Skeleton', // tools HAVE to be loaded before the main components
   [
     // tools
-    'ui.router', 'ngMaterial',
+    'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification',
     // components
-    'mainComponentCtrls', 'routes', 'loginCtrls',
+    'mainComponentCtrls', 'routes', 'loginCtrls'
   ])
-  .config(['$mdThemingProvider', '$urlRouterProvider', '$qProvider', function ($mdThemingProvider, $urlRouterProvider, $qProvider) {
-    $mdThemingProvider
-          .theme('default')
-          .primaryPalette('green',{default: 'A700'})
+  .config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, NotificationProvider) {
+    $mdThemingProvider.theme('default').primaryPalette('green', {default: 'A700'})
     $urlRouterProvider.otherwise('/login') // if the user types some gibberish for an url he gets redirected to this page
-  }])
+
+    NotificationProvider.setOptions({
+      delay: 1200,
+      startTop: 20,
+      startRight: 10,
+      verticalSpacing: 20,
+      horizontalSpacing: 20,
+      positionX: 'right',
+      positionY: 'top'
+    })
+  })
