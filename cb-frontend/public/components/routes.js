@@ -1,7 +1,7 @@
 angular
     .module('routes', [])
     .config(['$stateProvider', function ($stateProvider) {
-      const checkLoggedin = function ($q, $http, $location, Notification) {
+      const checkLoggedin = function ($q, $http, $state, Notification) {
         // Initialize a new promise
         const deferred = $q.defer()
 
@@ -14,15 +14,13 @@ angular
             Notification.success('successfully logged in')
             deferred.resolve() // resolves promise, allowes client to load new view
           } else {
-            $location.url('/login')
+            $state.go('login')
             Notification.error({message: 'not logged in', delay: 5000 })
-            $route.reload() // needs to be called in order to function with refresh of restricted view w/o loggedin user
             deferred.reject() // rejects promise, prevent client from loading new view
           }
         }, errorCallback = response => {
-          $location.url('/login')
+          $state.go('login')
           Notification.error('server problem')
-          $route.reload()
           deferred.reject()
         })
 

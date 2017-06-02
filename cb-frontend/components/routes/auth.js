@@ -19,7 +19,6 @@ api
       })
     })
     .get('/loggedin', (req, res) => {
-      console.log(req);
       res.status(200).send('0')
     })
     .post('/createUser', validator, (req, res) => {
