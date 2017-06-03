@@ -8,7 +8,7 @@ angular
     // components
     'mainComponentCtrls', 'routes', 'loginCtrls'
   ])
-  .config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, NotificationProvider) {
+  .config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, NotificationProvider) {
     $mdThemingProvider.theme('default').primaryPalette('green', {default: 'A700'})
     $urlRouterProvider.otherwise('/login') // if the user types some gibberish for an url he gets redirected to this page
 
@@ -21,4 +21,26 @@ angular
       positionX: 'right',
       positionY: 'top'
     })
+
+    $httpProvider.interceptors.push(function ($q, $location) {
+      return {
+        response: function (response) {
+          return response
+        },
+        responseError: function (response) {
+          if (response.status === 401) {
+            $location.url('/login')
+          }
+          return $q.reject(response)
+        }
+      }
+    })
+  })
+  .run(function ($rootScope, $http) {
+    $rootScope.message = ''
+
+    // Logout function is available in any pages
+    $rootScope.logout = function () {
+      $http.post('/logout')
+    }
   })

@@ -31,11 +31,11 @@
     <md-card flex class="littleShadow">
       <md-content layout-margin="60">
 
-        <form name="userForm" id="login" autocomplete="off" ng-submit="update(user)">
+        <form name="userForm" id="login" autocomplete="off" ng-submit="login(user)">
           <div layout-gt-sm="column">
             <md-input-container class="md-block" max-width="40%" flex-gt-sm="">
               <label>Username</label>
-              <input id="user" ng-click="chill('user')" name="username" ng-model="user.name" autofocus required/>
+              <input id="user" name="username" ng-model="user.username " autofocus required/>
               <div ng-messages="userForm.username.$error">
                 <!--dieses div macht ne rote message wenn man username vergisst einzutragen-->
                 <div ng-message="required">This is required.</div>
@@ -43,7 +43,7 @@
             </md-input-container>
             <md-input-container class="md-block" max-width="40%" flex-gt-sm="">
               <label>Password</label>
-              <input id="pwd" name="password" ng-click="chill('pwd')" type="password" ng-model="user.password" required/>
+              <input id="pwd" name="password" type="password" ng-model="user.password" required/>
               <div ng-messages="userForm.password.$error">
                 <div ng-message="required">This is required.</div>
               </div>
