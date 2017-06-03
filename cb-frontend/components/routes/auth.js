@@ -26,7 +26,7 @@ passport.deserializeUser((user, done) => {
 
 // Define a middleware function to be used for every secured routes
 const auth = (req, res, next) => {
-  req.isAuthenticated() ? next() : res.status(401).send()
+  req.isAuthenticated() ? next() : res.sendStatus(401)
 }
 // ==================================================================
 
@@ -47,7 +47,7 @@ api.post('/login', passport.authenticate('local'), (req, res) => {
 // route to log out
 api.post('/logout', (req, res) => {
   req.logOut()
-  res.send(200)
+  res.sendStatus(200)
 })
 // ==================================================================
 
