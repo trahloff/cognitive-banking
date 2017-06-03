@@ -37,11 +37,18 @@ angular
     })
   })
   .run(function ($state, $rootScope, $http, Notification) {
-
     // Logout function is available in any pages
     $rootScope.logout = function () {
-      $http.post('/logout')
-      Notification.success({message: 'successfully logged out', delay: 5000 })
-      $state.go('login')
+      $http.post('/auth/logout')
+      .success(function (user) {
+        // No error: logout OK
+        Notification.success({message: 'successfully logged out', delay: 5000 })
+        $state.go('login')
+      })
+      .error(function () {
+        // Error: logout failed
+        Notification.error({message: 'logout failed <br> please try again', delay: 5000 })
+      })
     }
+
   })
