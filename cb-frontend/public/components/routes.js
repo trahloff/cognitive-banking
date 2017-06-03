@@ -11,7 +11,6 @@ angular
           url: '/auth/loggedin'
         }).then(successCallback = response => {
           if (response.data !== '0') {
-            Notification.success('successfully logged in')
             deferred.resolve() // resolves promise, allowes client to load new view
           } else {
             $state.go('login')
@@ -28,7 +27,7 @@ angular
       }
 
       $stateProvider
-            .state('landing', {
+            .state('start', {
               templateUrl: '/components/templates/landing.html',
               controller: 'landingControl',
               url: '/start',

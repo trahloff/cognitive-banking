@@ -36,11 +36,12 @@ angular
       }
     })
   })
-  .run(function ($rootScope, $http) {
-    $rootScope.message = ''
+  .run(function ($state, $rootScope, $http, Notification) {
 
     // Logout function is available in any pages
     $rootScope.logout = function () {
       $http.post('/logout')
+      Notification.success({message: 'successfully logged out', delay: 5000 })
+      $state.go('login')
     }
   })
