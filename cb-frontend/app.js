@@ -26,6 +26,7 @@ const allowCrossDomain = (req, res, next) => {
 
 app
     .use(allowCrossDomain)
+    .use(require('morgan')('tiny'))
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({'extended': 'true'}))
     .use(cookieParser())

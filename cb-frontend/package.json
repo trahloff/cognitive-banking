@@ -19,6 +19,9 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-session": "^1.15.3",
+    "morgan": "^1.8.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pg": "^6.2.3",
     "socketio": "^1.0.0",
     "uuid": "^3.0.1"

@@ -5,9 +5,9 @@
         .module('app')
         .factory('AuthenticationService', AuthenticationService)
 
-  AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'base64Service']
-  function AuthenticationService ($http, $cookies, $rootScope, $timeout, base64Service) {
-    var service = {}
+  AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout']
+  function AuthenticationService ($http, $cookies, $rootScope, $timeout) {
+    const service = {}
 
     service.Login = Login
     service.SetCredentials = SetCredentials
@@ -16,7 +16,7 @@
     return service
 
     function Login (username, password, callback) {
-      $http.post('/auth/login', { name: username, passwd: password })
+      $http.post('/auth/login', { username: username, password: password })
                .success(function (response) {
                  callback(response)
                })
