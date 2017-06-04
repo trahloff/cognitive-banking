@@ -1,0 +1,53 @@
+<div ng-cloak>
+  <style>
+    .active {
+      background-color: #C5CAE9;
+    }
+  </style>
+  <md-content>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-button md-no-focus-style class="md-icon-button" ng-click="toggleMenu()" aria-label="Settings">
+          <md-icon md-no-focus-style md-svg-icon="assets/img/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+                    <span>
+                        <a ui-sref="login" class="titleLink">Cognitive Banking</a>
+                    </span>
+                </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ui-sref="main.account" aria-label="Account">
+          <md-icon md-svg-icon="assets/img/account.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  </md-content>
+
+  <section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+      <md-toolbar class="md-theme-indigo" layout="row">
+        <h1 class="md-toolbar-tools">Menu</h1>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="close" ng-click="close()">
+          <md-icon md-svg-icon="assets/img/closeNavbar.svg"></md-icon>
+        </md-button>
+      </md-toolbar>
+      <div layout="column" layout-align=" center">
+        <md-button ui-sref-active="active" ng-click="close()" layout-align=" center" style="text-align:left" ui-sref="main.overview">Overview</md-button>
+        <md-button ui-sref-active="active" ng-click="close()" layout-align=" center" style="text-align:left" ui-sref="main.account">Account</md-button>
+      </div>
+
+      <div class="utilityNavbarButtons" layout="row" layout-align=" center" flex width="100%">
+        <md-button ng-click="logout()" layout-align=" center" style="text-align:left" ui-sref="login">Logout</md-button>
+      </div>
+
+    </md-sidenav>
+
+  </section>
+
+</div>
+<treasure-overlay-spinner style="height: 100%" active=insuranceAllSpinner>
+  <div id="wrapper">
+    <div ui-view></div>
+  </div>
+</treasure-overlay-spinner>

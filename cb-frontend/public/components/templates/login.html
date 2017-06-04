@@ -48,13 +48,16 @@
                 <div ng-message="required">This is required.</div>
               </div>
             </md-input-container>
-            <div layout="column">
+            <!-- <div layout="column">
               <md-button class="md-raised md-primary" type="submit">Login</md-button>
               <md-button class="md-raised md-primary">Register</md-button>
-            </div>
+            </div> -->
+            <md-card-actions layout="column" >
+              <md-button class="md-raised md-primary" type="submit">Login</md-button>
+              <md-button class="md-raised md-primary" ng-click="gotoRegister()">Register</md-button>
+            </md-card-actions>
           </div>
         </form>
-
       </md-content>
     </md-card>
   </div>

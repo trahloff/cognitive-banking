@@ -27,15 +27,21 @@ angular
       }
 
       $stateProvider
-            .state('start', {
-              templateUrl: '/components/templates/landing.html',
-              controller: 'landingControl',
-              url: '/start',
-              resolve: { loggedin: checkLoggedin }
-            })
             .state('login', {
               templateUrl: '/components/templates/login.html',
               controller: 'loginCtrl',
               url: '/login'
+            })
+            .state('main', {
+              abstract: true,
+              templateUrl: '/components/templates/navbar.html',
+              controller: 'navbarCtrl',
+              url: '/',
+              resolve: { loggedin: checkLoggedin }
+            })
+            .state('main.overview', {
+              templateUrl: '/components/templates/landing.html',
+              controller: 'landingControl',
+              url: 'overview'
             })
     }])

@@ -1,9 +1,53 @@
 html {
-    height: 100%;
-    background-image: url("/assets/img/background4.png");
+  height: 100%;
+  background-image: url("/assets/img/background4.png");
 }
 
 div, body, md-content {
-    background: inherit;
-    font-family: 'Roboto', sans-serif;
+  background: inherit;
+  font-family: 'Roboto', sans-serif;
+}
+
+md-button, md-icon {
+  outline: none;
+}
+
+#wrapper {
+  padding: 20px;
+  background-color: inherit;
+}
+
+#accountMain {
+  background-color: white;
+}
+
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-thumb {
+  outline: 1px solid slategrey;
+  background-color: darkgrey;
+}
+
+md-content::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.titanic {
+  visibility: hidden;
+  z-index: -1;
+  float: none;
+  position: fixed;
+  vertical-align: sub;
+}
+
+#wrapper {
+  padding: 20px;
+  background-color: inherit;
+}
+
+.utilityNavbarButtons {
+  position: absolute;
+  bottom: 0;
 }

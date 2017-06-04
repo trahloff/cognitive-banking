@@ -31,10 +31,10 @@ app
     .use(bodyParser.urlencoded({'extended': 'true'}))
     .use(cookieParser())
     .use(session({
-      secret: 'wellThisStringIsSoDamnSecureIcanTotallyHardcodeIt', // works for the demo. use vault and deployment pipeline to inject prod secret
+      secret: 'wellThisStringIsSoDamnSecureIcanTotallyHardcodeIt', // works for the demo. use vault and deployment pipeline to inject secret for prod
       resave: false,
       saveUninitialized: true,
-      cookie: { secure: false },
+      cookie: { secure: false }, // dev. 'true' only sets cookies for SSL/TLS connection
       genid: req => {
         return uuid() // give every session a unique ID
       }

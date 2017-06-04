@@ -6,10 +6,10 @@ angular
     // tools
     'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification',
     // components
-    'mainComponentCtrls', 'routes', 'loginCtrls'
+    'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls'
   ])
   .config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, NotificationProvider) {
-    $mdThemingProvider.theme('default').primaryPalette('green', {default: 'A700'})
+    $mdThemingProvider.theme('default').primaryPalette('deep-purple')
     $urlRouterProvider.otherwise('/login') // if the user types some gibberish for an url he gets redirected to this page
 
     NotificationProvider.setOptions({

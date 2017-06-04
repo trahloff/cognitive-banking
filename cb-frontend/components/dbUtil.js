@@ -66,17 +66,20 @@ exports.deleteUser = (user, callback) => {
  */
 exports.login = (user, callback) => {
   pool.connect((err, client, done) => {
-    if (err) console.error(err)
-    client.query(`SELECT passwd FROM public."logins" WHERE name=$1;`, [user.name], (err, result) => {
-      done(err)
-      // see line 43/44
-      const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
-      bcrypt
-          .compare(user.passwd, hash)
-          .then(result => {
-            callback(err, result)
-          })
-    })
+    if (err) {
+      callback(err, null)
+    } else {
+      client.query(`SELECT passwd FROM public."logins" WHERE name=$1;`, [user.name], (err, result) => {
+        done(err)
+        // see line 43/44
+        const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
+        bcrypt
+            .compare(user.passwd, hash)
+            .then(result => {
+              callback(err, result)
+            })
+      })
+    }
   })
 }
 

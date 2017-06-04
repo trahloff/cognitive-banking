@@ -10,7 +10,7 @@ angular
         .success(function (user) {
           // No error: authentication OK
           Notification.success('successfully logged in')
-          $state.go('start')
+          $state.go('main.overview')
         })
         .error(function () {
           // Error: authentication failed
