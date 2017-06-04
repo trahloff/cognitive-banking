@@ -9,12 +9,12 @@
         <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
           <div>
             <md-input-container>
-              <label>Title</label>
-              <input ng-model="user.title">
+              <label>Role</label>
+              <input ng-model="user.title" readonly>
             </md-input-container>
             <md-input-container>
               <label>Email</label>
-              <input ng-model="user.email" type="email">
+              <input ng-model="user.email" type="email" readonly>
             </md-input-container>
           </div>
         </md-content>
@@ -24,49 +24,33 @@
               <div layout-gt-xs="row">
                 <md-input-container class="md-block">
                   <label>Company</label>
-                  <input ng-model="user.company" disabled>
+                  <input ng-model="user.company" readonly>
                 </md-input-container>
-                <md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date"></md-datepicker>
               </div>
               <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>First name</label>
-                  <input ng-model="user.firstName">
+                  <input ng-model="user.firstName" readonly>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Last Name</label>
-                  <input ng-model="theMax">
+                  <input ng-model="theMax" readonly>
                 </md-input-container>
               </div>
               <md-input-container class="md-block">
                 <label>Address</label>
-                <input ng-model="user.address">
-              </md-input-container>
-              <md-input-container md-no-float class="md-block">
-                <input ng-model="user.address2" placeholder="Address 2">
+                <input ng-model="user.address" readonly>
               </md-input-container>
               <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>City</label>
-                  <input ng-model="user.city">
-                </md-input-container>
-                <md-input-container class="md-block" flex-gt-sm>
-                  <label>State</label>
-                  <md-select ng-model="user.state">
-                    <md-option ng-repeat="state in states" value="{{state.abbrev}}">
-                      {{state.abbrev}}
-                    </md-option>
-                  </md-select>
+                  <input ng-model="user.city" readonly>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Postal Code</label>
-                  <input name="postalCode" ng-model="user.postalCode" placeholder="12345" required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                  <input name="postalCode" ng-model="user.postalCode" placeholder="12345"  ng-pattern="/^[0-9]{5}$/" readonly>
                   <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-                    <div ng-message="required" class="my-message">You must supply a postal code.</div>
                     <div ng-message="pattern" class="my-message">That doesn't look like a valid postal code.
-                    </div>
-                    <div ng-message="md-maxlength" class="my-message">
-                      Don't use the long version silly...we don't need to be that specific...
                     </div>
                   </div>
                 </md-input-container>

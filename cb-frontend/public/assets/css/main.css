@@ -51,3 +51,7 @@ md-content::-webkit-scrollbar {
   position: absolute;
   bottom: 0;
 }
+
+  .active {
+    background-color: #C5CAE9;
+  }

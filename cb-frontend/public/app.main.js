@@ -6,7 +6,7 @@ angular
     // tools
     'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification',
     // components
-    'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls'
+    'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls'
   ])
   .config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, NotificationProvider) {
     $mdThemingProvider.theme('default').primaryPalette('deep-purple')

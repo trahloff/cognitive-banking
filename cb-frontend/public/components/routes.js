@@ -36,12 +36,16 @@ angular
               abstract: true,
               templateUrl: '/components/templates/navbar.html',
               controller: 'navbarCtrl',
-              url: '/',
-              resolve: { loggedin: checkLoggedin }
+              url: '/'
             })
             .state('main.overview', {
-              templateUrl: '/components/templates/landing.html',
+              templateUrl: '/components/templates/overview.html',
               controller: 'landingControl',
               url: 'overview'
+            })
+            .state('main.account', {
+              templateUrl: '/components/templates/account.html',
+              controller: 'accountCtrl',
+              url: 'account'
             })
     }])
