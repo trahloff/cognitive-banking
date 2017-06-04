@@ -64,3 +64,8 @@ md-content::-webkit-scrollbar {
 .md-focused {
     background: transparent!important;
 }
+
+#logoutButton {
+  flex: auto;
+  text-align: center;
+}
