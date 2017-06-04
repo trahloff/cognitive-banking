@@ -50,8 +50,17 @@ md-content::-webkit-scrollbar {
 .utilityNavbarButtons {
   position: absolute;
   bottom: 0;
+  width: 100%
 }
 
-  .active {
-    background-color: #C5CAE9;
-  }
+.active {
+  background-color: #C5CAE9;
+}
+
+.md-ripple-container {
+  z-index: -1
+}
+
+.md-focused {
+    background: transparent!important;
+}
