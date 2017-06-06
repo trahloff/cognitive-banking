@@ -1,6 +1,6 @@
 angular
-.module('accountCtrls', ['ngMaterial', 'ngMessages'])
-.controller('accountCtrl', function ($scope) {
+.module('registerCtrls', ['ngMaterial', 'ngMessages'])
+.controller('registerCtrl', function ($scope) {
   $scope.user = {
     title: 'Developer',
     email: 'ipsum@lorem.com',

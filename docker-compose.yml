@@ -11,6 +11,7 @@ services:
   cb-db:
     container_name: cb-db
     image: postgres
+    restart: always
     environment:
       - POSTGRES_PASSWORD=passwd
       - POSTGRES_USER=root

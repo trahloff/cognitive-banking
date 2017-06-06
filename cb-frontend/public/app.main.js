@@ -1,12 +1,12 @@
 'use strict'
 
 angular
-    .module('Angular-Skeleton', // tools HAVE to be loaded before the main components
+    .module('cognitive-banking', // tools HAVE to be loaded before the main components
   [
     // tools
     'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification',
     // components
-    'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls'
+    'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls'
   ])
   .config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, NotificationProvider) {
     $mdThemingProvider.theme('default').primaryPalette('deep-purple')

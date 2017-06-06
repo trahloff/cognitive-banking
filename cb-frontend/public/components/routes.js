@@ -1,7 +1,7 @@
 angular
     .module('routes', [])
     .config(['$stateProvider', function ($stateProvider) {
-      const checkLoggedin = function ($q, $http, $state, Notification) {
+      const loggedIn = function ($q, $http, $state, Notification) {
         // Initialize a new promise
         const deferred = $q.defer()
 
@@ -41,11 +41,13 @@ angular
             .state('main.overview', {
               templateUrl: '/components/templates/overview.html',
               controller: 'landingControl',
-              url: 'overview'
+              url: 'overview',
+              resolve: {check: loggedIn}
             })
             .state('main.account', {
               templateUrl: '/components/templates/account.html',
               controller: 'accountCtrl',
-              url: 'account'
+              url: 'account',
+              resolve: {check: loggedIn}
             })
     }])
