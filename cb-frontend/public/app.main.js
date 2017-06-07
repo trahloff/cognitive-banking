@@ -50,5 +50,4 @@ angular
         Notification.error({message: 'logout failed <br> please try again', delay: 5000 })
       })
     }
-
   })

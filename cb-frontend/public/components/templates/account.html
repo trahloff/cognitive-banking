@@ -10,11 +10,11 @@
           <div>
             <md-input-container>
               <label>Role</label>
-              <input ng-model="user.title" readonly>
+              <input ng-model="userProfile.role" readonly>
             </md-input-container>
             <md-input-container>
               <label>Email</label>
-              <input ng-model="user.email" type="email" readonly>
+              <input ng-model="userProfile.mail" type="email" readonly>
             </md-input-container>
           </div>
         </md-content>
@@ -24,31 +24,31 @@
               <div layout-gt-xs="row">
                 <md-input-container class="md-block">
                   <label>Company</label>
-                  <input ng-model="user.company" readonly>
+                  <input ng-model="userProfile.company" readonly>
                 </md-input-container>
               </div>
               <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>First name</label>
-                  <input ng-model="user.firstName" readonly>
+                  <input ng-model="userProfile.firstName" readonly>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Last Name</label>
-                  <input ng-model="theMax" readonly>
+                  <input ng-model="userProfile.lastName" readonly>
                 </md-input-container>
               </div>
               <md-input-container class="md-block">
                 <label>Address</label>
-                <input ng-model="user.address" readonly>
+                <input ng-model="userProfile.address" readonly>
               </md-input-container>
               <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>City</label>
-                  <input ng-model="user.city" readonly>
+                  <input ng-model="userProfile.city" readonly>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Postal Code</label>
-                  <input name="postalCode" ng-model="user.postalCode" placeholder="12345"  ng-pattern="/^[0-9]{5}$/" readonly>
+                  <input name="postalCode" ng-model="userProfile.postalCode" placeholder="12345"  ng-pattern="/^[0-9]{5}$/" readonly>
                   <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
                     <div ng-message="pattern" class="my-message">That doesn't look like a valid postal code.
                     </div>
@@ -56,8 +56,8 @@
                 </md-input-container>
               </div>
               <md-input-container class="md-block">
-                <label>Biography</label>
-                <textarea ng-model="user.biography" md-maxlength="150" rows="1" md-select-on-focus></textarea>
+                <label>Last Events</label>
+                <textarea ng-model="user.lastEvents"  rows="1" md-select-on-focus readonly></textarea>
               </md-input-container>
             </form>
           </div>

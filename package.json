@@ -32,6 +32,8 @@
     ],
     "globals": [
       "angular",
+      "successCallback",
+      "errorCallback",
       "io",
       "$"
     ]

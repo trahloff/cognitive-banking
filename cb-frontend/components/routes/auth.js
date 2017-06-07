@@ -4,14 +4,13 @@ const dbUtil = require('../dbUtil')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
-
 // ==================================================================
 // Define the strategy to be used by PassportJS
 passport.use(new LocalStrategy(
   function (name, passwd, done) {
     const userTmp = {name: name, passwd: passwd}
-    dbUtil.login(userTmp, (err, result) => {
-      result ? done(null, {name: name}) : done(null, false, { message: 'Incorrect username.' })
+    dbUtil.login(userTmp, (err, result, userProfile) => {
+      result ? done(null, userProfile) : done(null, false, { message: 'Incorrect username.' })
     })
   }
 ))

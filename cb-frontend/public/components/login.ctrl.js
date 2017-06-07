@@ -1,7 +1,7 @@
 'use strict'
 angular
     .module('loginCtrls', ['ngMaterial', 'ngMessages'])
-    .controller('loginCtrl', function ($scope, $http, $state, Notification) {
+    .controller('loginCtrl', function ($scope, $http, $state, $rootScope, Notification) {
       $scope.login = function (user) {
         $http.post('/auth/login', {
           username: user.username,
@@ -9,6 +9,7 @@ angular
         })
         .success(function (user) {
           // No error: authentication OK
+          $rootScope.userProfile = user
           Notification.success('successfully logged in')
           $state.go('main.overview')
         })

@@ -1,7 +1,7 @@
 angular
     .module('routes', [])
     .config(['$stateProvider', function ($stateProvider) {
-      const loggedIn = function ($q, $http, $state, Notification) {
+      const loggedIn = function ($q, $http, $state, $rootScope, Notification) {
         // Initialize a new promise
         const deferred = $q.defer()
 
@@ -11,6 +11,7 @@ angular
           url: '/auth/loggedin'
         }).then(successCallback = response => {
           if (response.data !== '0') {
+            $rootScope.userProfile = response.data
             deferred.resolve() // resolves promise, allowes client to load new view
           } else {
             $state.go('login')

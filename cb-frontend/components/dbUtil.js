@@ -1,6 +1,6 @@
 'use strict'
 const pg = require('pg')
-const host = process.platform === 'win32' ? '127.0.0.1' : 'cb-db'
+const host = process.platform === 'win32' ? '127.0.0.1' : 'homeserver'
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 const pool = new pg.Pool({
@@ -69,14 +69,15 @@ exports.login = (user, callback) => {
     if (err) {
       callback(err, null)
     } else {
-      client.query(`SELECT passwd FROM public."logins" WHERE name=$1;`, [user.name], (err, result) => {
+      client.query(`SELECT * FROM public."logins" WHERE name=$1;`, [user.name], (err, result) => {
         done(err)
         // see line 43/44
         const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
         bcrypt
             .compare(user.passwd, hash)
-            .then(result => {
-              callback(err, result)
+            .then(authenticated => {
+              const userProfile = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0] : null
+              callback(err, authenticated, userProfile)
             })
       })
     }
