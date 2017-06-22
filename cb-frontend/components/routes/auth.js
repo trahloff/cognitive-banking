@@ -30,21 +30,21 @@ const auth = (req, res, next) => {
 // ==================================================================
 
 api.use(passport.initialize()) // Add passport initialization
-api.use(passport.session())    // Add passport initialization
+api.use(passport.session())    // Add passport session initialization
 
 // ==================================================================
-// route to test if the user is logged in or not
-api.get('/loggedin', (req, res) => {
-  res.send(req.isAuthenticated() ? req.user : '0')
-})
-
 // route to log in
 api.post('/login', passport.authenticate('local'), (req, res) => {
   res.send(req.user)
 })
 
+// route to test if the user is logged in or not
+api.get('/loggedin', auth, (req, res) => {
+  res.send(req.user)
+})
+
 // route to log out
-api.post('/logout', (req, res) => {
+api.post('/logout', auth, (req, res) => {
   req.logOut()
   res.sendStatus(200)
 })
