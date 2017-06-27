@@ -1,4 +1,3 @@
-'use strict'
 /* ======================== 3rd Party Modules ======================== */
 // JavaScript
 import 'angular'

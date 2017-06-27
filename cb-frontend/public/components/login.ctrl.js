@@ -1,6 +1,5 @@
-'use strict'
 angular
-    .module('loginCtrls', ['ngMaterial', 'ngMessages'])
+    .module('loginCtrls', [])
     .controller('loginCtrl', ($scope, $http, $state, $rootScope, Notification) => {
       $scope.login = user => {
         $http.post('/auth/login', {

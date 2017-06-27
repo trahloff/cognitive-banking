@@ -534,8 +534,6 @@ module.exports = 'ngAria';
 
 "use strict";
 
-/* ======================== 3rd Party Modules ======================== */
-// JavaScript
 
 __webpack_require__(2);
 
@@ -576,6 +574,8 @@ __webpack_require__(34);
 /* =================================================================== */
 
 // CSS
+/* ======================== 3rd Party Modules ======================== */
+// JavaScript
 angular.module('cognitive-banking', ['ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar', 'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls']).config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider) {
   $mdThemingProvider.theme('default').primaryPalette('deep-purple');
   $urlRouterProvider.otherwise('/login'); // if the user types some gibberish for an url he gets redirected to this page
@@ -75062,7 +75062,7 @@ angular.module('routes', []).config(['$stateProvider', function ($stateProvider)
 "use strict";
 
 
-angular.module('mainComponentCtrls', ['ngMaterial', 'ngMessages']).controller('landingControl', function ($scope, $http) {
+angular.module('mainComponentCtrls', []).controller('landingControl', function ($scope, $http) {
   $scope.value = 1;
   $scope.increment = function () {
     $scope.value++;
@@ -75089,7 +75089,7 @@ angular.module('mainComponentCtrls', ['ngMaterial', 'ngMessages']).controller('l
 "use strict";
 
 
-angular.module('loginCtrls', ['ngMaterial', 'ngMessages']).controller('loginCtrl', function ($scope, $http, $state, $rootScope, Notification) {
+angular.module('loginCtrls', []).controller('loginCtrl', function ($scope, $http, $state, $rootScope, Notification) {
   $scope.login = function (user) {
     $http.post('/auth/login', {
       username: user.username,
@@ -75115,7 +75115,7 @@ angular.module('loginCtrls', ['ngMaterial', 'ngMessages']).controller('loginCtrl
 
 
 var _arguments = arguments;
-angular.module('navbarCtrls', ['ngMaterial']).controller('navbarCtrl', function ($scope, $timeout, $mdSidenav, $rootScope) {
+angular.module('navbarCtrls', []).controller('navbarCtrl', function ($scope, $timeout, $mdSidenav, $rootScope) {
   // needed for fancy sideNavBar animation
   var debounce = function debounce(func, wait, context) {
     var timer = void 0;
@@ -75154,7 +75154,7 @@ angular.module('navbarCtrls', ['ngMaterial']).controller('navbarCtrl', function 
 "use strict";
 
 
-angular.module('accountCtrls', ['ngMaterial', 'ngMessages']).controller('accountCtrl', function ($scope, $rootScope) {
+angular.module('accountCtrls', []).controller('accountCtrl', function ($scope, $rootScope) {
   $scope.user = { lastEvents: '- 06/06 12:03:11 Fraud detected\n\n- 06/06 19:53:02 Forecast for Client #198714 generated' };
 }).config(['$mdThemingProvider', function ($mdThemingProvider) {
   // Configure a dark theme with primary foreground yellow
@@ -75168,7 +75168,7 @@ angular.module('accountCtrls', ['ngMaterial', 'ngMessages']).controller('account
 "use strict";
 
 
-angular.module('registerCtrls', ['ngMaterial', 'ngMessages']).controller('registerCtrl', function ($scope) {
+angular.module('registerCtrls', []).controller('registerCtrl', function ($scope) {
   $scope.user = {
     title: 'Developer',
     email: 'ipsum@lorem.com',

@@ -1,6 +1,5 @@
-'use strict'
 angular
-    .module('mainComponentCtrls', ['ngMaterial', 'ngMessages'])
+    .module('mainComponentCtrls', [])
     .controller('landingControl', ($scope, $http) => {
       $scope.value = 1
       $scope.increment = () => {

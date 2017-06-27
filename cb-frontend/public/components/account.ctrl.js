@@ -1,5 +1,5 @@
 angular
-.module('accountCtrls', ['ngMaterial', 'ngMessages'])
+.module('accountCtrls', [])
 .controller('accountCtrl', ($scope, $rootScope) => {
   $scope.user = {lastEvents: '- 06/06 12:03:11 Fraud detected\n\n- 06/06 19:53:02 Forecast for Client #198714 generated'}
 })

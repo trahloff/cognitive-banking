@@ -1,5 +1,5 @@
 angular
-    .module('navbarCtrls', ['ngMaterial'])
+    .module('navbarCtrls', [])
     .controller('navbarCtrl', ($scope, $timeout, $mdSidenav, $rootScope) => {
       // needed for fancy sideNavBar animation
       const debounce = (func, wait, context) => {

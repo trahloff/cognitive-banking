@@ -1,5 +1,5 @@
 angular
-.module('registerCtrls', ['ngMaterial', 'ngMessages'])
+.module('registerCtrls', [])
 .controller('registerCtrl', $scope => {
   $scope.user = {
     title: 'Developer',
