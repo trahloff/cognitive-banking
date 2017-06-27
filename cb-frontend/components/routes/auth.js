@@ -7,14 +7,14 @@ const LocalStrategy = require('passport-local').Strategy
 // ==================================================================
 // Define the strategy to be used by PassportJS
 passport.use(new LocalStrategy(
-  function (name, passwd, done) {
-    const userTmp = {name: name, passwd: passwd}
-    setTimeout(() => {
-      dbUtil.login(userTmp, (err, result, userProfile) => {
-        result ? done(null, userProfile) : done(null, false, { message: 'Incorrect username.' })
-      })
-    }, 1)
-  }
+   (name, passwd, done) => {
+     const userTmp = {name: name, passwd: passwd}
+     setTimeout(() => {
+       dbUtil.login(userTmp, (err, result, userProfile) => {
+         result ? done(null, userProfile) : done(null, false, { message: 'Incorrect username.' })
+       })
+     }, 1)
+   }
 ))
 
 passport.serializeUser((user, done) => {
@@ -50,39 +50,5 @@ api.post('/logout', auth, (req, res) => {
   req.logOut()
   res.sendStatus(200)
 })
-// ==================================================================
-
-// const validator = (req, res, next) => {
-//   (req.body.name && req.body.passwd) ? next() : res.status(400).send('Bad Request')
-// }
-//
-// api
-//     .post('/login', validator, (req, res) => {
-//       dbUtil.login(req.body, (err, result) => {
-//         err ? res.status(500).send(err.detail) : res.status(200).send(result) // send HTTP500 if DB Transaction fails
-//       })
-//     })
-//     .get('/loggedin', (req, res) => {
-//       res.status(200).send('0')
-//     })
-//     .post('/createUser', validator, (req, res) => {
-//       dbUtil.createUser(req.body, (err, result) => {
-//         if (err) {
-//           if (err.detail.includes('already exists')) err.detail = `"${req.body.name}" already exists`
-//           res.status(500).send(err.detail)
-//         } else {
-//           res.status(200).send('ok')
-//         }
-//       })
-//     })
-//     .delete('/deleteUser', validator, (req, res) => {
-//       dbUtil.deleteUser(req.body, (err, result) => {
-//         if (err || result.rowCount === 0) {
-//           res.status(500).send('wrong credentials')
-//         } else {
-//           res.status(200).send('ok')
-//         }
-//       })
-//     })
 
 module.exports = api
