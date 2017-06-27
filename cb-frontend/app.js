@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const uuid = require('uuid/v4')
+const passport = require('./components/passportUtil');
 const fs = require('fs')
 const PORT = process.env.PORT || 8082
 
@@ -38,6 +39,8 @@ app
         return uuid() // give every session a unique ID
       }
     }))
+    .use(passport.initialize())
+    .use(passport.session())
     .use('/', express.static('./public'))
     .use('/node_modules', express.static('./node_modules'))
 
