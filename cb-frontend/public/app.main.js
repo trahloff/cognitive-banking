@@ -1,43 +1,38 @@
 'use strict'
 
-angular
-    .module('cognitive-banking', // tools HAVE to be loaded before the main components
-  [
-    // tools
-    'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar',
-    // components
-    'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls'
-  ])
-  .config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider) {
-    $mdThemingProvider.theme('default').primaryPalette('deep-purple')
-    $urlRouterProvider.otherwise('/login') // if the user types some gibberish for an url he gets redirected to this page
+angular.module('cognitive-banking', [
+  'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar',
+  'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls'
+]).config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider) {
+  $mdThemingProvider.theme('default').primaryPalette('deep-purple')
+  $urlRouterProvider.otherwise('/login') // if the user types some gibberish for an url he gets redirected to this page
 
-    NotificationProvider.setOptions({
-      delay: 1200,
-      startTop: 20,
-      startRight: 10,
-      verticalSpacing: 20,
-      horizontalSpacing: 20,
-      positionX: 'right',
-      positionY: 'top'
-    })
-
-    cfpLoadingBarProvider.includeSpinner = false
-
-    $httpProvider.interceptors.push(function ($q, $location) {
-      return {
-        response: function (response) {
-          return response
-        },
-        responseError: function (response) {
-          if (response.status === 401) {
-            $location.url('/login')
-          }
-          return $q.reject(response)
-        }
-      }
-    })
+  NotificationProvider.setOptions({
+    delay: 1200,
+    startTop: 20,
+    startRight: 10,
+    verticalSpacing: 20,
+    horizontalSpacing: 20,
+    positionX: 'right',
+    positionY: 'top'
   })
+
+  cfpLoadingBarProvider.includeSpinner = false
+
+  $httpProvider.interceptors.push(function ($q, $location) {
+    return {
+      response: function (response) {
+        return response
+      },
+      responseError: function (response) {
+        if (response.status === 401) {
+          $location.url('/login')
+        }
+        return $q.reject(response)
+      }
+    }
+  })
+})
   .run(function ($state, $rootScope, $http, Notification) {
     // Logout function is available in any pages
     $rootScope.logout = function () {
