@@ -1,6 +1,6 @@
 angular
 .module('registerCtrls', ['ngMaterial', 'ngMessages'])
-.controller('registerCtrl', function ($scope) {
+.controller('registerCtrl', $scope => {
   $scope.user = {
     title: 'Developer',
     email: 'ipsum@lorem.com',
@@ -14,7 +14,7 @@ angular
     postalCode: '94043'
   }
 })
-.config(['$mdThemingProvider', function ($mdThemingProvider) {
+.config(['$mdThemingProvider', $mdThemingProvider => {
   // Configure a dark theme with primary foreground yellow
   $mdThemingProvider.theme('docs-dark', 'default')
     .primaryPalette('yellow')

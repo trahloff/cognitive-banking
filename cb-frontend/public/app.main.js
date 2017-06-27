@@ -47,12 +47,12 @@ angular.module('cognitive-banking', [
 
   cfpLoadingBarProvider.includeSpinner = false
 
-  $httpProvider.interceptors.push(function ($q, $location) {
+  $httpProvider.interceptors.push(($q, $location) => {
     return {
-      response: function (response) {
+      response: response => {
         return response
       },
-      responseError: function (response) {
+      responseError: response => {
         if (response.status === 401) {
           $location.url('/login')
         }
@@ -61,16 +61,16 @@ angular.module('cognitive-banking', [
     }
   })
 })
-  .run(function ($state, $rootScope, $http, Notification) {
+  .run(($state, $rootScope, $http, Notification) => {
     // Logout function is available in any pages
-    $rootScope.logout = function () {
+    $rootScope.logout = () => {
       $http.post('/auth/logout')
-      .success(function (user) {
+      .success(user => {
         // No error: logout OK
         Notification.success({message: 'successfully logged out', delay: 5000 })
         $state.go('login')
       })
-      .error(function () {
+      .error(() => {
         // Error: logout failed
         Notification.error({message: 'logout failed <br> please try again', delay: 5000 })
       })

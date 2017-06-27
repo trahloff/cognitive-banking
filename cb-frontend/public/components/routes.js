@@ -1,7 +1,7 @@
 angular
     .module('routes', [])
-    .config(['$stateProvider', function ($stateProvider) {
-      const loggedIn = function ($q, $http, $state, $rootScope, Notification) {
+    .config(['$stateProvider', $stateProvider => {
+      const loggedIn = ($q, $http, $state, $rootScope, Notification) => {
         // Initialize a new promise
         const deferred = $q.defer()
 

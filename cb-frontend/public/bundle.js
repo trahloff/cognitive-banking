@@ -75062,7 +75062,7 @@ angular.module('routes', []).config(['$stateProvider', function ($stateProvider)
 "use strict";
 
 
-angular.module('mainComponentCtrls', ['ngMaterial', 'ngMessages']).controller('landingControl', ['$scope', '$http', function ($scope, $http) {
+angular.module('mainComponentCtrls', ['ngMaterial', 'ngMessages']).controller('landingControl', function ($scope, $http) {
   $scope.value = 1;
   $scope.increment = function () {
     $scope.value++;
@@ -75080,7 +75080,7 @@ angular.module('mainComponentCtrls', ['ngMaterial', 'ngMessages']).controller('l
       alert(response.data);
     });
   };
-}]);
+});
 
 /***/ }),
 /* 30 */
@@ -75114,22 +75114,14 @@ angular.module('loginCtrls', ['ngMaterial', 'ngMessages']).controller('loginCtrl
 "use strict";
 
 
+var _arguments = arguments;
 angular.module('navbarCtrls', ['ngMaterial']).controller('navbarCtrl', function ($scope, $timeout, $mdSidenav, $rootScope) {
-  // closes the sidenav
-  $scope.close = function () {
-    $mdSidenav('left').close();
-  };
-
-  $scope.mainTitle = 'CarConnect';
-
-  $scope.toggleMenu = buildDelayedToggler('left');
-
   // needed for fancy sideNavBar animation
-  function debounce(func, wait, context) {
-    var timer;
-    return function debounced() {
+  var debounce = function debounce(func, wait, context) {
+    var timer = void 0;
+    return function () {
       var context = $scope,
-          args = Array.prototype.slice.call(arguments);
+          args = Array.prototype.slice.call(_arguments);
       $timeout.cancel(timer);
       timer = $timeout(function () {
         timer = undefined;
@@ -75139,11 +75131,20 @@ angular.module('navbarCtrls', ['ngMaterial']).controller('navbarCtrl', function 
   };
 
   // toggles the sideNavBar
-  function buildDelayedToggler(navID) {
+  var buildDelayedToggler = function buildDelayedToggler(navID) {
     return debounce(function () {
       $mdSidenav(navID).toggle().then(function () {});
     }, 200);
   };
+
+  // closes the sidenav
+  $scope.close = function () {
+    $mdSidenav('left').close();
+  };
+
+  $scope.mainTitle = 'CarConnect';
+
+  $scope.toggleMenu = buildDelayedToggler('left');
 });
 
 /***/ }),
@@ -75154,7 +75155,6 @@ angular.module('navbarCtrls', ['ngMaterial']).controller('navbarCtrl', function 
 
 
 angular.module('accountCtrls', ['ngMaterial', 'ngMessages']).controller('accountCtrl', function ($scope, $rootScope) {
-  console.log($rootScope.userProfile);
   $scope.user = { lastEvents: '- 06/06 12:03:11 Fraud detected\n\n- 06/06 19:53:02 Forecast for Client #198714 generated' };
 }).config(['$mdThemingProvider', function ($mdThemingProvider) {
   // Configure a dark theme with primary foreground yellow

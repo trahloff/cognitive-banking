@@ -1,15 +1,15 @@
 'use strict'
 angular
     .module('mainComponentCtrls', ['ngMaterial', 'ngMessages'])
-    .controller('landingControl', ['$scope', '$http', function ($scope, $http) {
+    .controller('landingControl', ($scope, $http) => {
       $scope.value = 1
-      $scope.increment = function () {
+      $scope.increment = () => {
         $scope.value++
       }
-      $scope.decrement = function () {
+      $scope.decrement = () => {
         $scope.value--
       }
-      $scope.pingBackend = function () {
+      $scope.pingBackend = () => {
         $http({
           method: 'GET',
           url: '/default/hello'
@@ -19,4 +19,4 @@ angular
           alert(response.data)
         })
       }
-    }])
+    })

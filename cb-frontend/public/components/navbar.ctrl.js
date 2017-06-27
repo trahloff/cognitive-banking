@@ -1,36 +1,35 @@
 angular
     .module('navbarCtrls', ['ngMaterial'])
-    .controller('navbarCtrl', function ($scope, $timeout, $mdSidenav, $rootScope) {
+    .controller('navbarCtrl', ($scope, $timeout, $mdSidenav, $rootScope) => {
+      // needed for fancy sideNavBar animation
+      const debounce = (func, wait, context) => {
+        let timer
+        return () => {
+          let context = $scope,
+            args = Array.prototype.slice.call(arguments)
+          $timeout.cancel(timer)
+          timer = $timeout(() => {
+            timer = undefined
+            func.apply(context, args)
+          }, wait || 10)
+        }
+      }
+
+      // toggles the sideNavBar
+      const buildDelayedToggler = navID => {
+        return debounce(() => {
+          $mdSidenav(navID)
+          .toggle()
+          .then(() => {})
+        }, 200)
+      }
+
         // closes the sidenav
-      $scope.close = function () {
+      $scope.close = () => {
         $mdSidenav('left').close()
       }
 
       $scope.mainTitle = 'CarConnect'
 
       $scope.toggleMenu = buildDelayedToggler('left')
-
-        // needed for fancy sideNavBar animation
-      function debounce (func, wait, context) {
-        var timer
-        return function debounced () {
-          var context = $scope,
-            args = Array.prototype.slice.call(arguments)
-          $timeout.cancel(timer)
-          timer = $timeout(function () {
-            timer = undefined
-            func.apply(context, args)
-          }, wait || 10)
-        }
-      };
-
-        // toggles the sideNavBar
-      function buildDelayedToggler (navID) {
-        return debounce(function () {
-          $mdSidenav(navID)
-                    .toggle()
-                    .then(function () {})
-        }, 200)
-      };
-    }
-    )
+    })
