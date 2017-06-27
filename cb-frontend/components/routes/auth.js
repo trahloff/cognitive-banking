@@ -9,9 +9,11 @@ const LocalStrategy = require('passport-local').Strategy
 passport.use(new LocalStrategy(
   function (name, passwd, done) {
     const userTmp = {name: name, passwd: passwd}
-    dbUtil.login(userTmp, (err, result, userProfile) => {
-      result ? done(null, userProfile) : done(null, false, { message: 'Incorrect username.' })
-    })
+    setTimeout(() => {
+      dbUtil.login(userTmp, (err, result, userProfile) => {
+        result ? done(null, userProfile) : done(null, false, { message: 'Incorrect username.' })
+      })
+    }, 1)
   }
 ))
 

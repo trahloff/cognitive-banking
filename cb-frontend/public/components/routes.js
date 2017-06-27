@@ -7,7 +7,8 @@ angular
         // Make an AJAX call to check if the user is logged in
         $http({
           method: 'HEAD',
-          url: '/auth/loggedin'
+          url: '/auth/loggedin',
+          ignoreLoadingBar: true
         }).then(successCallback = response => {
           deferred.resolve() // resolves promise, allowes client to load new view
         }, errorCallback = response => {

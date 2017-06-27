@@ -4,11 +4,11 @@ angular
     .module('cognitive-banking', // tools HAVE to be loaded before the main components
   [
     // tools
-    'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification',
+    'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar',
     // components
     'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls'
   ])
-  .config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, NotificationProvider) {
+  .config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider) {
     $mdThemingProvider.theme('default').primaryPalette('deep-purple')
     $urlRouterProvider.otherwise('/login') // if the user types some gibberish for an url he gets redirected to this page
 
@@ -21,6 +21,8 @@ angular
       positionX: 'right',
       positionY: 'top'
     })
+
+    cfpLoadingBarProvider.includeSpinner = false
 
     $httpProvider.interceptors.push(function ($q, $location) {
       return {

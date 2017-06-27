@@ -69,3 +69,8 @@ md-content::-webkit-scrollbar {
   flex: auto;
   text-align: center;
 }
+
+#loading-bar .bar {
+  background-color: white;
+  height: 3.2px;
+}
