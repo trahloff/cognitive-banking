@@ -4,18 +4,21 @@ angular
       const loggedIn = function ($q, $http, $state, $rootScope, Notification) {
         // Initialize a new promise
         const deferred = $q.defer()
-        // Make an AJAX call to check if the user is logged in
+
+        const successCallback = response => deferred.resolve()
+
+        const errorCallback = response => {
+          $state.go('login')
+          Notification.error({message: 'not logged in', delay: 5000 })
+          deferred.reject() // rejects promise, prevent client from loading new view
+        }
+
         $http({
           method: 'HEAD',
           url: '/auth/loggedin',
           ignoreLoadingBar: true
-        }).then(successCallback = response => {
-          deferred.resolve() // resolves promise, allowes client to load new view
-        }, errorCallback = response => {
-          $state.go('login')
-          Notification.error({message: 'not logged in', delay: 5000 })
-          deferred.reject() // rejects promise, prevent client from loading new view
-        })
+        }).then(successCallback, errorCallback)
+
         return deferred.promise
       }
 

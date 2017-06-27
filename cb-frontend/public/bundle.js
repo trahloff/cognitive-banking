@@ -559,8 +559,23 @@ __webpack_require__(22);
 
 __webpack_require__(25);
 
+__webpack_require__(28);
+
+__webpack_require__(29);
+
+__webpack_require__(30);
+
+__webpack_require__(31);
+
+__webpack_require__(32);
+
+__webpack_require__(33);
+
+__webpack_require__(34);
+
 /* =================================================================== */
 
+// CSS
 angular.module('cognitive-banking', ['ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar', 'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls']).config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider) {
   $mdThemingProvider.theme('default').primaryPalette('deep-purple');
   $urlRouterProvider.otherwise('/login'); // if the user types some gibberish for an url he gets redirected to this page
@@ -603,7 +618,13 @@ angular.module('cognitive-banking', ['ui.router', 'ngMaterial', 'ngAnimate', 'ui
     });
   };
 });
+
 // CSS
+
+/* =================================================================== */
+
+/* ========================= Custom  Modules ========================= */
+// JavaScript
 
 /***/ }),
 /* 6 */
@@ -74977,6 +74998,249 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 // module
 exports.push([module.i, "#loading-bar,#loading-bar-spinner{pointer-events:none;-webkit-pointer-events:none;-webkit-transition:350ms linear all;-moz-transition:350ms linear all;-o-transition:350ms linear all;transition:350ms linear all}#loading-bar-spinner.ng-enter,#loading-bar-spinner.ng-leave.ng-leave-active,#loading-bar.ng-enter,#loading-bar.ng-leave.ng-leave-active{opacity:0}#loading-bar-spinner.ng-enter.ng-enter-active,#loading-bar-spinner.ng-leave,#loading-bar.ng-enter.ng-enter-active,#loading-bar.ng-leave{opacity:1}#loading-bar .bar{-webkit-transition:width 350ms;-moz-transition:width 350ms;-o-transition:width 350ms;transition:width 350ms;background:#29d;position:fixed;z-index:10002;top:0;left:0;width:100%;height:2px;border-bottom-right-radius:1px;border-top-right-radius:1px}#loading-bar .peg{position:absolute;width:70px;right:0;top:0;height:2px;opacity:.45;-moz-box-shadow:#29d 1px 0 6px 1px;-ms-box-shadow:#29d 1px 0 6px 1px;-webkit-box-shadow:#29d 1px 0 6px 1px;box-shadow:#29d 1px 0 6px 1px;-moz-border-radius:100%;-webkit-border-radius:100%;border-radius:100%}#loading-bar-spinner{display:block;position:fixed;z-index:10002;top:10px;left:10px}#loading-bar-spinner .spinner-icon{width:14px;height:14px;border:2px solid transparent;border-top-color:#29d;border-left-color:#29d;border-radius:50%;-webkit-animation:loading-bar-spinner 400ms linear infinite;-moz-animation:loading-bar-spinner 400ms linear infinite;-ms-animation:loading-bar-spinner 400ms linear infinite;-o-animation:loading-bar-spinner 400ms linear infinite;animation:loading-bar-spinner 400ms linear infinite}@-webkit-keyframes loading-bar-spinner{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@-moz-keyframes loading-bar-spinner{0%{-moz-transform:rotate(0);transform:rotate(0)}100%{-moz-transform:rotate(360deg);transform:rotate(360deg)}}@-o-keyframes loading-bar-spinner{0%{-o-transform:rotate(0);transform:rotate(0)}100%{-o-transform:rotate(360deg);transform:rotate(360deg)}}@-ms-keyframes loading-bar-spinner{0%{-ms-transform:rotate(0);transform:rotate(0)}100%{-ms-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes loading-bar-spinner{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+angular.module('routes', []).config(['$stateProvider', function ($stateProvider) {
+  var loggedIn = function loggedIn($q, $http, $state, $rootScope, Notification) {
+    // Initialize a new promise
+    var deferred = $q.defer();
+
+    var successCallback = function successCallback(response) {
+      return deferred.resolve();
+    };
+
+    var errorCallback = function errorCallback(response) {
+      $state.go('login');
+      Notification.error({ message: 'not logged in', delay: 5000 });
+      deferred.reject(); // rejects promise, prevent client from loading new view
+    };
+
+    $http({
+      method: 'HEAD',
+      url: '/auth/loggedin',
+      ignoreLoadingBar: true
+    }).then(successCallback, errorCallback);
+
+    return deferred.promise;
+  };
+
+  $stateProvider.state('login', {
+    templateUrl: '/components/templates/login.html',
+    controller: 'loginCtrl',
+    url: '/login'
+  }).state('main', {
+    abstract: true,
+    templateUrl: '/components/templates/navbar.html',
+    controller: 'navbarCtrl',
+    url: '/'
+  }).state('main.overview', {
+    templateUrl: '/components/templates/overview.html',
+    controller: 'landingControl',
+    url: 'overview',
+    resolve: { check: loggedIn }
+  }).state('main.account', {
+    templateUrl: '/components/templates/account.html',
+    controller: 'accountCtrl',
+    url: 'account',
+    resolve: { check: loggedIn }
+  });
+}]);
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+angular.module('mainComponentCtrls', ['ngMaterial', 'ngMessages']).controller('landingControl', ['$scope', '$http', function ($scope, $http) {
+  $scope.value = 1;
+  $scope.increment = function () {
+    $scope.value++;
+  };
+  $scope.decrement = function () {
+    $scope.value--;
+  };
+  $scope.pingBackend = function () {
+    $http({
+      method: 'GET',
+      url: '/default/hello'
+    }).then(function successCallback(response) {
+      alert(response.data);
+    }, function errorCallback(response) {
+      alert(response.data);
+    });
+  };
+}]);
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+angular.module('loginCtrls', ['ngMaterial', 'ngMessages']).controller('loginCtrl', function ($scope, $http, $state, $rootScope, Notification) {
+  $scope.login = function (user) {
+    $http.post('/auth/login', {
+      username: user.username,
+      password: user.password
+    }).success(function (user) {
+      // No error: authentication OK
+      $rootScope.userProfile = user;
+      Notification.success('successfully logged in');
+      $state.go('main.overview');
+    }).error(function () {
+      // Error: authentication failed
+      Notification.error({ message: 'authentication failed', delay: 5000 });
+      $state.go('login');
+    });
+  };
+});
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+angular.module('navbarCtrls', ['ngMaterial']).controller('navbarCtrl', function ($scope, $timeout, $mdSidenav, $rootScope) {
+  // closes the sidenav
+  $scope.close = function () {
+    $mdSidenav('left').close();
+  };
+
+  $scope.mainTitle = 'CarConnect';
+
+  $scope.toggleMenu = buildDelayedToggler('left');
+
+  // needed for fancy sideNavBar animation
+  function debounce(func, wait, context) {
+    var timer;
+    return function debounced() {
+      var context = $scope,
+          args = Array.prototype.slice.call(arguments);
+      $timeout.cancel(timer);
+      timer = $timeout(function () {
+        timer = undefined;
+        func.apply(context, args);
+      }, wait || 10);
+    };
+  };
+
+  // toggles the sideNavBar
+  function buildDelayedToggler(navID) {
+    return debounce(function () {
+      $mdSidenav(navID).toggle().then(function () {});
+    }, 200);
+  };
+});
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+angular.module('accountCtrls', ['ngMaterial', 'ngMessages']).controller('accountCtrl', function ($scope, $rootScope) {
+  console.log($rootScope.userProfile);
+  $scope.user = { lastEvents: '- 06/06 12:03:11 Fraud detected\n\n- 06/06 19:53:02 Forecast for Client #198714 generated' };
+}).config(['$mdThemingProvider', function ($mdThemingProvider) {
+  // Configure a dark theme with primary foreground yellow
+  $mdThemingProvider.theme('docs-dark', 'default').primaryPalette('yellow').dark();
+}]);
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+angular.module('registerCtrls', ['ngMaterial', 'ngMessages']).controller('registerCtrl', function ($scope) {
+  $scope.user = {
+    title: 'Developer',
+    email: 'ipsum@lorem.com',
+    firstName: '',
+    lastName: '',
+    company: 'Google',
+    address: '1600 Amphitheatre Pkwy',
+    city: 'Mountain View',
+    state: 'CA',
+    biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
+    postalCode: '94043'
+  };
+}).config(['$mdThemingProvider', function ($mdThemingProvider) {
+  // Configure a dark theme with primary foreground yellow
+  $mdThemingProvider.theme('docs-dark', 'default').primaryPalette('yellow').dark();
+}]);
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(35);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(36);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./main.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./main.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "html {\n  height: 100%;\n  background-image: url(\"/assets/img/background4.png\");\n}\n\ndiv, body, md-content {\n  background: inherit;\n  font-family: 'Roboto', sans-serif;\n}\n\nmd-button, md-icon {\n  outline: none;\n}\n\n#wrapper {\n  padding: 20px;\n  background-color: inherit;\n}\n\n#accountMain {\n  background-color: white;\n}\n\nbody::-webkit-scrollbar {\n  width: 0.5em;\n}\n\nbody::-webkit-scrollbar-thumb {\n  outline: 1px solid slategrey;\n  background-color: darkgrey;\n}\n\nmd-content::-webkit-scrollbar {\n  width: 0.5em;\n}\n\n.titanic {\n  visibility: hidden;\n  z-index: -1;\n  float: none;\n  position: fixed;\n  vertical-align: sub;\n}\n\n#wrapper {\n  padding: 20px;\n  background-color: inherit;\n}\n\n.utilityNavbarButtons {\n  position: absolute;\n  bottom: 0;\n  width: 100%\n}\n\n.active {\n  background-color: #C5CAE9;\n}\n\n.md-ripple-container {\n  z-index: -1\n}\n\n.md-focused {\n    background: transparent!important;\n}\n\n#logoutButton {\n  flex: auto;\n  text-align: center;\n}\n\n#loading-bar .bar {\n  background-color: white;\n  height: 3.2px;\n}\n", ""]);
 
 // exports
 

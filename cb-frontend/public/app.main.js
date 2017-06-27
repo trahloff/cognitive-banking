@@ -15,6 +15,19 @@ import 'angular-ui-notification/dist/angular-ui-notification.min.css'
 import 'angular-loading-bar/build/loading-bar.min.css'
 /* =================================================================== */
 
+/* ========================= Custom  Modules ========================= */
+// JavaScript
+import './components/routes.js'
+import './components/mainComponent.ctrl.general.js'
+import './components/login.ctrl.js'
+import './components/navbar.ctrl.js'
+import './components/account.ctrl.js'
+import './components/register.ctrl.js'
+
+// CSS
+import './assets/css/main.css'
+/* =================================================================== */
+
 angular.module('cognitive-banking', [
   'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar',
   'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls'
