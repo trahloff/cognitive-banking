@@ -42,7 +42,6 @@ app
     .use(passport.initialize())
     .use(passport.session())
     .use('/', express.static('./public'))
-    .use('/node_modules', express.static('./node_modules'))
 
 /* -------------------------Route Definitions------------------------- */
 fs

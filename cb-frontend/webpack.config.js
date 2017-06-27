@@ -1,8 +1,8 @@
 module.exports = {
-  entry: './public/src/app.main.js',
+  entry: './public/app.main.js',
   watch: true,
   output: {
-    filename: './public/src/bundle.js'
+    filename: './public/bundle.js'
   },
   module: {
     loaders: [{
@@ -14,8 +14,7 @@ module.exports = {
       }
     }, {
       test: /\.css$/,
-      exclude: /node_modules/,
-      use: [ 'style-loader', 'css-loader' ]
+      use: [ 'to-string-loader', 'style-loader', 'css-loader' ]
     }]
   }
 }

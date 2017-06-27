@@ -1,4 +1,19 @@
 'use strict'
+/* ======================== 3rd Party Modules ======================== */
+// JavaScript
+import 'angular'
+import 'angular-animate'
+import 'angular-aria'
+import 'angular-loading-bar'
+import 'angular-messages'
+import 'angular-material'
+import 'angular-ui-notification'
+import 'angular-ui-router'
+// CSS
+import 'angular-material/angular-material.css'
+import 'angular-ui-notification/dist/angular-ui-notification.min.css'
+import 'angular-loading-bar/build/loading-bar.min.css'
+/* =================================================================== */
 
 angular.module('cognitive-banking', [
   'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar',
