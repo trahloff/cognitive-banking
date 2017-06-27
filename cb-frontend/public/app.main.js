@@ -30,7 +30,7 @@ import './assets/css/main.css'
 angular.module('cognitive-banking', [
   'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar',
   'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls'
-]).config(function ($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider) {
+]).config(($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider) => {
   $mdThemingProvider.theme('default').primaryPalette('deep-purple')
   $urlRouterProvider.otherwise('/login') // if the user types some gibberish for an url he gets redirected to this page
 

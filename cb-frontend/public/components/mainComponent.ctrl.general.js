@@ -8,14 +8,4 @@ angular
       $scope.decrement = () => {
         $scope.value--
       }
-      $scope.pingBackend = () => {
-        $http({
-          method: 'GET',
-          url: '/default/hello'
-        }).then(function successCallback (response) {
-          alert(response.data)
-        }, function errorCallback (response) {
-          alert(response.data)
-        })
-      }
     })

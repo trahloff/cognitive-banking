@@ -7,7 +7,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "webpack-dev-server"
+    "build": "webpack --env.prod=true",
+    "dev": "webpack"
   },
   "dependencies": {
     "angular": "1.5.1",
@@ -34,8 +35,8 @@
     "babel-loader": "^7.1.0",
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^0.28.4",
+    "ng-annotate-loader": "^0.6.1",
     "style-loader": "^0.18.2",
-    "to-string-loader": "^1.1.5",
     "webpack": "^3.0.0"
   },
   "globals": [
