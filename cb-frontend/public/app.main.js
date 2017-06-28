@@ -49,15 +49,15 @@ angular.module('cognitive-banking', [
 
   // Configure all charts
   ChartJsProvider.setOptions({
-    chartColors: ['#FF5252', '#FF8A80'],
-    responsive: true
-  })
-  // Configure all line charts
-  ChartJsProvider.setOptions('line', {
-    showLines: true
+    chartColors: ['#FFCC80', '#FF9800', '#EF6C00'],
+    responsive: true,
+    animation: {
+      duration: 1500
+    }
   })
 
   cfpLoadingBarProvider.includeSpinner = false
+  cfpLoadingBarProvider.latencyThreshold = 200
 
   $httpProvider.interceptors.push(($q, $location) => {
     return {

@@ -5,7 +5,10 @@ angular
         // Initialize a new promise
         const deferred = $q.defer()
 
-        const successCallback = response => deferred.resolve()
+        const successCallback = response => {
+          $rootScope.userProfile = response.data
+          deferred.resolve()
+        }
 
         const errorCallback = response => {
           $state.go('login')
@@ -14,7 +17,7 @@ angular
         }
 
         $http({
-          method: 'HEAD',
+          method: 'GET',
           url: '/auth/loggedin',
           ignoreLoadingBar: true
         }).then(successCallback, errorCallback)

@@ -22,7 +22,7 @@
           </md-card-title-text>
         </md-card-title>
         <md-card-content>
-          <canvas class='chart chart-doughnut' chart-data='pie_data' chart-labels='pie_labels' chart-colors='colors' chart-dataset-override='datasetOverride2' />
+          <canvas class='chart chart-doughnut' chart-data='pie_data' chart-labels='pie_labels' chart-series='pie_series' />
         </md-card-content>
       </md-content>
     </md-card>
@@ -42,7 +42,6 @@
       </md-content>
 
       <md-card-actions layout='row' layout-align='end center'>
-        <md-button ng-click='logout()'>logout</md-button>
       </md-card-actions>
     </md-card>
 
@@ -50,16 +49,15 @@
       <md-content>
         <md-card-title>
           <md-card-title-text>
-            <span class='md-headline'>headline</span>
+            <span class='md-headline'>Spending Compared to 2016</span>
           </md-card-title-text>
         </md-card-title>
         <md-card-content>
-          {{value}}
+          <canvas id="bar" class="chart chart-bar" chart-data="bar_data" chart-labels="bar_labels" chart-series="bar_series" </canvas>
         </md-card-content>
       </md-content>
       <md-card-actions layout='row' layout-align='end center'>
         <md-button ng-click='increment()'>increment</md-button>
-        <md-button ng-click='decrement()'>decrement</md-button>
       </md-card-actions>
     </md-card>
   </md-content>
