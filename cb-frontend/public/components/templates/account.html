@@ -3,9 +3,9 @@
   <div id="page-wrapper">
 
     <div layout="row" layout-align="center " layout-wrap layout-gt-xs>
-      <div flex="20"></div>
+      <div flex="0" flex-gt-xs="20"></div>
 
-      <div ng-controller="accountCtrl" layout="column" ng-cloak class="md-inline-form" style='border:1px solid black;' flex="60">
+      <div ng-controller="accountCtrl" layout="column" ng-cloak class="md-inline-form" style='border:1px solid black;' flex="100" flex-gt-xs="60">
         <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
           <div>
             <md-input-container>
@@ -48,7 +48,7 @@
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Postal Code</label>
-                  <input name="postalCode" ng-model="userProfile.postalCode" placeholder="12345"  ng-pattern="/^[0-9]{5}$/" readonly>
+                  <input name="postalCode" ng-model="userProfile.postalCode" placeholder="12345" ng-pattern="/^[0-9]{5}$/" readonly>
                   <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
                     <div ng-message="pattern" class="my-message">That doesn't look like a valid postal code.
                     </div>
@@ -57,14 +57,14 @@
               </div>
               <md-input-container class="md-block">
                 <label>Last Events</label>
-                <textarea ng-model="user.lastEvents"  rows="1" md-select-on-focus readonly></textarea>
+                <textarea ng-model="user.lastEvents" rows="1" md-select-on-focus readonly></textarea>
               </md-input-container>
             </form>
           </div>
         </md-content>
       </div>
 
-      <div flex="20"></div>
+      <div flex="0" flex-gt-xs="20"></div>
     </div>
   </div>
 </div>
