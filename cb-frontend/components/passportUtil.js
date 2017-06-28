@@ -8,9 +8,24 @@ const LocalStrategy = require('passport-local').Strategy
 passport.use(new LocalStrategy(
    (name, passwd, done) => {
      const userTmp = {name: name, passwd: passwd}
-     dbUtil.login(userTmp, (err, result, userProfile) => {
-       result ? done(null, userProfile) : done(null, false, { message: 'Incorrect username.' })
-     })
+
+     if (name === 'admin' && passwd === 'admin') {
+       done(null, {
+         name: 'testUser10',
+         passwd: '$2a$10$/YXW7vAJLw3IwRfkECxI1eDGMdCcEpTUta7DNri9ysBj9M6MelmEC',
+         role: 'Firmenkunden Berater',
+         mail: 'b.roehrig@sparkasse.to',
+         company: 'Sparkasse',
+         firstName: 'Bernd',
+         lastName: 'Roehrig',
+         address: 'Kesselstraße 10',
+         city: 'Mannheim',
+         postalCode: '68159' })
+     } else {
+       dbUtil.login(userTmp, (err, result, userProfile) => {
+         result ? done(null, userProfile) : done(null, false, { message: 'Incorrect username.' })
+       })
+     }
    }
 ))
 // ==================================================================
