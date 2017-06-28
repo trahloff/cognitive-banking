@@ -24,7 +24,7 @@ angular
 
         $scope.radar_labels = ['Food', 'Drugs', 'Alcohol', 'Tech', 'Watches', 'ScamCoins', 'Whatever']
         $scope.radar_data = [
-                [65, 59, 90, 81, 56, 55, 40]
+                [65, 90, 90, 81, 56, 55, 40]
         ]
 
         $scope.bar_labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
