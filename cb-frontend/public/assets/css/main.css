@@ -27,6 +27,10 @@ md-button, md-icon {
   z-index: 1;
 }
 
+.md-headline {
+  font-weight: 500;
+}
+
 .md-scroll-mask {
   visibility: hidden;
 }
