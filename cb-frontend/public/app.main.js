@@ -5,13 +5,16 @@ import 'angular-animate'
 import 'angular-aria'
 import 'angular-chart.js'
 import 'angular-loading-bar'
-import 'angular-messages'
 import 'angular-material'
+import 'angular-material-data-table/dist/md-data-table.min.js'
+import 'angular-messages'
 import 'angular-ui-notification'
 import 'angular-ui-router'
+
 // CSS
 import 'angular-material/angular-material.css'
 import 'angular-ui-notification/dist/angular-ui-notification.min.css'
+import 'angular-material-data-table/dist/md-data-table.min.css'
 import 'angular-loading-bar/build/loading-bar.min.css'
 /* =================================================================== */
 
@@ -30,7 +33,7 @@ import './assets/css/main.css'
 /* =================================================================== */
 
 angular.module('cognitive-banking', [
-  'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar', 'chart.js',
+  'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar', 'chart.js', 'md.data.table',
   'overviewCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls', 'rulesCtrls'
 ]).config(($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider, ChartJsProvider) => {
   $mdThemingProvider.theme('default').primaryPalette('deep-purple')

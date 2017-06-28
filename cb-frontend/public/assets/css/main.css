@@ -31,6 +31,8 @@ md-button, md-icon {
   font-weight: 500;
 }
 
+
+
 .md-scroll-mask {
   visibility: hidden;
 }
@@ -46,6 +48,22 @@ body::-webkit-scrollbar-thumb {
 
 md-content::-webkit-scrollbar {
   width: 0.5em;
+}
+
+md-table-container {
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+md-table-container::-webkit-scrollbar {
+  width: 0em;
+}
+
+md-table-container::-webkit-scrollbar-thumb {
+  outline: 1px solid slategrey;
+  background-color: darkgrey;
+  position: relative;
+
 }
 
 .titanic {

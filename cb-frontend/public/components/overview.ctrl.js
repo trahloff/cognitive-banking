@@ -1,6 +1,44 @@
 angular
     .module('overviewCtrls', [])
     .controller('overviewCtrl', ($scope, $mdDialog) => {
+      // =====================================================================
+
+      $scope.events = {
+        data: [
+                  {type: 'Fraud', timestamp: 123},
+                  {type: 'Overspending', timestamp: 124},
+                  {type: 'Fraud', timestamp: 125},
+                  {type: 'Wage', timestamp: 126},
+                  {type: 'Aunt Mary', timestamp: 127},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128},
+
+        ],
+        count: 5
+      }
+
+      $scope.query = {
+        order: '-count', // the '-' tells md-data-tables to sort it in descending order. don't rely on their documentation, it is garbage.
+        limit: 4,
+        page: 1
+      }
+
+      $scope.selected = []
+      // =====================================================================
+
       const load = () => {
         $scope.spendingYear = 2016
 
@@ -32,14 +70,9 @@ angular
             [28, 48, 40, 19, 86, 27, 90]
           ]
         }
-        // $scope.bar_data = [
-        //   [65, 59, 80, 81, 56, 55, 40],
-        //   [28, 48, 40, 19, 86, 27, 90]
-        // ]
       }
 
       $scope.showPrompt = function (ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
         const confirm = $mdDialog.prompt()
                         .title('Change Year')
                         .textContent('Compare your spendings in 2017 to:')
