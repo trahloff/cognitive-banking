@@ -1,6 +1,6 @@
 angular
     .module('navbarCtrls', [])
-    .controller('navbarCtrl', ($scope, $timeout, $mdSidenav, $rootScope) => {
+    .controller('navbarCtrl', ($scope, $timeout, $mdSidenav, $rootScope, $state) => {
       // needed for fancy sideNavBar animation
       const debounce = (func, wait, context) => {
         let timer
@@ -23,7 +23,7 @@ angular
           .then(() => {})
         }, 200)
       }
-
+      
         // closes the sidenav
       $scope.close = () => {
         $mdSidenav('left').close()

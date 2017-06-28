@@ -7,7 +7,7 @@
         </md-button>
         <h2>
                     <span>
-                        <a ui-sref="login" class="titleLink">Cognitive Banking</a>
+                        {{stateName}}
                     </span>
                 </h2>
         <span flex></span>
@@ -41,7 +41,7 @@
   </section>
 
 </div>
-<treasure-overlay-spinner style="height: 100%" active=insuranceAllSpinner>
+<treasure-overlay-spinner style="height: 100%" active=loadingSpinner>
   <div id="wrapper">
     <div ui-view></div>
   </div>

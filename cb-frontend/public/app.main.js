@@ -30,6 +30,7 @@ import './assets/css/main.css'
 angular.module('cognitive-banking', [
   'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar',
   'mainComponentCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls'
+
 ]).config(($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider) => {
   $mdThemingProvider.theme('default').primaryPalette('deep-purple')
   $urlRouterProvider.otherwise('/login') // if the user types some gibberish for an url he gets redirected to this page
@@ -74,4 +75,11 @@ angular.module('cognitive-banking', [
         Notification.error({message: 'logout failed <br> please try again', delay: 5000 })
       })
     }
+
+    $rootScope.$on('$stateChangeSuccess',
+      (event, toState, toParams, fromState, fromParams) => {
+          const stateNameArray = toState.name.split('.')
+          const nestedName = stateNameArray[stateNameArray.length - 1]
+          $rootScope.stateName = nestedName.replace(/\b\w/g, l => l.toUpperCase())
+      })
   })
