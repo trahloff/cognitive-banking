@@ -22,7 +22,7 @@ module.exports = env => {
         }]
       }, {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: [ 'style-loader','css-loader' ]
       }]
     },
     plugins: !prod ? [] : [

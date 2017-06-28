@@ -3,6 +3,7 @@
 import 'angular'
 import 'angular-animate'
 import 'angular-aria'
+import 'angular-chart.js'
 import 'angular-loading-bar'
 import 'angular-messages'
 import 'angular-material'
@@ -29,11 +30,11 @@ import './assets/css/main.css'
 /* =================================================================== */
 
 angular.module('cognitive-banking', [
-  'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar',
+  'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar', 'chart.js',
   'overviewCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls', 'rulesCtrls'
-
-]).config(($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider) => {
+]).config(($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider, ChartJsProvider) => {
   $mdThemingProvider.theme('default').primaryPalette('deep-purple')
+
   $urlRouterProvider.otherwise('/login') // if the user types some gibberish for an url he gets redirected to this page
 
   NotificationProvider.setOptions({
@@ -44,6 +45,16 @@ angular.module('cognitive-banking', [
     horizontalSpacing: 20,
     positionX: 'right',
     positionY: 'top'
+  })
+
+  // Configure all charts
+  ChartJsProvider.setOptions({
+    chartColors: ['#FF5252', '#FF8A80'],
+    responsive: true
+  })
+  // Configure all line charts
+  ChartJsProvider.setOptions('line', {
+    showLines: true
   })
 
   cfpLoadingBarProvider.includeSpinner = false
@@ -79,8 +90,8 @@ angular.module('cognitive-banking', [
 
     $rootScope.$on('$stateChangeSuccess',
       (event, toState, toParams, fromState, fromParams) => {
-          const stateNameArray = toState.name.split('.')
-          const nestedName = stateNameArray[stateNameArray.length - 1]
-          $rootScope.stateName = nestedName.replace(/\b\w/g, l => l.toUpperCase())
+        const stateNameArray = toState.name.split('.')
+        const nestedName = stateNameArray[stateNameArray.length - 1]
+        $rootScope.stateName = nestedName.replace(/\b\w/g, l => l.toUpperCase())
       })
   })

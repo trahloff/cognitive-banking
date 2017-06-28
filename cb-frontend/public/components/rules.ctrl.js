@@ -1,5 +1,5 @@
 angular
     .module('rulesCtrls', [])
-    .controller('rulesCtrl', ($scope, $http) => {
+    .controller('rulesCtrl', ($scope, $timeout) => {
 
     })
