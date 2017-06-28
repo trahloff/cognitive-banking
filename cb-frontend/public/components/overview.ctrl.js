@@ -1,6 +1,6 @@
 angular
     .module('overviewCtrls', [])
-    .controller('overviewCtrl', ($scope, $http) => {
+    .controller('overviewCtrl', ($scope, $mdDialog) => {
       const load = () => {
         $scope.line = {
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Oktober', 'November', 'Dezember'],
@@ -32,6 +32,49 @@ angular
         }
       }
 
+      const showPrompt = () => {
+        // const confirm = $mdDialog.prompt()
+        //                   .title('What would you name your dog?')
+        //                   .textContent('Bowser is a common name.')
+        //                   .placeholder('Change Year')
+        //                   .initialValue('Buddy')
+        //                   .ok('Okay!')
+        //                   .hasBackdrop(false)
+
+        var confirm = $mdDialog.confirm()
+.parent(angular.element(document.body))
+.title('Would you like to delete your debt?')
+.content('All of the banks have agreed to forgive you your debts.')
+.ariaLabel('Lucky day')
+.ok('Please do it!')
+.cancel('Sounds like a scam')
+.hasBackdrop(false)
+
+        $mdDialog.show(confirm).then(result => {
+          console.log('You decided to name your dog ' + result + '.')
+        })
+      }
+
+      $scope.showPrompt = function (ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.prompt()
+      .title('What would you name your dog?')
+      .textContent('Bowser is a common name.')
+      .placeholder('Dog name')
+      .ariaLabel('Dog name')
+      .initialValue('Buddy')
+      .targetEvent(ev)
+      .hasBackdrop(false)
+      .ok('Okay!')
+      .cancel('I\'m a cat person')
+
+        $mdDialog.show(confirm).then(function (result) {
+          $scope.status = 'You decided to name your dog ' + result + '.'
+        }, function () {
+          $scope.status = 'You didn\'t name your dog.'
+        })
+      }
+
       ;(init => {
         setTimeout(() => {
           load()
@@ -39,6 +82,6 @@ angular
       })()
 
       $scope.changeYear = () => {
-        alert()
+        showPrompt()
       }
     })

@@ -21,6 +21,16 @@ md-button, md-icon {
   background-color: white;
 }
 
+.md-dialog-container {
+  background: none;
+  background-color: rgba(105, 105, 105, 0.48);
+  z-index: 1;
+}
+
+.md-scroll-mask {
+  visibility: hidden;
+}
+
 body::-webkit-scrollbar {
   width: 0.5em;
 }
@@ -57,7 +67,7 @@ md-content::-webkit-scrollbar {
 }
 
 .md-focused {
-    background: transparent!important;
+  background: transparent!important;
 }
 
 #logoutButton {
