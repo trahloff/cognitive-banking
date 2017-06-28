@@ -36,7 +36,7 @@ angular
             })
             .state('main.overview', {
               templateUrl: '/components/templates/overview.html',
-              controller: 'landingControl',
+              controller: 'overviewCtrl',
               url: 'overview',
               resolve: {check: loggedIn}
             })
@@ -44,6 +44,12 @@ angular
               templateUrl: '/components/templates/account.html',
               controller: 'accountCtrl',
               url: 'account',
+              resolve: {check: loggedIn}
+            })
+            .state('main.rules', {
+              templateUrl: '/components/templates/rules.html',
+              controller: 'rulesCtrl',
+              url: 'rules',
               resolve: {check: loggedIn}
             })
     }])

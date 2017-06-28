@@ -1,6 +1,6 @@
 angular
-    .module('mainComponentCtrls', [])
-    .controller('landingControl', ($scope, $http) => {
+    .module('overviewCtrls', [])
+    .controller('overviewCtrl', ($scope, $http) => {
       $scope.value = 1
       $scope.increment = () => {
         $scope.value++
