@@ -9,7 +9,7 @@
           </md-card-title-text>
         </md-card-title>
         <md-card-content>
-          <canvas class='chart chart-line' chart-data='line_data' chart-labels='line_labels' chart-series='line_series' chart-click='onClick' />
+          <canvas class='chart chart-line' chart-data='line.data' chart-labels='line.labels' chart-series='line.series' chart-click='onClick' />
         </md-card-content>
       </md-content>
     </md-card>
@@ -22,7 +22,7 @@
           </md-card-title-text>
         </md-card-title>
         <md-card-content>
-          <canvas class='chart chart-doughnut' chart-data='pie_data' chart-labels='pie_labels' chart-series='pie_series' />
+          <canvas class='chart chart-doughnut' chart-data='pie.data' chart-labels='pie.labels' chart-series='pie.series' />
         </md-card-content>
       </md-content>
     </md-card>
@@ -37,7 +37,7 @@
           </md-card-title-text>
         </md-card-title>
         <md-card-content>
-          <canvas id="radar" class="chart chart-radar" chart-data="radar_data" chart-labels="radar_labels"></canvas>
+          <canvas id="radar" class="chart chart-radar" chart-data="radar.data" chart-labels="radar.labels"></canvas>
         </md-card-content>
       </md-content>
 
@@ -53,11 +53,11 @@
           </md-card-title-text>
         </md-card-title>
         <md-card-content>
-          <canvas id="bar" class="chart chart-bar" chart-data="bar_data" chart-labels="bar_labels" chart-series="bar_series" </canvas>
+          <canvas id="bar" class="chart chart-bar" chart-data="bar.data" chart-labels="bar.labels" chart-series="bar.series" </canvas>
         </md-card-content>
       </md-content>
       <md-card-actions layout='row' layout-align='end center'>
-        <md-button ng-click='increment()'>increment</md-button>
+        <md-button ng-click='changeYear()'>increment</md-button>
       </md-card-actions>
     </md-card>
   </md-content>
