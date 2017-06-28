@@ -13,7 +13,7 @@ md-button, md-icon {
 }
 
 #wrapper {
-  padding: 20px;
+  margin: 20px;
   background-color: inherit;
 }
 
@@ -40,11 +40,6 @@ md-content::-webkit-scrollbar {
   float: none;
   position: fixed;
   vertical-align: sub;
-}
-
-#wrapper {
-  padding: 20px;
-  background-color: inherit;
 }
 
 .utilityNavbarButtons {

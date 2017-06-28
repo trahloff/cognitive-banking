@@ -13,12 +13,10 @@
 </div>
 
 <div layout="row" layout-wrap>
-  <div flex="35"></div>
+  <div flex="5" flex-gt-xs="35"></div>
   <br>
   <br>
-  <div layout="column" flex="30">
-    <br>
-    <br>
+  <div layout="column" flex="90" flex-gt-xs="30">
     <br>
     <br>
     <br>
@@ -28,12 +26,13 @@
     <br>
     <br>
     <img src="assets/img/logoWhite.png" height="150" height="150" align="middle" style="position:fixed; left: 0; right:0;bottom:0; display: block; margin: auto;">
+
     <md-card flex class="littleShadow">
       <md-content layout-margin="60">
 
         <form name="userForm" id="login" autocomplete="off" ng-submit="login(user)">
           <div layout-gt-sm="column">
-            <md-input-container class="md-block" max-width="40%" flex-gt-sm="">
+            <md-input-container class="md-block" max-width="40%" >
               <label>Username</label>
               <input id="user" name="username" ng-model="user.username " autofocus required/>
               <div ng-messages="userForm.username.$error">
@@ -41,7 +40,7 @@
                 <div ng-message="required">This is required.</div>
               </div>
             </md-input-container>
-            <md-input-container class="md-block" max-width="40%" flex-gt-sm="">
+            <md-input-container class="md-block" max-width="40%" >
               <label>Password</label>
               <input id="pwd" name="password" type="password" ng-model="user.password" required/>
               <div ng-messages="userForm.password.$error">
@@ -61,7 +60,7 @@
     </md-card>
   </div>
 
-  <div flex="35"></div>
+  <div flex="5" flex-gt-xs="35"></div>
 </div>
 
 <!-- <footer style="position:absolute; left: 0; right:0;bottom:0; width:50%; display: block; margin: auto; height:10px">
