@@ -1,66 +1,88 @@
-<md-content layout='column'>
+<md-content layout-gt-sm='row' layout='column'>
 
-  <md-content layout-gt-sm='row' layout='column'>
-    <md-card flex>
-      <md-content>
-        <md-card-title>
-          <md-card-title-text>
-            <span class='md-headline'>Spending History</span>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-          <canvas class='chart chart-line' chart-data='line.data' chart-labels='line.labels' chart-series='line.series' chart-click='onClick' />
-        </md-card-content>
-      </md-content>
-    </md-card>
+  <md-content flex="100" flex-gt-sm="65" layout='column'>
 
-    <md-card flex>
-      <md-content>
-        <md-card-title>
-          <md-card-title-text>
-            <span class='md-headline'>Budget Allocation</span>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-          <canvas class='chart chart-doughnut' chart-data='pie.data' chart-labels='pie.labels' chart-series='pie.series' />
-        </md-card-content>
-      </md-content>
-    </md-card>
+    <md-content layout-gt-sm='row' layout='column'>
+      <md-card flex>
+        <md-content>
+          <md-card-title>
+            <md-card-title-text>
+              <span class='md-headline'>Spending History</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <canvas class='chart chart-line' chart-data='line.data' chart-labels='line.labels' chart-series='line.series' chart-click='onClick' />
+          </md-card-content>
+        </md-content>
+      </md-card>
+
+      <md-card flex>
+        <md-content>
+          <md-card-title>
+            <md-card-title-text>
+              <span class='md-headline'>Budget Allocation</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <canvas class='chart chart-doughnut' chart-data='pie.data' chart-labels='pie.labels' chart-series='pie.series' />
+          </md-card-content>
+        </md-content>
+      </md-card>
+    </md-content>
+
+    <md-content layout-gt-sm='row' layout='column'>
+      <md-card flex>
+        <md-content>
+          <md-card-title>
+            <md-card-title-text>
+              <span class='md-headline'>Spending Habits</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <canvas id="radar" class="chart chart-radar" chart-data="radar.data" chart-labels="radar.labels"></canvas>
+          </md-card-content>
+        </md-content>
+
+        <md-card-actions layout='row' layout-align='end center'>
+        </md-card-actions>
+      </md-card>
+
+      <md-card flex>
+        <md-content>
+          <md-card-title>
+            <md-card-title-text>
+              <span class='md-headline'>
+              Spending Compared to {{spendingYear}}
+            </span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <canvas id="bar" class="chart chart-bar" chart-data="bar.data" chart-labels="bar.labels" chart-series="bar.series" </canvas>
+          </md-card-content>
+        </md-content>
+        <md-card-actions layout='row' layout-align='end center'>
+          <md-button ng-click='showPrompt($event)'>Change Year</md-button>
+        </md-card-actions>
+      </md-card>
+    </md-content>
+
   </md-content>
 
-  <md-content layout-gt-sm='row' layout='column'>
-    <md-card flex>
-      <md-content>
-        <md-card-title>
-          <md-card-title-text>
-            <span class='md-headline'>Spending Habits</span>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-          <canvas id="radar" class="chart chart-radar" chart-data="radar.data" chart-labels="radar.labels"></canvas>
-        </md-card-content>
-      </md-content>
-
-      <md-card-actions layout='row' layout-align='end center'>
-      </md-card-actions>
-    </md-card>
-
+  <md-content flex="100" flex-gt-sm="35" layout='column'>
     <md-card flex>
       <md-content>
         <md-card-title>
           <md-card-title-text>
             <span class='md-headline'>
-              Spending Compared to {{spendingYear}}
-            </span>
+            Events
+          </span>
           </md-card-title-text>
         </md-card-title>
         <md-card-content>
-          <canvas id="bar" class="chart chart-bar" chart-data="bar.data" chart-labels="bar.labels" chart-series="bar.series" </canvas>
+          Fuck Yeah
         </md-card-content>
       </md-content>
-      <md-card-actions layout='row' layout-align='end center'>
-        <md-button ng-click='showPrompt($event)'>Change Year</md-button>
-      </md-card-actions>
+
     </md-card>
   </md-content>
 
