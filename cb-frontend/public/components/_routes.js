@@ -12,7 +12,7 @@ angular
 
         const errorCallback = response => {
           $state.go('login')
-          Notification.error({message: 'not logged in', delay: 5000 })
+          Notification.error({message: 'not logged in'})
           deferred.reject() // rejects promise, prevent client from loading new view
         }
 

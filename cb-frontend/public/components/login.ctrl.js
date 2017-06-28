@@ -14,7 +14,7 @@ angular
         })
         .error(() => {
           // Error: authentication failed
-          Notification.error({message: 'authentication failed', delay: 5000 })
+          Notification.error({message: 'authentication failed'})
           $state.go('login')
         })
       }
