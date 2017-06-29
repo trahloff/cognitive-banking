@@ -52,8 +52,8 @@ angular
         }
 
         $scope.pie = {
-          labels: ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'],
-          series: ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'],
+          labels: ['Food', 'Rent', 'Savings'],
+          series: ['Food', 'Rent', 'Savings'],
           data: [350, 450, 100]
         }
 
