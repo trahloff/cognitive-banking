@@ -124,7 +124,7 @@ angular
       ;(init => {
         setTimeout(() => {
           load()
-        }, 0)
+        }, 1)
       })()
 
       $scope.changeYear = () => {
