@@ -16,8 +16,7 @@ RUN apk --no-cache add --virtual native-deps \
 RUN npm install --quiet node-gyp -g && \
     npm install --only=prod --quiet
 
-RUN npm cache clean && \
-    apk del native-deps
+RUN apk del native-deps
 
 # Bundle app source
 COPY . /usr/src/app
