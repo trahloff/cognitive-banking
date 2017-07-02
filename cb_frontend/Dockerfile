@@ -17,7 +17,7 @@ RUN npm run build
 
 # Clean Up
 RUN yarn clean
-RUN npm uninstall -g yarn node-gyp
+RUN npm uninstall -g yarn node-gyp --quiet
 RUN apk del native-deps
 
 CMD [ "npm", "start" ]
