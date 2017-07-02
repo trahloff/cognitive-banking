@@ -1,7 +1,10 @@
 angular
     .module('navbarCtrls', [])
     .controller('navbarCtrl', ($scope, $timeout, $mdSidenav, $rootScope, $state) => {
-      // needed for fancy sideNavBar animation
+      /**
+       * needed for fancy sideNavBar animation
+       * basically just uses delays to move sidebar
+       */
       const debounce = (func, wait, context) => {
         let timer
         return () => {
@@ -23,13 +26,11 @@ angular
           .then(() => {})
         }, 200)
       }
-      
+
         // closes the sidenav
       $scope.close = () => {
         $mdSidenav('left').close()
       }
-
-      $scope.mainTitle = 'CarConnect'
 
       $scope.toggleMenu = buildDelayedToggler('left')
     })

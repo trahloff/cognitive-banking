@@ -38,8 +38,10 @@ angular.module('cognitive-banking', [
 ]).config(($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider, ChartJsProvider) => {
   $mdThemingProvider.theme('default').primaryPalette('red')
 
-  $urlRouterProvider.otherwise('/login') // if the user types some gibberish for an url he gets redirected to this page
+  // if the user types some gibberish for an url he gets redirected to this page
+  $urlRouterProvider.otherwise('/login')
 
+  // default settings for pop-up notifications
   NotificationProvider.setOptions({
     delay: 1200,
     startTop: 20,
@@ -64,9 +66,12 @@ angular.module('cognitive-banking', [
     }
   })
 
+  /* don't show loading spinner
+     don't show loading bar if HTTP request < 200ms */
   cfpLoadingBarProvider.includeSpinner = false
   cfpLoadingBarProvider.latencyThreshold = 200
 
+  // intercept any HTTP requests and prevent logic execution if unauthorized
   $httpProvider.interceptors.push(($q, $location) => {
     return {
       response: response => {
@@ -100,6 +105,7 @@ angular.module('cognitive-banking', [
       (event, toState, toParams, fromState, fromParams) => {
         const stateNameArray = toState.name.split('.')
         const nestedName = stateNameArray[stateNameArray.length - 1]
+        /* get the current state name, capitalize the first letter and write the result into rootScope */
         $rootScope.stateName = nestedName.replace(/\b\w/g, l => l.toUpperCase())
       })
   })

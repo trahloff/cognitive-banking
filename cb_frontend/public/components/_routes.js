@@ -16,6 +16,11 @@ angular
           deferred.reject() // rejects promise, prevent client from loading new view
         }
 
+        /**
+         * query the backend on every state-change if the current session is authorized
+         * an authorized session will get a HTTP200 response, leading to successCallback
+         * an unauthorized session will get a HTTP401 response, leading to errorCallback 
+         */
         $http({
           method: 'GET',
           url: '/auth/loggedin',
