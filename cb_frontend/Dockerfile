@@ -13,8 +13,8 @@ COPY package.json /usr/src/app/
 RUN apk --no-cache add --virtual native-deps \
     g++ gcc libgcc libstdc++ linux-headers make python
 
-RUN npm install --quiet node-gyp -g && \
-    npm install --only=prod --quiet
+RUN npm install --quiet node-gyp yarn -g && \
+    yarn --prod --quiet
 
 RUN apk del native-deps
 
