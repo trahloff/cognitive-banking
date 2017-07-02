@@ -1,4 +1,4 @@
-FROM node:6.10.1-alpine
+FROM node:8.0.0-alpine
 
 # RUN echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' > /etc/apk/repositories
 # RUN apk add --no-cache yarn
