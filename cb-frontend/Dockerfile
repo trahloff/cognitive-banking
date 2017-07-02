@@ -11,14 +11,13 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 
 RUN apk --no-cache add --virtual native-deps \
-  g++ gcc libgcc libstdc++ linux-headers make python
+    g++ gcc libgcc libstdc++ linux-headers make python
 
-RUN npm install --quiet npm -g && \
-  npm install --quiet node-gyp -g && \
-  npm install --only=prod --quiet
+RUN npm install --quiet node-gyp -g && \
+    npm install --only=prod --quiet
 
 RUN npm cache clean && \
-  apk del native-deps
+    apk del native-deps
 
 # Bundle app source
 COPY . /usr/src/app
