@@ -22,7 +22,7 @@ services:
     volumes:
       - "./postgres-data:/var/lib/postgresql/data"
 
-  cb_frontend:
+  cb_main-frontend:
       container_name: cb_frontend
       build: ./cb_frontend
       image: trahloff/cb_frontend
@@ -30,6 +30,6 @@ services:
       networks:
        - cb-net
       depends_on:
-       - cb_db
+       - cb_main-db
       ports:
       - "2020:8082"
