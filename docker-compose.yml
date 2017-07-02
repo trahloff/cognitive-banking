@@ -8,8 +8,8 @@ networks:
 
 services:
 
-  cb_main-db:
-    container_name: cb_main-db
+  cb-main_db:
+    container_name: cb-main_db
     image: postgres
     restart: always
     networks:
@@ -22,14 +22,14 @@ services:
     volumes:
       - "./postgres-data:/var/lib/postgresql/data"
 
-  cb_main-frontend:
-      container_name: cb_main-frontend
+  cb-main_frontend:
+      container_name: cb-main_frontend
       build: ./cb_frontend
       image: trahloff/cb_frontend
       restart: always
       networks:
        - cb-net
       depends_on:
-       - cb_main-db
+       - cb-main_db
       ports:
       - "2020:8082"
