@@ -8,7 +8,7 @@ networks:
 
 services:
 
-  cb_db:
+  cb_main-db:
     container_name: cb_main-db
     image: postgres
     restart: always
@@ -23,7 +23,7 @@ services:
       - "./postgres-data:/var/lib/postgresql/data"
 
   cb_main-frontend:
-      container_name: cb_frontend
+      container_name: cb_main-frontend
       build: ./cb_frontend
       image: trahloff/cb_frontend
       restart: always
