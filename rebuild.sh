@@ -1,4 +1,5 @@
-docker-compose down -v &&
+docker-compose stop &&
+docker-compose rm &&
 git stash &&
 git pull &&
 docker-compose up --build -d &&
