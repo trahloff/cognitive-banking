@@ -2,7 +2,7 @@ version: '2'
 
 # creates a shared network for all services on startup
 networks:
-  cb:
+  cb-net:
     driver: bridge
 
 
@@ -13,7 +13,7 @@ services:
     image: postgres
     restart: always
     networks:
-      - cb
+      - cb-net
     environment:
       - POSTGRES_PASSWORD=passwd
       - POSTGRES_USER=root
@@ -28,7 +28,7 @@ services:
       image: trahloff/cb_frontend
       restart: always
       networks:
-        - cb
+        - cb-net
       depends_on:
        - cb_db
       ports:
