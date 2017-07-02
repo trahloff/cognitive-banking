@@ -9,7 +9,7 @@ networks:
 services:
 
   cb_db:
-    container_name: cb_db
+    container_name: cb_main-db
     image: postgres
     restart: always
     networks:
