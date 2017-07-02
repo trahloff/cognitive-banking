@@ -9,7 +9,7 @@ angular
         .success(user => {
           // No error: authentication OK
           $rootScope.userProfile = user
-          Notification.success('successfully logged in')
+          // Notification.success('successfully logged in')
           $state.go('main.overview')
         })
         .error(() => {

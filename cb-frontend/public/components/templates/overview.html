@@ -39,7 +39,7 @@
             </md-card-title-text>
           </md-card-title>
           <md-card-content>
-            <canvas id="radar" class="chart chart-radar" chart-data="radar.data" chart-labels="radar.labels"></canvas>
+            <canvas id="radar" class="chart chart-radar" chart-data="radar.data" chart-labels="radar.labels" chart-series="radar.series"></canvas>
           </md-card-content>
         </md-content>
 
@@ -64,11 +64,14 @@
           <md-button ng-click='showPrompt($event)'>Change Year</md-button>
         </md-card-actions>
       </md-card>
+
     </md-content>
 
   </md-content>
 
+
   <md-content flex="100" flex-gt-sm="35" layout='column'>
+
     <md-card flex>
       <md-content>
         <md-card-title>
@@ -79,8 +82,6 @@
           </md-card-title-text>
         </md-card-title>
         <md-card-content>
-
-
           <md-table-container>
             <table md-table >
               <thead md-head md-order="query.order">
@@ -97,14 +98,12 @@
               </tbody>
             </table>
           </md-table-container>
-
           <!-- <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}" md-on-paginate="getDesserts" md-page-select></md-table-pagination> -->
-
-
         </md-card-content>
       </md-content>
-
     </md-card>
+
   </md-content>
+
 
 </md-content>

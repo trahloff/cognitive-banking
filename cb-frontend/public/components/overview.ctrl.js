@@ -24,7 +24,7 @@ angular
                   {type: 'Fraud', timestamp: 128},
                   {type: 'Fraud', timestamp: 128},
                   {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
+                  {type: 'Fraud', timestamp: 128}
 
         ],
         count: 5
@@ -59,7 +59,11 @@ angular
 
         $scope.radar = {
           labels: ['Food', 'Drugs', 'Alcohol', 'Tech', 'Watches', 'ScamCoins', 'Whatever'],
-          data: [[65, 90, 90, 81, 56, 55, 40]]
+          series: ['2016', '2017'],
+          data: [
+            [65, 90, 90, 81, 56, 55, 40],
+            [28, 48, 40, 19, 86, 27, 90]
+          ]
         }
 
         $scope.bar = {

@@ -7,8 +7,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "build": "webpack --env.prod=true",
-    "dev": "webpack"
+    "build": "yarn && webpack --env.prod=true",
+    "dev": "yarn && webpack"
   },
   "dependencies": {
     "angular": "1.5.1",

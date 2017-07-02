@@ -36,7 +36,7 @@ angular.module('cognitive-banking', [
   'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar', 'chart.js', 'md.data.table',
   'overviewCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls', 'rulesCtrls'
 ]).config(($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider, ChartJsProvider) => {
-  $mdThemingProvider.theme('default').primaryPalette('deep-purple')
+  $mdThemingProvider.theme('default').primaryPalette('red')
 
   $urlRouterProvider.otherwise('/login') // if the user types some gibberish for an url he gets redirected to this page
 
@@ -56,6 +56,11 @@ angular.module('cognitive-banking', [
     responsive: true,
     animation: {
       duration: 1500
+    },
+    legend: {
+      display: true,
+      position: 'bottom',
+      fullWidth: true
     }
   })
 
