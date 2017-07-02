@@ -12,6 +12,10 @@ md-button, md-icon {
   outline: none;
 }
 
+.userMenuBar {
+  font-size: large;
+}
+
 #wrapper {
   margin: 20px;
   background-color: inherit;
