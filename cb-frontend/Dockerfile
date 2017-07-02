@@ -15,7 +15,7 @@ RUN apk --no-cache add --virtual native-deps \
 
 RUN npm install --quiet npm -g && \
   npm install --quiet node-gyp -g && \
-  npm install --only=prod --quiet &&
+  npm install --only=prod --quiet
 
 RUN npm cache clean && \
   apk del native-deps
