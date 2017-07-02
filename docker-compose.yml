@@ -3,6 +3,7 @@ version: '2'
 # creates a shared network for all services on startup
 networks:
   default:
+    name: cb
     driver: bridge
 
 

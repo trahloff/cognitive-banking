@@ -9,6 +9,7 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package.json /usr/src/app/
+COPY . /usr/src/app
 
 RUN apk --no-cache add --virtual native-deps \
     g++ gcc libgcc libstdc++ linux-headers make python
@@ -17,8 +18,5 @@ RUN npm install --quiet node-gyp yarn -g && \
     yarn --prod --quiet
 
 RUN apk del native-deps
-
-# Bundle app source
-COPY . /usr/src/app
 
 CMD [ "npm", "start" ]
