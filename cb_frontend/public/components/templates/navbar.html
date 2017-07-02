@@ -9,12 +9,12 @@
           <h2><b>{{stateName}}</b></h2>
         </span>
         <span flex></span>
-        <span class="userMenuBar">
-          {{userProfile.firstName}} {{userProfile.lastName}}
-        </span>
-        <md-button nofocus class="md-icon-button" ui-sref="main.account" aria-label="Account">
-          <md-icon nofocus md-svg-icon="assets/img/account.svg"></md-icon>
-        </md-button>
+        <a ui-sref="main.account" class="userMenuBar" href="">
+       {{userProfile.firstName}} {{userProfile.lastName}}
+        <!-- <md-button nofocus class="md-icon-button" ui-sref="main.account" aria-label="Account"> -->
+          <md-icon nofocus class="accountMenuIcon"md-svg-icon="assets/img/account.svg"></md-icon>
+        <!-- </md-button> -->
+      </a>
       </div>
     </md-toolbar>
   </md-content>

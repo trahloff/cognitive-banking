@@ -1,104 +1,113 @@
 html {
-  height: 100%;
-  background-image: url("/assets/img/background4.png");
+height:100%;
+background-image:url(/assets/img/background4.png);
 }
 
-div, body, md-content {
-  background: inherit;
-  font-family: 'Roboto', sans-serif;
-}
-
-md-button, md-icon {
-  outline: none;
-}
-
-.userMenuBar {
-  font-size: large;
-}
-
-#wrapper {
-  margin: 20px;
-  background-color: inherit;
-}
-
-#accountMain {
-  background-color: white;
-}
-
-.md-dialog-container {
-  background: none;
-  background-color: rgba(105, 105, 105, 0.48);
-  z-index: 1;
-}
-
-.md-headline {
-  font-weight: 500;
-}
-
-.md-scroll-mask {
-  visibility: hidden;
-}
-
-body::-webkit-scrollbar {
-  width: 0.5em;
+div,body,md-content {
+background:inherit;
+font-family:Roboto, sans-serif;
 }
 
 body::-webkit-scrollbar-thumb {
-  outline: 1px solid slategrey;
-  background-color: darkgrey;
+outline:1px solid slategrey;
+background-color:darkgrey;
 }
 
-md-content::-webkit-scrollbar {
-  width: 0.5em;
+body::-webkit-scrollbar,md-content::-webkit-scrollbar {
+width:.5em;
+}
+
+/* ========================================================================== */
+
+md-button,md-icon {
+outline:none;
 }
 
 md-table-container {
-  max-height: 70vh;
-  overflow-y: auto;
+max-height:70vh;
+overflow-y:auto;
 }
 
 md-table-container::-webkit-scrollbar {
-  width: 0em;
+width:0;
 }
 
 md-table-container::-webkit-scrollbar-thumb {
-  outline: 1px solid slategrey;
-  background-color: darkgrey;
-  position: relative;
+outline:1px solid slategrey;
+background-color:darkgrey;
+position:relative;
 }
 
-.titanic {
-  visibility: hidden;
-  z-index: -1;
-  float: none;
-  position: fixed;
-  vertical-align: sub;
-}
+/* ========================================================================== */
 
-.utilityNavbarButtons {
-  position: absolute;
-  bottom: 0;
-  width: 100%
+.accountMenuIcon {
+  margin-left:0.7em;
+  margin-right:0.3em;
 }
 
 .active {
-  background-color: #E0E0E0;
+background-color:#E0E0E0;
 }
 
-.md-ripple-container {
-  z-index: -1
+.md-dialog-container {
+background:none;
+background-color:rgba(105,105,105,0.48);
+z-index:1;
 }
 
 .md-focused {
-  background: transparent!important;
+background:transparent!important;
 }
 
+.md-headline {
+font-weight:500;
+}
+
+.md-ripple-container {
+z-index:-1;
+}
+
+.md-scroll-mask {
+visibility:hidden;
+}
+
+.titanic {
+visibility:hidden;
+z-index:-1;
+float:none;
+position:fixed;
+vertical-align:sub;
+}
+
+.userMenuBar {
+font-size:large;
+}
+
+.utilityNavbarButtons {
+position:absolute;
+bottom:0;
+width:100%;
+}
+
+/* ========================================================================== */
+
 #logoutButton {
-  flex: auto;
-  text-align: center;
+flex:auto;
+text-align:center;
 }
 
 #loading-bar .bar {
-  background-color: white;
-  height: 3.2px;
+background-color:#FFF;
+height:3.2px;
 }
+
+#wrapper {
+background-color:inherit;
+margin:0.75vh;
+}
+
+#accountMain {
+background-color:#FFF;
+}
+
+/* ========================================================================== */
