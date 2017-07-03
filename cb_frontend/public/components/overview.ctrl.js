@@ -25,7 +25,6 @@ angular
                   {type: 'Fraud', timestamp: 128},
                   {type: 'Fraud', timestamp: 128},
                   {type: 'Fraud', timestamp: 128}
-
         ],
         count: 5
       }

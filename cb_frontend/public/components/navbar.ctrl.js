@@ -13,7 +13,7 @@ angular
           $timeout.cancel(timer)
           timer = $timeout(() => {
             timer = undefined
-            func.apply(context, args)
+            func.apply(context, args) // apply arguments to scope
           }, wait || 10)
         }
       }
