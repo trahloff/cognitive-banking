@@ -1,6 +1,4 @@
-<a href="https://banking.ganymed.me">
-<img src="https://raw.githubusercontent.com/trahloff/Fallstudie/master/logoBlack_small.png" style="width: 50%; height: 50%" />
-</a>
+![test image size](https://raw.githubusercontent.com/trahloff/Fallstudie/master/logoBlack.png){:height="50%" width="50%"}
 
 
 [![NodeJS v8](https://img.shields.io/badge/node-8.0.0-blue.svg)](https://nodejs.org/en/)
