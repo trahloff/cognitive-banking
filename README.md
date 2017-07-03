@@ -1,4 +1,7 @@
-[![Cognitive Banking](https://raw.githubusercontent.com/trahloff/cognitive-banking/master/cb_frontend/public/assets/img/logoBlack.png?token=AQIY0Z3EzK9qF3kRJVCUhZwSb6mOxQDXks5ZY7ppwA%3D%3D)](https://banking.ganymed.me)
+<a href="https://banking.ganymed.me">
+<img src="https://raw.githubusercontent.com/trahloff/Fallstudie/master/logoBlack.png" style="width: 50%; height: 50%" />
+</a>
+
 
 [![NodeJS v8](https://img.shields.io/badge/node-8.0.0-blue.svg)](https://nodejs.org/en/)
 [![Angular 1.5.1](https://img.shields.io/badge/angular-1.5.1-blue.svg)](https://angularjs.org/)
