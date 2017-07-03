@@ -51,7 +51,7 @@ angular
           ]
         }
 
-        $scope.pie = {
+        $scope.doughnut = {
           labels: ['Food', 'Rent', 'Savings'],
           series: ['Food', 'Rent', 'Savings'],
           data: [350, 450, 100]
