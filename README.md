@@ -1,5 +1,4 @@
-![test image size](https://raw.githubusercontent.com/trahloff/Fallstudie/master/logoBlack_small.png)
-
+[![Cognitive Banking](https://raw.githubusercontent.com/trahloff/Fallstudie/master/logoBlack_small.png)](https://banking.ganymed.me)
 
 [![NodeJS v8](https://img.shields.io/badge/node-8.0.0-blue.svg)](https://nodejs.org/en/)
 [![Angular 1.5.1](https://img.shields.io/badge/angular-1.5.1-blue.svg)](https://angularjs.org/)
