@@ -1,4 +1,4 @@
-![test image size](https://raw.githubusercontent.com/trahloff/Fallstudie/master/logoBlack_small4.png)
+![test image size](https://raw.githubusercontent.com/trahloff/Fallstudie/master/logoBlack_small.png)
 
 
 [![NodeJS v8](https://img.shields.io/badge/node-8.0.0-blue.svg)](https://nodejs.org/en/)
