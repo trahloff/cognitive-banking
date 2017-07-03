@@ -1,5 +1,5 @@
 <a href="https://banking.ganymed.me">
-<img src="https://raw.githubusercontent.com/trahloff/Fallstudie/master/logoBlack.png" style="width: 50%; height: 50%" />
+<img src="https://raw.githubusercontent.com/trahloff/Fallstudie/master/logoBlack_small.png" style="width: 50%; height: 50%" />
 </a>
 
 
