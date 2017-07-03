@@ -76,7 +76,7 @@ angular
         }
       }
 
-      $scope.showPrompt = function (ev) {
+      $scope.showPrompt = ev => {
         const confirm = $mdDialog.prompt()
                         .title('Change Year')
                         .textContent('Compare your spendings in 2017 to:')
