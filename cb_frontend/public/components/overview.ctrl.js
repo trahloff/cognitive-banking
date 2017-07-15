@@ -43,7 +43,7 @@ angular
 
         $scope.line = {
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-          series: ['Series A', 'Series B'],
+          series: ['2016', '2017'],
           data: [
             [65, 59, 80, 81, 56, 55, 40, 10, 80, 30, 70, 40],
             [28, 48, 40, 19, 86, 27, 90, 20, 20, 40, 25, 65]
@@ -75,13 +75,12 @@ angular
         }
       }
 
-      $scope.showPrompt = ev => {
+      $scope.showPrompt = () => {
         const confirm = $mdDialog.prompt()
                         .title('Change Year')
                         .textContent('Compare your spendings in 2017 to:')
-                        .placeholder('Dog name')
+                        .placeholder('Year')
                         .initialValue($scope.spendingYear)
-                        .targetEvent(ev)
                         .hasBackdrop(false)
                         .ok('Okay!')
 
@@ -124,12 +123,19 @@ angular
         })
       }
 
+      /*
+       * IIFE (imediately invoked function expression)
+       * loads data into view, needs 1ms timeout to trigger proper graph animations
+       */
       ;(init => {
         setTimeout(() => {
           load()
         }, 1)
       })()
 
+      /*
+       * shows prompt to change the year
+       */
       $scope.changeYear = () => {
         showPrompt()
       }
