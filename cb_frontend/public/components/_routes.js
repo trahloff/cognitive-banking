@@ -1,6 +1,6 @@
 angular
     .module('routes', [])
-    .config(['$stateProvider', $stateProvider => {
+    .config($stateProvider => {
       const loggedIn = ($q, $http, $state, $rootScope, Notification) => {
         // Initialize a new promise
         const deferred = $q.defer()
@@ -66,4 +66,4 @@ angular
               url: 'incident',
               resolve: {check: loggedIn}
             })
-    }])
+    })

@@ -1,6 +1,6 @@
 angular
     .module('overviewCtrls', [])
-    .controller('overviewCtrl', ($scope, $mdDialog) => {
+    .controller('overviewCtrl', ($scope, $mdDialog, $rootScope, allocationService) => {
       // =====================================================================
 
       $scope.events = {
@@ -50,11 +50,9 @@ angular
           ]
         }
 
-        $scope.doughnut = {
-          labels: ['Food', 'Rent', 'Savings'],
-          series: ['Food', 'Rent', 'Savings'],
-          data: [350, 450, 100]
-        }
+        allocationService.getAllocation($rootScope.userProfile.name, r => {
+          $scope.doughnut = r
+        })
 
         $scope.radar = {
           labels: ['Food', 'Drugs', 'Alcohol', 'Tech', 'Watches', 'ScamCoins', 'Whatever'],
