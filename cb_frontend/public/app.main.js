@@ -103,9 +103,13 @@ angular.module('cognitive-banking', [
 
     $rootScope.$on('$stateChangeSuccess',
       (event, toState, toParams, fromState, fromParams) => {
+        // split state parent name
         const stateNameArray = toState.name.split('.')
         const nestedName = stateNameArray[stateNameArray.length - 1]
-        /* get the current state name, capitalize the first letter and write the result into rootScope */
+        /*
+         * get the current state name, capitalize the first letter and write the result into rootScope
+         * needed for title in menu bar
+         */
         $rootScope.stateName = nestedName.replace(/\b\w/g, l => l.toUpperCase())
       })
   })
