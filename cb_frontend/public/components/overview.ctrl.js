@@ -1,7 +1,18 @@
 angular
     .module('overviewCtrls', [])
-    .controller('overviewCtrl', ($scope, $mdDialog, $rootScope, allocationService) => {
+    .controller('overviewCtrl', ($scope, $mdDialog, $rootScope, allocationService, historyService) => {
       // =====================================================================
+      $scope.line = {
+        labels: null,
+        series: [null, '2017'],
+        data: []
+      }
+
+      $scope.bar = {
+        labels: null,
+        series: [null, '2017'],
+        data: []
+      }
 
       $scope.events = {
         data: [
@@ -41,17 +52,23 @@ angular
       const load = () => {
         $scope.spendingYear = 2016
 
-        $scope.line = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-          series: ['2016', '2017'],
-          data: [
-            [65, 59, 80, 81, 56, 55, 40, 10, 80, 30, 70, 40],
-            [28, 48, 40, 19, 86, 27, 90, 20, 20, 40, 25, 65]
-          ]
-        }
-
         allocationService.getAllocation($rootScope.userProfile.name, r => {
           $scope.doughnut = r
+        })
+
+        historyService.getSpendingHistory($rootScope.userProfile.name, $scope.spendingYear, r => {
+          $scope.line.labels = r.labels
+          $scope.bar.labels = r.labels
+
+          $scope.line.data.push(r.data)
+          $scope.bar.data.push(r.data)
+
+          historyService.getSpendingHistory($rootScope.userProfile.name, 2017, r => {
+            $scope.line.data.push(r.data)
+            $scope.bar.data.push(r.data)
+            $scope.line.series[0] = $scope.spendingYear.toString()
+            $scope.bar.series[0] = $scope.spendingYear.toString()
+          })
         })
 
         $scope.radar = {
@@ -59,15 +76,6 @@ angular
           series: ['2016', '2017'],
           data: [
             [65, 90, 90, 81, 56, 55, 40],
-            [28, 48, 40, 19, 86, 27, 90]
-          ]
-        }
-
-        $scope.bar = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-          series: ['2016', '2017'],
-          data: [
-            [65, 59, 80, 81, 56, 55, 40],
             [28, 48, 40, 19, 86, 27, 90]
           ]
         }
@@ -87,36 +95,13 @@ angular
 
           $scope.spendingYear = parsedResult
 
-          switch (parsedResult) {
-            case 2015:
-              $scope.bar = {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                series: ['2015', '2017'],
-                data: [
+          $scope.bar = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            series: [parsedResult, '2017'],
+            data: [
               [25, 49, 60, 65, 76, 75, 20],
               [28, 48, 40, 19, 86, 27, 90]
-                ]
-              }
-              break
-            case 2014:
-              $scope.bar = {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                series: ['2014', '2017'],
-                data: [
-                [15, 29, 30, 95, 56, 75, 60],
-                [28, 48, 40, 19, 86, 27, 90]
-                ]
-              }
-              break
-            default:
-              $scope.bar = {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                series: ['2016', '2017'],
-                data: [
-              [65, 59, 80, 81, 56, 55, 40],
-              [28, 48, 40, 19, 86, 27, 90]
-                ]
-              }
+            ]
           }
         })
       }

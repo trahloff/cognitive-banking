@@ -24,7 +24,7 @@ exports.createUser = (user, callback) => {
     .then(hash => {
       pool.connect((err, client, done) => {
         if (err) console.error(err)
-        client.query(`INSERT INTO public."users" (name, passwd) VALUES ($1, $2)`,
+        client.query(`INSERT INTO users (name, passwd) VALUES ($1, $2)`,
           [user.name, hash], (err, result) => {
             done(err) // releases client back into pool
             callback(err, result)
@@ -43,7 +43,7 @@ exports.login = (user, callback) => {
     if (err) {
       callback(err, null)
     } else {
-      client.query(`SELECT * FROM public."users" WHERE name=$1;`,
+      client.query(`SELECT * FROM users WHERE name=$1;`,
         [user.name], (err, result) => {
           done(err)
           const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
@@ -66,7 +66,7 @@ exports.login = (user, callback) => {
 exports.deleteUser = (user, callback) => {
   pool.connect((err, client, done) => {
     if (err) console.error(err)
-    client.query(`SELECT passwd FROM public."users" WHERE name=$1;`,
+    client.query(`SELECT passwd FROM users WHERE name=$1;`,
     [user.name], (err, result) => {
       // when a valid user is entered, the passwd attempt and stored passwd hash will be compared
       // if not, the passwd will be compared with an empty hash in order to mitigate side-channel attacks (i.e., timing)
@@ -78,7 +78,7 @@ exports.deleteUser = (user, callback) => {
               done(err)
               callback('wrong credentials', null)
             } else {
-              client.query(`DELETE FROM public."users" WHERE name=$1`,
+              client.query(`DELETE FROM users WHERE name=$1`,
               [user.name], (err, result) => {
                 done(err)
                 callback(err, result)
@@ -103,10 +103,30 @@ exports.getAllocation = (userName, callback) => {
     if (err) {
       callback(err, null)
     } else {
-      client.query(`SELECT allocation FROM budget_allocation WHERE name = $1;`,
+      client.query(`SELECT allocation FROM budget_allocation WHERE name=$1;`,
         [userName], (err, result) => {
           done(err)
           err ? callback(err, null) : callback(null, result.rows[0].allocation)
+        })
+    }
+  })
+}
+
+/**
+* Checks if attempted login is valid
+* @param {string} userName - username for which the history is queried
+* @param {integer} year - year for which the history is queried
+* @param {function(string, object)} callback
+*/
+exports.getSpendingHistory = (userName, year, callback) => {
+  pool.connect((err, client, done) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      client.query(`SELECT data FROM spending_history WHERE name=$1 AND year=$2;`,
+        [userName, year], (err, result) => {
+          done(err)
+          err ? callback(err, null) : callback(null, result.rows[0].data)
         })
     }
   })

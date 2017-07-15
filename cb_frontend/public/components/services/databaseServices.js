@@ -5,14 +5,18 @@ angular
     .service('allocationService', allocationService)
 
 function historyService ($http) {
-  this.log = msg => {
+  this.getSpendingHistory = (name, year, cb) => {
     $http({
       method: 'GET',
-      url: '/auth/loggedin',
-      ignoreLoadingBar: true
-    }).then(response => {
-      console.log(response)
-    })
+      url: `/db/spendingHistory/${name}/${year}`
+    }).then(
+      response => {
+        cb(response.data)
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 }
 
