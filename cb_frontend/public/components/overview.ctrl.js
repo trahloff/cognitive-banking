@@ -14,6 +14,8 @@ angular
         data: []
       }
 
+      $scope.spendingYear = 2016
+
       $scope.events = {
         data: [
                   {type: 'Fraud', timestamp: 123},
@@ -46,12 +48,21 @@ angular
         page: 1
       }
 
-      $scope.selected = []
       // =====================================================================
 
-      const load = () => {
-        $scope.spendingYear = 2016
+      const reloadHistory = year => {
+        historyService.getSpendingHistory($rootScope.userProfile.name, $scope.spendingYear, r => {
+          $scope.line.labels = r.labels
+          $scope.line.data[0] = r.data
+          $scope.line.series[0] = $scope.spendingYear.toString()
 
+          $scope.bar.labels = r.labels
+          $scope.bar.data[0] = r.data
+          $scope.bar.series[0] = $scope.spendingYear.toString()
+        })
+      }
+
+      const load = () => {
         allocationService.getAllocation($rootScope.userProfile.name, r => {
           $scope.doughnut = r
         })
@@ -59,10 +70,8 @@ angular
         historyService.getSpendingHistory($rootScope.userProfile.name, $scope.spendingYear, r => {
           $scope.line.labels = r.labels
           $scope.bar.labels = r.labels
-
           $scope.line.data.push(r.data)
           $scope.bar.data.push(r.data)
-
           historyService.getSpendingHistory($rootScope.userProfile.name, 2017, r => {
             $scope.line.data.push(r.data)
             $scope.bar.data.push(r.data)
@@ -95,14 +104,7 @@ angular
 
           $scope.spendingYear = parsedResult
 
-          $scope.bar = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            series: [parsedResult, '2017'],
-            data: [
-              [25, 49, 60, 65, 76, 75, 20],
-              [28, 48, 40, 19, 86, 27, 90]
-            ]
-          }
+          reloadHistory(parsedResult)
         })
       }
 
