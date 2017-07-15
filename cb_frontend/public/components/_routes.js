@@ -19,7 +19,7 @@ angular
         /**
          * query the backend on every state-change if the current session is authorized
          * an authorized session will get a HTTP200 response, leading to successCallback
-         * an unauthorized session will get a HTTP401 response, leading to errorCallback 
+         * an unauthorized session will get a HTTP401 response, leading to errorCallback
          */
         $http({
           method: 'GET',
@@ -58,6 +58,12 @@ angular
               templateUrl: '/components/templates/rules.html',
               controller: 'rulesCtrl',
               url: 'rules',
+              resolve: {check: loggedIn}
+            })
+            .state('main.incident', {
+              templateUrl: '/components/templates/incident.html',
+              controller: 'rulesCtrl',
+              url: 'incident',
               resolve: {check: loggedIn}
             })
     }])
