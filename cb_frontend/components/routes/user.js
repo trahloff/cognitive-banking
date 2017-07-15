@@ -1,6 +1,5 @@
 'use strict'
 const api = require('express').Router()
-const dbUtil = require('../dbUtil')
 
 /**
  * Validates if incoming API Call is valid
