@@ -90,7 +90,20 @@ angular
         }
       }
 
-      $scope.showPrompt = () => {
+      /*
+       * IIFE (imediately invoked function expression)
+       * loads data into view, needs 1ms timeout to trigger proper graph animations
+       */
+      ;(init => {
+        setTimeout(() => {
+          load()
+        }, 1)
+      })()
+
+      /*
+       * shows prompt to change the year
+       */
+      $scope.changeYear = () => {
         const confirm = $mdDialog.prompt()
                         .title('Change Year')
                         .textContent('Compare your spendings in 2017 to:')
@@ -106,22 +119,5 @@ angular
 
           reloadHistory(parsedResult)
         })
-      }
-
-      /*
-       * IIFE (imediately invoked function expression)
-       * loads data into view, needs 1ms timeout to trigger proper graph animations
-       */
-      ;(init => {
-        setTimeout(() => {
-          load()
-        }, 1)
-      })()
-
-      /*
-       * shows prompt to change the year
-       */
-      $scope.changeYear = () => {
-        showPrompt()
       }
     })

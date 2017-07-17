@@ -89,7 +89,7 @@ angular.module('cognitive-banking', [
   })
 })
   .run(($state, $rootScope, $http, Notification) => {
-    // Logout function is available in any pages
+    // Logout function is available in any page
     $rootScope.logout = () => {
       $http.post('/auth/logout')
       .success(user => {
