@@ -66,4 +66,10 @@ angular
               url: 'incident',
               resolve: {check: loggedIn}
             })
+            .state('main.events', {
+              templateUrl: '/components/templates/events.html',
+              controller: 'rulesCtrl',
+              url: 'events',
+              resolve: {check: loggedIn}
+            })
     })
