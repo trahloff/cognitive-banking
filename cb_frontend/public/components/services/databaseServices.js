@@ -18,6 +18,20 @@ function historyService ($http) {
       }
     )
   }
+
+  this.getSpendingHabits = (name, year, cb) => {
+    $http({
+      method: 'GET',
+      url: `/db/spendingHabits/${name}/${year}`
+    }).then(
+      response => {
+        cb(response.data)
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
 }
 
 function eventService ($http) {

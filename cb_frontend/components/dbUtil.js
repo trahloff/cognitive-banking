@@ -113,7 +113,7 @@ exports.getAllocation = (userName, callback) => {
 }
 
 /**
-* Checks if attempted login is valid
+* get's spending history for user
 * @param {string} userName - username for which the history is queried
 * @param {integer} year - year for which the history is queried
 * @param {function(string, object)} callback
@@ -124,6 +124,26 @@ exports.getSpendingHistory = (userName, year, callback) => {
       callback(err, null)
     } else {
       client.query(`SELECT data FROM spending_history WHERE name=$1 AND year=$2;`,
+        [userName, year], (err, result) => {
+          done(err)
+          err ? callback(err, null) : callback(null, result.rows[0].data)
+        })
+    }
+  })
+}
+
+/**
+* get's spending habits for user
+* @param {string} userName - username for which the habits is queried
+* @param {integer} year - year for which the habits is queried
+* @param {function(string, object)} callback
+*/
+exports.getSpendingHabits = (userName, year, callback) => {
+  pool.connect((err, client, done) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      client.query(`SELECT data FROM spending_habits WHERE name=$1 AND year=$2;`,
         [userName, year], (err, result) => {
           done(err)
           err ? callback(err, null) : callback(null, result.rows[0].data)
