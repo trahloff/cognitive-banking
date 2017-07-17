@@ -96,29 +96,31 @@ angular
       /*
        * shows prompt to change the year
        */
-      $scope.changeYear = () => {
+      const changeYear = () => {
         const confirm = $mdDialog.prompt()
-                        .title('Change Year')
-                        .textContent('Compare your spendings in 2017 to:')
-                        .placeholder('Year')
-                        .initialValue($scope.spendingYear)
-                        .hasBackdrop(false)
-                        .ok('Okay!')
+                         .title('Change Year')
+                         .textContent('Compare your spendings in 2017 to:')
+                         .placeholder('Year')
+                         .initialValue($scope.spendingYear)
+                         .hasBackdrop(false)
+                         .ok('Okay!')
+                         .cancel('Cancel')
 
         $mdDialog.show(confirm).then(result => {
           const parsedResult = Number(result)
           if (isNaN(parsedResult) || parsedResult < 2014 || parsedResult > 2017) {
             $mdDialog.show(
-              $mdDialog.alert()
-                .title('Nope')
-                .textContent('Please enter a valid year')
-                .hasBackdrop(false)
-                .ok('Yep')
-            )
+               $mdDialog.alert()
+                 .title('Nope')
+                 .textContent('Please enter a valid year')
+                 .hasBackdrop(false)
+                 .ok('Yep')
+             ).then(() => changeYear())
           } else {
             $scope.spendingYear = parsedResult
             loadHistory(parsedResult)
           }
         })
       }
+      $scope.changeYear = changeYear
     })
