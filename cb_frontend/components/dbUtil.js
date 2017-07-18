@@ -11,6 +11,19 @@ const pool = new pg.Pool({
   database: 'users'
 })
 
+const sendQuery = (query, values, callback) => {
+  pool.connect((err, client, done) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      client.query(query, values, (err, result) => {
+        done(err) // releases client back into connection pool
+        err ? callback(err, null) : callback(null, result)
+      })
+    }
+  })
+}
+
 /* ================================= User Management ================================= */
 
 /**
@@ -22,14 +35,10 @@ exports.createUser = (user, callback) => {
   bcrypt
     .hash(user.passwd, saltRounds)
     .then(hash => {
-      pool.connect((err, client, done) => {
-        if (err) console.error(err)
-        client.query(`INSERT INTO users (name, passwd) VALUES ($1, $2)`,
-          [user.name, hash], (err, result) => {
-            done(err) // releases client back into pool
-            callback(err, result)
-          })
-      })
+      sendQuery('INSERT INTO users (name, passwd) VALUES ($1, $2)',
+        [user.name, hash], (err, result) => {
+          callback(err, result)
+        })
     })
 }
 
@@ -39,23 +48,16 @@ exports.createUser = (user, callback) => {
 * @param {function(string, boolean, object)} callback
 */
 exports.login = (user, callback) => {
-  pool.connect((err, client, done) => {
-    if (err) {
-      callback(err, null)
-    } else {
-      client.query(`SELECT * FROM users WHERE name=$1;`,
-        [user.name], (err, result) => {
-          done(err)
-          const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
-          bcrypt
+  sendQuery('SELECT * FROM users WHERE name=$1;',
+    [user.name], (err, result) => {
+      const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
+      bcrypt
         .compare(user.passwd, hash)
         .then(authenticated => {
           const userProfile = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0] : null
           callback(err, authenticated, userProfile)
         })
-        })
-    }
-  })
+    })
 }
 
 /**
@@ -64,28 +66,23 @@ exports.login = (user, callback) => {
  * @param {function(string, object)} callback
  */
 exports.deleteUser = (user, callback) => {
-  pool.connect((err, client, done) => {
-    if (err) console.error(err)
-    client.query(`SELECT passwd FROM users WHERE name=$1;`,
-    [user.name], (err, result) => {
-      // when a valid user is entered, the passwd attempt and stored passwd hash will be compared
-      // if not, the passwd will be compared with an empty hash in order to mitigate side-channel attacks (i.e., timing)
-      const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
-      bcrypt
-          .compare(user.passwd, hash)
-          .then(result => {
-            if (!result) {
-              done(err)
-              callback('wrong credentials', null)
-            } else {
-              client.query(`DELETE FROM users WHERE name=$1`,
-              [user.name], (err, result) => {
-                done(err)
-                callback(err, result)
-              })
-            }
-          })
-    })
+  sendQuery('SELECT passwd FROM users WHERE name=$1;',
+  [user.name], (err, result) => {
+    // when a valid user is entered, the passwd attempt and stored passwd hash will be compared
+    // if not, the passwd will be compared with an empty hash in order to mitigate side-channel attacks (i.e., timing)
+    const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
+    bcrypt
+        .compare(user.passwd, hash)
+        .then(result => {
+          if (!result) {
+            callback('wrong credentials', null)
+          } else {
+            client.query('DELETE FROM users WHERE name=$1',
+            [user.name], (err, result) => {
+              callback(err, result)
+            })
+          }
+        })
   })
 }
 
@@ -99,17 +96,10 @@ exports.deleteUser = (user, callback) => {
 * @param {function(string, object)} callback
 */
 exports.getAllocation = (userName, callback) => {
-  pool.connect((err, client, done) => {
-    if (err) {
-      callback(err, null)
-    } else {
-      client.query(`SELECT allocation FROM budget_allocation WHERE name=$1;`,
-        [userName], (err, result) => {
-          done(err)
-          err ? callback(err, null) : callback(null, result.rows[0].allocation)
-        })
-    }
-  })
+  sendQuery('SELECT allocation FROM budget_allocation WHERE name=$1;',
+    [userName], (err, result) => {
+      err ? callback(err, null) : callback(null, result.rows[0].allocation)
+    })
 }
 
 /**
@@ -119,17 +109,10 @@ exports.getAllocation = (userName, callback) => {
 * @param {function(string, object)} callback
 */
 exports.getSpendingHistory = (userName, year, callback) => {
-  pool.connect((err, client, done) => {
-    if (err) {
-      callback(err, null)
-    } else {
-      client.query(`SELECT data FROM spending_history WHERE name=$1 AND year=$2;`,
-        [userName, year], (err, result) => {
-          done(err)
-          err ? callback(err, null) : callback(null, result.rows[0].data)
-        })
-    }
-  })
+  sendQuery('SELECT data FROM spending_history WHERE name=$1 AND year=$2;',
+    [userName, year], (err, result) => {
+      err ? callback(err, null) : callback(null, result.rows[0].data)
+    })
 }
 
 /**
@@ -139,17 +122,26 @@ exports.getSpendingHistory = (userName, year, callback) => {
 * @param {function(string, object)} callback
 */
 exports.getSpendingHabits = (userName, year, callback) => {
-  pool.connect((err, client, done) => {
-    if (err) {
-      callback(err, null)
-    } else {
-      client.query(`SELECT data FROM spending_habits WHERE name=$1 AND year=$2;`,
-        [userName, year], (err, result) => {
-          done(err)
-          err ? callback(err, null) : callback(null, result.rows[0].data)
-        })
-    }
-  })
+  sendQuery('SELECT data FROM spending_habits WHERE name=$1 AND year=$2;',
+    [userName, year], (err, result) => {
+      err ? callback(err, null) : callback(null, result.rows[0].data)
+    })
+}
+
+/**
+* get's transactions for user
+* @param {string} userName - username for which the transactions are queried
+* @param {integer} limit - how many transactions will be queried
+* @param {function(string, object)} callback
+*/
+exports.getTransactions = (userName, limit, callback) => {
+  sendQuery(`SELECT * FROM konten
+            LEFT OUTER JOIN transactions on konten.konto=transactions.konto
+            WHERE name=$1
+            ORDER BY buchungstag DESC LIMIT $2;`,
+    [userName, limit], (err, result) => {
+      err ? callback(err, null) : callback(null, result.rows)
+    })
 }
 
 /* =================================================================================== */

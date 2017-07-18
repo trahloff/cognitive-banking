@@ -32,6 +32,20 @@ function historyService ($http) {
       }
     )
   }
+
+  this.getTransactions = (name, year, cb) => {
+    $http({
+      method: 'GET',
+      url: `/db/transactions/${name}`
+    }).then(
+      response => {
+        cb(response.data)
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
 }
 
 function eventService ($http) {

@@ -21,4 +21,10 @@ api.get('/spendingHabits/:name/:year', passport.auth, (req, res) => {
   })
 })
 
+api.get('/transactions/:name', passport.auth, (req, res) => {
+  dbUtil.getTransactions(req.params.name, 50, (err, result) => {
+    err ? res.status(500) : res.send(result)
+  })
+})
+
 module.exports = api
