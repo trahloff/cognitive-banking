@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const uuid = require('uuid/v4')
-const passport = require('./components/passportUtil');
+const passport = require('./components/passportUtil')
 const fs = require('fs')
 const PORT = process.env.PORT || 8082
 
