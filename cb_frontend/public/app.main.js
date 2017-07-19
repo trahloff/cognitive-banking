@@ -68,8 +68,10 @@ angular.module('cognitive-banking', [
     }
   })
 
-  /* don't show loading spinner
-     don't show loading bar if HTTP request < 200ms */
+  /*
+   * don't show loading spinner
+   * don't show loading bar if HTTP request < 200ms
+   */
   cfpLoadingBarProvider.includeSpinner = false
   cfpLoadingBarProvider.latencyThreshold = 200
 
