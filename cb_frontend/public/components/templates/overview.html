@@ -1,4 +1,4 @@
-<md-content layout-gt-sm='row' layout='column'>
+<md-content layout-gt-sm='row' layout='column' ng-cloak>
 
   <md-content flex="100" flex-gt-sm="65" layout='column'>
 
@@ -82,7 +82,7 @@
         <md-card-title>
           <md-card-title-text>
             <span class='md-headline'>
-            Events
+            Transactions
           </span>
           </md-card-title-text>
         </md-card-title>
@@ -96,9 +96,9 @@
                 </tr>
               </thead>
               <tbody md-body>
-                <tr md-row md-select="event" md-select-id="type" md-auto-select ng-repeat="event in events.data">
-                  <td md-cell>{{event.type}}</td>
-                  <td md-cell>{{event.timestamp}}</td>
+                <tr md-row md-select="transaction" md-select-id="type" md-auto-select ng-repeat="transaction in transactions.data">
+                  <td md-cell>{{transaction.type}}</td>
+                  <td md-cell>{{transaction.buchungstag}}</td>
                 </tr>
               </tbody>
             </table>

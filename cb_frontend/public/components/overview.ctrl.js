@@ -22,31 +22,36 @@ angular
         data: []
       }
 
-      $scope.events = {
-        data: [
-                  {type: 'Fraud', timestamp: 123},
-                  {type: 'Overspending', timestamp: 124},
-                  {type: 'Fraud', timestamp: 125},
-                  {type: 'Wage', timestamp: 126},
-                  {type: 'Aunt Mary', timestamp: 127},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128},
-                  {type: 'Fraud', timestamp: 128}
-        ],
-        count: 5
+      $rootScope.transactions = {
+        data: null,
+        count: null
       }
+      //
+      // $rootScope.transactions = {
+      //   data: [
+      //             {type: 'Fraud', timestamp: 123},
+      //             {type: 'Overspending', timestamp: 124},
+      //             {type: 'Fraud', timestamp: 125},
+      //             {type: 'Wage', timestamp: 126},
+      //             {type: 'Aunt Mary', timestamp: 127},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128},
+      //             {type: 'Fraud', timestamp: 128}
+      //   ],
+      //   count: 5
+      // }
 
       $scope.query = {
         order: '-count', // the '-' tells md-data-tables to sort it in descending order. don't rely on their documentation, it is garbage.
@@ -90,6 +95,16 @@ angular
 
         loadHistory(2017, () => {
           loadHistory($scope.spendingYear)
+        })
+
+        historyService.getTransactions($rootScope.userProfile.name, r => {
+
+          $rootScope.transactions.data = r
+
+          $rootScope.transactions.count = r.length
+
+
+
         })
       })()
 

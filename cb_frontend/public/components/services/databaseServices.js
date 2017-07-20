@@ -1,8 +1,11 @@
 angular
     .module('databaseServices', [])
     .service('historyService', historyService)
-    .service('eventService', eventService)
     .service('allocationService', allocationService)
+
+const convertTimestamp = time => {
+  return time.split('T')[0].split('-').reverse().toString().replace(/,/g, '.')
+}
 
 function historyService ($http) {
   this.getSpendingHistory = (name, year, cb) => {
@@ -33,30 +36,22 @@ function historyService ($http) {
     )
   }
 
-  this.getTransactions = (name, year, cb) => {
+  this.getTransactions = (name, cb) => {
     $http({
       method: 'GET',
       url: `/db/transactions/${name}`
     }).then(
       response => {
+        response.data.map(e => {
+          e.buchungstag = convertTimestamp(e.buchungstag)
+          e.wertstellungstag = convertTimestamp(e.wertstellungstag)
+        })
         cb(response.data)
       },
       err => {
         console.log(err)
       }
     )
-  }
-}
-
-function eventService ($http) {
-  this.log = msg => {
-    $http({
-      method: 'GET',
-      url: '/auth/loggedin',
-      ignoreLoadingBar: true
-    }).then(response => {
-      console.log(response)
-    })
   }
 }
 

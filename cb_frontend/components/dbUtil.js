@@ -135,9 +135,8 @@ exports.getSpendingHabits = (userName, year, callback) => {
 * @param {function(string, object)} callback
 */
 exports.getTransactions = (userName, limit, callback) => {
-  sendQuery(`SELECT * FROM konten
-            LEFT OUTER JOIN transactions on konten.konto=transactions.konto
-            WHERE name=$1
+  sendQuery(`SELECT * FROM transactions
+            WHERE konto=(SELECT konto FROM konten WHERE name=$1)
             ORDER BY buchungstag DESC LIMIT $2;`,
     [userName, limit], (err, result) => {
       err ? callback(err, null) : callback(null, result.rows)
