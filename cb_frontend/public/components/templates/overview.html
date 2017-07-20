@@ -87,13 +87,19 @@
             <table md-table >
               <thead md-head md-order="query.order">
                 <tr md-row>
-                  <th md-column md-order-by="nameToLower"><span>Type</span></th>
+                  <!-- <th md-column md-order-by="nameToLower"><span>Type</span></th> -->
+                  <th md-column md-order-by="nameToLower"><span>Empfänger</span></th>
+                  <th md-column md-numeric md-order-by="timestamp"><span>Betrag</span></th>
+                  <th md-column md-order-by="nameToLower"><span>Alert</span></th>
                   <th md-column md-numeric md-order-by="timestamp"><span>Timestamp</span></th>
                 </tr>
               </thead>
               <tbody md-body>
                 <tr md-row ng-click="goToTransactionDetails(transaction)" ng-repeat="transaction in transactions.data">
-                  <td md-cell>{{transaction.transaktion_art}}</td>
+                  <!-- <td md-cell>{{transaction.transaktion_art}}</td> -->
+                  <td md-cell>{{transaction.empfaenger_or_zahlungspflichtiger}}</td>
+                  <td md-cell>{{transaction.betrag}}</td>
+                  <td md-cell>{{transaction.type}}</td>
                   <td md-cell>{{transaction.buchungstag}}</td>
                 </tr>
               </tbody>

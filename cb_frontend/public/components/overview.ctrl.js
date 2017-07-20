@@ -110,6 +110,7 @@ angular
 
       $scope.goToTransactionDetails = transaction => {
         // do nothin. eternal love for timon
+        console.log(transaction);
         // $state.go('main.transaction', {selectedTransaction: transaction})
       }
     })
