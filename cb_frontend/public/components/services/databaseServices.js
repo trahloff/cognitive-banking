@@ -46,6 +46,7 @@ function historyService ($http) {
           e.buchungstag = convertTimestamp(e.buchungstag)
           e.wertstellungstag = convertTimestamp(e.wertstellungstag)
           e.betrag = e.betrag + '€'
+          e.type = e.type === null ? 'N/A' : e.type
         })
         cb(response.data)
       },
