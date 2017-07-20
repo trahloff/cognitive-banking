@@ -25,6 +25,10 @@ table.md-table td.md-cell {
 font-size:inherit;
 }
 
+tr.md-row {
+outline: none;
+}
+
 /* ========================================================================== */
 
 md-button,md-icon {
