@@ -17,6 +17,10 @@ body::-webkit-scrollbar,md-content::-webkit-scrollbar {
 width:.5em;
 }
 
+table.md-table th.md-column.md-active md-icon.md-sort-icon, table.md-table th.md-column:hover md-icon.md-sort-icon {
+    opacity: 0;
+}
+
 /* ========================================================================== */
 
 md-button,md-icon {

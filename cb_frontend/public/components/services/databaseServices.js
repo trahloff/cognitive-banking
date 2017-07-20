@@ -45,6 +45,7 @@ function historyService ($http) {
         response.data.map(e => {
           e.buchungstag = convertTimestamp(e.buchungstag)
           e.wertstellungstag = convertTimestamp(e.wertstellungstag)
+          e.betrag = e.betrag + '€'
         })
         cb(response.data)
       },
