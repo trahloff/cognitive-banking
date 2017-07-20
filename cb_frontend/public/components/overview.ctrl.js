@@ -73,7 +73,6 @@ angular
 
         historyService.getTransactions($rootScope.userProfile.name, r => {
           $scope.transactions.data = r
-
           $scope.transactions.count = r.length
         })
       })()
@@ -110,6 +109,7 @@ angular
       $scope.changeYear = changeYear
 
       $scope.goToTransactionDetails = transaction => {
-        $state.go('main.transaction', {selectedTransaction: transaction})
+        // do nothin. eternal love for timon
+        // $state.go('main.transaction', {selectedTransaction: transaction})
       }
     })

@@ -2,10 +2,6 @@
 
   <md-content flex="100" flex-gt-sm="65" layout='column'>
 
-    <script type="text/javascript">
-      alert("asd")
-    </script>
-
     <md-content layout-gt-sm='row' layout='column'>
       <md-card flex>
         <md-content>
@@ -97,7 +93,7 @@
               </thead>
               <tbody md-body>
                 <tr md-row ng-click="goToTransactionDetails(transaction)" ng-repeat="transaction in transactions.data">
-                  <td md-cell>{{transaction.type}}</td>
+                  <td md-cell>{{transaction.transaktion_art}}</td>
                   <td md-cell>{{transaction.buchungstag}}</td>
                 </tr>
               </tbody>
