@@ -27,6 +27,7 @@ import './components/navbar.ctrl.js'
 import './components/account.ctrl.js'
 import './components/register.ctrl.js'
 import './components/rules.ctrl.js'
+import './components/transactions.ctrl.js'
 import './components/services/databaseServices.js'
 
 // CSS
@@ -36,7 +37,7 @@ import './assets/css/main.css'
 angular.module('cognitive-banking', [
   'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar', 'chart.js', 'md.data.table',
   'databaseServices',
-  'overviewCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls', 'rulesCtrls'
+  'overviewCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls', 'rulesCtrls', 'transactionCtrls'
 ]).config(($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider, ChartJsProvider) => {
   $mdThemingProvider.theme('default').primaryPalette('red')
 

@@ -96,7 +96,7 @@
                 </tr>
               </thead>
               <tbody md-body>
-                <tr md-row md-select="transaction" md-select-id="type" md-auto-select ng-repeat="transaction in transactions.data">
+                <tr md-row ng-click="goToTransactionDetails(transaction)" ng-repeat="transaction in transactions.data">
                   <td md-cell>{{transaction.type}}</td>
                   <td md-cell>{{transaction.buchungstag}}</td>
                 </tr>

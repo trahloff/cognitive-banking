@@ -1,6 +1,6 @@
 angular
     .module('overviewCtrls', [])
-    .controller('overviewCtrl', ($scope, $mdDialog, $rootScope, allocationService, historyService) => {
+    .controller('overviewCtrl', ($scope, $mdDialog, $rootScope, $state, allocationService, historyService) => {
       // =====================================================================
       $scope.spendingYear = 2016
 
@@ -22,36 +22,10 @@ angular
         data: []
       }
 
-      $rootScope.transactions = {
+      $scope.transactions = {
         data: null,
         count: null
       }
-      //
-      // $rootScope.transactions = {
-      //   data: [
-      //             {type: 'Fraud', timestamp: 123},
-      //             {type: 'Overspending', timestamp: 124},
-      //             {type: 'Fraud', timestamp: 125},
-      //             {type: 'Wage', timestamp: 126},
-      //             {type: 'Aunt Mary', timestamp: 127},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128},
-      //             {type: 'Fraud', timestamp: 128}
-      //   ],
-      //   count: 5
-      // }
 
       $scope.query = {
         order: '-count', // the '-' tells md-data-tables to sort it in descending order. don't rely on their documentation, it is garbage.
@@ -98,13 +72,9 @@ angular
         })
 
         historyService.getTransactions($rootScope.userProfile.name, r => {
+          $scope.transactions.data = r
 
-          $rootScope.transactions.data = r
-
-          $rootScope.transactions.count = r.length
-
-
-
+          $scope.transactions.count = r.length
         })
       })()
 
@@ -138,4 +108,8 @@ angular
         })
       }
       $scope.changeYear = changeYear
+
+      $scope.goToTransactionDetails = transaction => {
+        $state.go('main.transaction', {selectedTransaction: transaction})
+      }
     })

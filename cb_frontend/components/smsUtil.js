@@ -1,4 +1,5 @@
 const request = require('request')
+// create a template with common elements/keys for every request
 const optionsTemplate = {
   method: 'GET',
   url: 'https://rest.nexmo.com/sms/json',

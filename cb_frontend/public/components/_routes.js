@@ -66,10 +66,13 @@ angular
               url: 'incident',
               resolve: {check: loggedIn}
             })
-            .state('main.events', {
-              templateUrl: '/components/templates/events.html',
-              controller: 'rulesCtrl',
-              url: 'events',
-              resolve: {check: loggedIn}
+            .state('main.transaction', {
+              templateUrl: '/components/templates/transaction.html',
+              controller: 'transactionCtrl',
+              url: 'transaction',
+              resolve: {check: loggedIn},
+              params: {
+                selectedTransaction: null
+              }
             })
     })
