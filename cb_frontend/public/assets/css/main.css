@@ -57,6 +57,10 @@ position:relative;
 background-color:#E0E0E0;
 }
 
+.Fraud {
+background-color:rgba(255,0,0,0.15)
+}
+
 .md-dialog-container {
 background:none;
 background-color:rgba(105,105,105,0.48);
@@ -85,6 +89,10 @@ z-index:-1;
 float:none;
 position:fixed;
 vertical-align:sub;
+}
+
+.Special.Interest {
+background-color:rgba(255,255,0,0.15)
 }
 
 .userMenuBar {

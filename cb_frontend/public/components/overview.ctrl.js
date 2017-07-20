@@ -33,6 +33,8 @@ angular
         page: 1
       }
 
+      $scope.bold = true
+
       // =====================================================================
 
       const loadHistory = (year, cb) => {
