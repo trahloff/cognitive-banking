@@ -1,6 +1,6 @@
 'use strict'
 const pg = require('pg')
-const host = process.platform === 'win32' ? '127.0.0.1' : 'homeserver'
+const host = process.env.DB_HOST || 'ganymed.me'
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 const pool = new pg.Pool({

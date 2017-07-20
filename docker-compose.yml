@@ -29,6 +29,8 @@ services:
       restart: always
       networks:
        - cb-net
+      environment:
+        - DB_HOST=cb_db
       depends_on:
        - cb_db
       ports:
