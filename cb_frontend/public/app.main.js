@@ -8,6 +8,7 @@ import 'angular-loading-bar'
 import 'angular-material'
 import 'angular-material-data-table/dist/md-data-table.min.js'
 import 'angular-messages'
+import 'angular-socket-io'
 import 'angular-ui-notification'
 import 'angular-ui-router'
 
@@ -35,7 +36,7 @@ import './assets/css/main.css'
 /* =================================================================== */
 
 angular.module('cognitive-banking', [
-  'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar', 'chart.js', 'md.data.table',
+  'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar', 'chart.js', 'md.data.table', 'btford.socket-io',
   'databaseServices',
   'overviewCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls', 'rulesCtrls', 'transactionCtrls'
 ]).config(($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider, ChartJsProvider) => {
@@ -91,6 +92,7 @@ angular.module('cognitive-banking', [
     }
   })
 })
+
   .run(($state, $rootScope, $http, Notification) => {
     // Logout function is available in any page
     $rootScope.logout = () => {
@@ -117,4 +119,10 @@ angular.module('cognitive-banking', [
          */
         $rootScope.stateName = nestedName.replace(/\b\w/g, l => l.toUpperCase())
       })
+  })
+
+  .factory('socket', socketFactory => {
+    const socket = socketFactory()
+    socket.forward('error')
+    return socket
   })

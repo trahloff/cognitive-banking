@@ -2,7 +2,7 @@
 const express = require('express')
 const app = express()
 const server = require('http').Server(app)
-// const io = require('socket.io')(server)
+const io = require('socket.io')(server)
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
@@ -52,6 +52,9 @@ fs
 app.use((req, res) => res.redirect('/')) // redirects invalid requests to landing page
 
 /* -------------------------Socket.io Stuff------------------------- */
+io.on('connection', socket => {
+  console.log('a user connected')
+})
 
 /* istanbul ignore if  */
 if (require.main === module) {

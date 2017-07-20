@@ -1,6 +1,6 @@
 angular
     .module('navbarCtrls', [])
-    .controller('navbarCtrl', ($scope, $timeout, $mdSidenav, $rootScope, $state) => {
+    .controller('navbarCtrl', ($scope, $timeout, $mdSidenav, $rootScope, $state, socket) => {
       /**
        * needed for fancy sideNavBar animation
        * basically just uses delays to move sidebar
