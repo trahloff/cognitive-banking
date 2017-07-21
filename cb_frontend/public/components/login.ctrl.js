@@ -18,4 +18,7 @@ angular
           $state.go('login')
         })
       }
+      $scope.$on('socket:newTransaction', function (ev, data) {
+console.log(data);
+});
     })

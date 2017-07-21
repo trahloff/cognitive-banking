@@ -2,12 +2,12 @@
 const express = require('express')
 const app = express()
 const server = require('http').Server(app)
-const io = require('socket.io')(server)
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const uuid = require('uuid/v4')
 const passport = require('./components/passportUtil')
+const socketUtil = require('./components/socketUtil')
 const fs = require('fs')
 const PORT = process.env.PORT || 8082
 
@@ -51,16 +51,12 @@ fs
     })
 app.use((req, res) => res.redirect('/')) // redirects invalid requests to landing page
 
-/* -------------------------Socket.io Stuff------------------------- */
-io.on('connection', socket => {
-  console.log('a user connected')
-})
-
 /* istanbul ignore if  */
 if (require.main === module) {
   server.listen(PORT, '0.0.0.0', () => {
     console.log(`Server listening on port ${PORT}`)
   })
+  socketUtil.init(server)
 }
 
 module.exports = app

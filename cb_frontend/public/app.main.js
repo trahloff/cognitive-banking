@@ -123,6 +123,6 @@ angular.module('cognitive-banking', [
 
   .factory('socket', socketFactory => {
     const socket = socketFactory()
-    socket.forward('error')
+    socket.on('newTransaction', (message) => console.log(message))
     return socket
   })
