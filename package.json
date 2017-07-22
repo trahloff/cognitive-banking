@@ -28,7 +28,9 @@
       "node": true
     },
     "ignore": [
-      "**/test/**"
+      "**/test/**",
+      "**/postgres-data/**",
+      "**/assets/**"
     ],
     "globals": [
       "angular",

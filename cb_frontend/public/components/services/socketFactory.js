@@ -1,2 +1,2 @@
 angular
-  .module('socketFactories', ['btford.socket-io']);
+  .module('socketFactories', ['btford.socket-io'])

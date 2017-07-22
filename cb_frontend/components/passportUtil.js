@@ -23,7 +23,7 @@ passport.use(new LocalStrategy(
          postalCode: '68159' })
      } else {
        dbUtil.login(userTmp, (err, result, userProfile) => {
-         result ? done(null, userProfile) : done(null, false, { message: 'Incorrect username.' })
+         (result && !err) ? done(null, userProfile) : done(null, false, { message: 'Incorrect username.' })
        })
      }
    }

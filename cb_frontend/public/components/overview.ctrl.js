@@ -111,7 +111,7 @@ angular
       $scope.changeYear = changeYear
 
       $scope.goToTransactionDetails = transaction => {
-        console.log(transaction);
+        console.log(transaction)
         $state.go('main.transaction', {selectedTransaction: transaction})
       }
     })

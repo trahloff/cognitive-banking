@@ -19,6 +19,6 @@ angular
         })
       }
       $scope.$on('socket:newTransaction', function (ev, data) {
-console.log(data);
-});
+        console.log(data)
+      })
     })

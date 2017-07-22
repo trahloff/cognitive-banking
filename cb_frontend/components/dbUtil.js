@@ -68,21 +68,25 @@ exports.login = (user, callback) => {
 exports.deleteUser = (user, callback) => {
   sendQuery('SELECT passwd FROM users WHERE name=$1;',
   [user.name], (err, result) => {
-    // when a valid user is entered, the passwd attempt and stored passwd hash will be compared
-    // if not, the passwd will be compared with an empty hash in order to mitigate side-channel attacks (i.e., timing)
-    const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
-    bcrypt
-        .compare(user.passwd, hash)
-        .then(result => {
-          if (!result) {
-            callback('wrong credentials', null)
-          } else {
-            client.query('DELETE FROM users WHERE name=$1',
-            [user.name], (err, result) => {
-              callback(err, result)
-            })
-          }
-        })
+    if (err) {
+      callback(err, null)
+    } else {
+      // when a valid user is entered, the passwd attempt and stored passwd hash will be compared
+      // if not, the passwd will be compared with an empty hash in order to mitigate side-channel attacks (i.e., timing)
+      const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
+      bcrypt
+          .compare(user.passwd, hash)
+          .then(result => {
+            if (!result) {
+              callback('wrong credentials', null)
+            } else {
+              sendQuery('DELETE FROM users WHERE name=$1',
+              [user.name], (err, result) => {
+                callback(err, result)
+              })
+            }
+          })
+    }
   })
 }
 
@@ -141,6 +145,36 @@ exports.getTransactions = (userName, limit, callback) => {
     [userName, limit], (err, result) => {
       err ? callback(err, null) : callback(null, result.rows)
     })
+}
+
+/**
+* get's transactions for user
+* @param {string} userName - username for which the transactions are queried
+* @param {integer} limit - how many transactions will be queried
+* @param {function(string, object)} callback
+*/
+exports.insertTransaction = (transaction, callback) => {
+  sendQuery(`INSERT INTO transactions(
+            e2e_ref, konto, betrag, beleg, buchungstag, wertstellungstag,
+            empfaenger_or_zahlungspflichtiger, transaktion_art, umsatzdetails_or_verwendungszweck,
+            verwendungsschluessel, glaeubiger_id, mandatsreferenz, type)
+            VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13);`, [
+              transaction.e2e_ref,
+              transaction.konto,
+              transaction.betrag,
+              transaction.beleg,
+              transaction.buchungstag,
+              transaction.wertstellungstag,
+              transaction.empfaenger_or_zahlungspflichtiger,
+              transaction.transaktion_art,
+              transaction.umsatzdetails_or_verwendungszweck,
+              transaction.verwendungsschluessel,
+              transaction.glaeubiger_id,
+              transaction.mandatsreferenz,
+              transaction.type
+            ], (err, result) => {
+              err ? callback(err, null) : callback(null, result.rows)
+            })
 }
 
 /* =================================================================================== */

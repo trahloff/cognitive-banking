@@ -99,12 +99,12 @@ angular.module('cognitive-banking', [
       $http.post('/auth/logout')
       .success(user => {
         // No error: logout OK
-        Notification.success({message: 'successfully logged out', delay: 5000 })
+        Notification.success({ message: 'successfully logged out', delay: 5000 })
         $state.go('login')
       })
       .error(() => {
         // Error: logout failed
-        Notification.error({message: 'logout failed <br> please try again', delay: 5000 })
+        Notification.error({ message: 'logout failed <br> please try again', delay: 5000 })
       })
     }
 
