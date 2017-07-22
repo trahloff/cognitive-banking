@@ -1,14 +1,14 @@
 'use strict'
 const pg = require('pg')
-const host = process.env.DB_HOST || 'ganymed.me'
+const host = process.env.DB_HOST || '127.0.0.1' || 'ganymed.me'
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 const pool = new pg.Pool({
   user: 'root',
   password: 'passwd',
   host: host,
-  port: 5432,
-  database: 'users'
+  port: 5431,
+  database: 'cBanking'
 })
 
 const sendQuery = (query, values, callback) => {
