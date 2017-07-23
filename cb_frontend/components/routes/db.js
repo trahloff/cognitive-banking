@@ -25,6 +25,7 @@ api.get('/spendingHabits/:name/:year', passport.auth, (req, res) => {
 api.get('/transactions/:name', passport.auth, (req, res) => {
   dbUtil.getTransactions(req.params.name, 50, (err, result) => {
     err ? res.sendStatus(500) : res.send(result)
+    socketUtil.sendNewTransaction(req.params.name)
   })
 })
 

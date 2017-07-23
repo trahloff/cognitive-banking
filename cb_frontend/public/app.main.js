@@ -119,10 +119,29 @@ angular.module('cognitive-banking', [
          */
         $rootScope.stateName = nestedName.replace(/\b\w/g, l => l.toUpperCase())
       })
+
+    $rootScope.goToTransactionDetails = transaction => {
+      $state.go('main.transaction', {selectedTransaction: transaction})
+    }
   })
 
-  .factory('socket', socketFactory => {
+  .factory('socket', (socketFactory, Notification) => {
     const socket = socketFactory()
-    socket.on('newTransaction', (message) => console.log(message))
+    socket.on('newTransaction', transaction => {
+        const config = {
+          message: `<span ng-click="goToTransactionDetails(transaction)">New ${transaction.type ? transaction.type : 'Transaction'}`,
+          delay: 5000
+        }
+          switch (transaction.type) {
+            case 'Fraud':
+              Notification.error(config)
+              break
+            case 'Special Interest':
+              Notification.warning(config)
+              break
+            default:
+              Notification(config)
+          }
+    })
     return socket
   })
