@@ -29,14 +29,15 @@ api.get('/transactions/:name', passport.auth, (req, res) => {
 })
 
 api.post('/transactions', (req, res) => {
-  dbUtil.insertTransaction(req.body, (err, result) => {
-    if (err) {
-      res.status(400).send(err)
-    } else {
-      res.send(result)
-      socketUtil.sendNewTransaction(req.body)
-    }
-  })
+  // dbUtil.insertTransaction(req.body, (err, result) => {
+  //   if (err) {
+  //     res.status(400).send(err)
+  //   } else {
+  //     res.send(result)
+  res.sendStatus(200)
+  socketUtil.sendNewTransaction(req.body)
+  //   }
+  // })
 })
 
 module.exports = api

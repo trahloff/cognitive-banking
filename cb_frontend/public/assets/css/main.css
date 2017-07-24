@@ -63,6 +63,12 @@ background-color:#E0E0E0;
 
 .contactBank {
   background-color:midnightblue!important;
+  color:white!important;
+}
+
+.flagFraud {
+  background-color:rgb(198,40,40)!important;
+  color:white!important;
 }
 
 .flagInnocent {
