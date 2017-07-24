@@ -30,6 +30,7 @@ import './components/register.ctrl.js'
 import './components/rules.ctrl.js'
 import './components/transactions.ctrl.js'
 import './components/services/databaseServices.js'
+import './components/services/socketFactories.js'
 
 // CSS
 import './assets/css/main.css'
@@ -37,7 +38,7 @@ import './assets/css/main.css'
 
 angular.module('cognitive-banking', [
   'ui.router', 'ngMaterial', 'ngAnimate', 'ui-notification', 'angular-loading-bar', 'chart.js', 'md.data.table', 'btford.socket-io',
-  'databaseServices',
+  'databaseServices', 'socketFactories',
   'overviewCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls', 'rulesCtrls', 'transactionCtrls'
 ]).config(($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider, ChartJsProvider) => {
   $mdThemingProvider.theme('default').primaryPalette('red')
@@ -47,7 +48,7 @@ angular.module('cognitive-banking', [
 
   // default settings for pop-up notifications
   NotificationProvider.setOptions({
-    delay: 1200,
+    delay: 5000,
     startTop: 20,
     startRight: 10,
     verticalSpacing: 20,
@@ -99,12 +100,12 @@ angular.module('cognitive-banking', [
       $http.post('/auth/logout')
       .success(user => {
         // No error: logout OK
-        Notification.success({ message: 'successfully logged out', delay: 5000 })
+        Notification.success({ message: 'successfully logged out' })
         $state.go('login')
       })
       .error(() => {
         // Error: logout failed
-        Notification.error({ message: 'logout failed <br> please try again', delay: 5000 })
+        Notification.error({ message: 'logout failed <br> please try again' })
       })
     }
 
@@ -123,25 +124,4 @@ angular.module('cognitive-banking', [
     $rootScope.goToTransactionDetails = transaction => {
       $state.go('main.transaction', {selectedTransaction: transaction})
     }
-  })
-
-  .factory('socket', (socketFactory, Notification) => {
-    const socket = socketFactory()
-    socket.on('newTransaction', transaction => {
-        const config = {
-          message: `<span ng-click="goToTransactionDetails(transaction)">New ${transaction.type ? transaction.type : 'Transaction'}`,
-          delay: 5000
-        }
-          switch (transaction.type) {
-            case 'Fraud':
-              Notification.error(config)
-              break
-            case 'Special Interest':
-              Notification.warning(config)
-              break
-            default:
-              Notification(config)
-          }
-    })
-    return socket
   })
