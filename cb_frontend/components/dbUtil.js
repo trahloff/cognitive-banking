@@ -148,9 +148,8 @@ exports.getTransactions = (userName, limit, callback) => {
 }
 
 /**
-* get's transactions for user
-* @param {string} userName - username for which the transactions are queried
-* @param {integer} limit - how many transactions will be queried
+* insert transaction
+* @param {object} transaction
 * @param {function(string, object)} callback
 */
 exports.insertTransaction = (transaction, callback) => {
@@ -175,6 +174,28 @@ exports.insertTransaction = (transaction, callback) => {
             ], (err, result) => {
               err ? callback(err, null) : callback(null, result.rows)
             })
+}
+
+/**
+* updatesTransaction
+* @param {string} userName - username for which the transactions are queried
+* @param {integer} limit - how many transactions will be queried
+* @param {function(string, object)} callback
+*/
+exports.updateTransaction = (e2e_ref, type, callback) => {
+  switch (type) {
+    case 'Fraud':
+    case 'Harmlos':
+    case 'Special Interest':
+      sendQuery(`UPDATE transactions
+            SET type=$1
+            WHERE e2e_ref=$2;`, [type, e2e_ref], (err, result) => {
+              err ? callback(err, null) : callback(null, result.rows)
+            })
+      break
+    default:
+      callback('Wrong Type', null)
+  }
 }
 
 /* =================================================================================== */

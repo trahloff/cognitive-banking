@@ -139,17 +139,17 @@
       </md-content>
       <md-card-actions layout="row" layout-align="end center">
 
-        <md-button class="md-raised flagFraud" ng-if="transaction.type==='N/A'||transaction.type==='Special Interest'||transaction.type==='Harmlos'">
+        <md-button class="md-raised flagFraud" ng-if="transaction.type==='N/A'||transaction.type==='Special Interest'||transaction.type==='Harmlos'" ng-click="flagTransaction('Fraud')">
           Flag Fraudulent
         </md-button>
-        <md-button class="md-raised flagSpecial" ng-if="transaction.type==='N/A'||transaction.type==='Fraud'||transaction.type==='Harmlos'" style="background:lime;">
+        <md-button class="md-raised flagSpecial" ng-if="transaction.type==='N/A'||transaction.type==='Fraud'||transaction.type==='Harmlos'" ng-click="flagTransaction('Special Interest')" style="background:lime;">
           Flag Special Interest
         </md-button>
-        <md-button class="md-raised flagInnocent" ng-if="transaction.type==='N/A'||transaction.type==='Fraud'||transaction.type==='Special Interest'">
+        <md-button class="md-raised flagInnocent" ng-if="transaction.type==='N/A'||transaction.type==='Fraud'||transaction.type==='Special Interest'" ng-click="flagTransaction('Harmlos')">
           Flag Innocent
         </md-button>
 
-        <md-button class="md-raised contactBank">
+        <md-button class="md-raised contactBank" ng-if="transaction" ng-click="">
           Bankberater Kontaktieren
         </md-button>
 

@@ -2,6 +2,7 @@ angular
     .module('databaseServices', [])
     .service('historyService', historyService)
     .service('allocationService', allocationService)
+    .service('transactionService', transactionService)
 
 const convertTimestamp = time => {
   return time.split('T')[0].split('-').reverse().toString().replace(/,/g, '.')
@@ -62,6 +63,23 @@ function allocationService ($http) {
     $http({
       method: 'GET',
       url: `/db/budgetAllocation/${name}`
+    }).then(
+      response => {
+        cb(response.data)
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
+}
+
+function transactionService ($http) {
+  this.updateTransaction = (e2e_ref, type, cb) => {
+    $http({
+      method: 'POST',
+      url: `/db/transactions/${e2e_ref}`,
+      data: { type: type }
     }).then(
       response => {
         cb(response.data)
