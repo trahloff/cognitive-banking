@@ -6,7 +6,7 @@ angular
       $rootScope.transaction = transaction
       const config = {
         message: `New ${transaction.type}`,
-        templateUrl: './components/templates/transactionNotification.html'
+        templateUrl: './components/templates/dialogs/transactionNotification.html'
       }
       switch (transaction.type) {
         case 'Fraud':
