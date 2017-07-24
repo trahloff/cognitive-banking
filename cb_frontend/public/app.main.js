@@ -41,7 +41,9 @@ angular.module('cognitive-banking', [
   'databaseServices', 'socketFactories',
   'overviewCtrls', 'routes', 'loginCtrls', 'navbarCtrls', 'accountCtrls', 'registerCtrls', 'rulesCtrls', 'transactionCtrls'
 ]).config(($mdThemingProvider, $urlRouterProvider, $qProvider, $httpProvider, cfpLoadingBarProvider, NotificationProvider, ChartJsProvider) => {
-  $mdThemingProvider.theme('default').primaryPalette('red')
+  $mdThemingProvider
+    .theme('default')
+    .primaryPalette('red')
 
   // if the user types some gibberish for an url he gets redirected to this page
   $urlRouterProvider.otherwise('/login')

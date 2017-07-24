@@ -122,17 +122,12 @@
                           </tr>
                         </tbody>
                       </table>
-                    </md-table-container></md-content>
-                </md-tab>
-
-
-                <md-tab label="Actions">
-                  <md-content class="md-padding">
-                    <h1 class="md-display-2">Tab Three</h1>
-                    <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed
-                      id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+                    </md-table-container>
                   </md-content>
                 </md-tab>
+
+
+
 
 
               </md-tabs>
@@ -142,6 +137,23 @@
 
         </md-card-content>
       </md-content>
+      <md-card-actions layout="row" layout-align="end center">
+
+        <md-button class="md-raised md-primary md-hue-2" ng-if="transaction.type==='N/A'||transaction.type==='Special Interest'||transaction.type==='Harmlos'">
+          Flag Fraudulent
+        </md-button>
+        <md-button class="md-raised md-accent md-hue-2 flagSpecial" ng-if="transaction.type==='N/A'||transaction.type==='Fraud'||transaction.type==='Harmlos'" style="background:lime;">
+          Flag Special Interest
+        </md-button>
+        <md-button class="md-raised md-accent md-hue-2 flagInnocent" ng-if="transaction.type==='N/A'||transaction.type==='Fraud'||transaction.type==='Special Interest'">
+          Flag Innocent
+        </md-button>
+
+        <md-button class="md-raised md-accent md-hue-2 contactBank">
+          Bankberater Kontaktieren
+        </md-button>
+
+      </md-card-actions>
     </md-card>
 
   </md-content>

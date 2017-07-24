@@ -61,6 +61,20 @@ position:relative;
 background-color:#E0E0E0;
 }
 
+.contactBank {
+  background-color:midnightblue!important;
+}
+
+.flagInnocent {
+  background-color:darkgreen!important;
+  color:white!important;
+}
+
+.flagSpecial {
+  background-color:orange!important;
+  color:white!important;
+}
+
 .Fraud {
 background-color:rgba(255,0,0,0.15)
 }
