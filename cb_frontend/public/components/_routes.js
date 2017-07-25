@@ -60,12 +60,6 @@ angular
               url: 'rules',
               resolve: {check: loggedIn}
             })
-            .state('main.incident', {
-              templateUrl: '/components/templates/incident.html',
-              controller: 'rulesCtrl',
-              url: 'incident',
-              resolve: {check: loggedIn}
-            })
             .state('main.transaction', {
               templateUrl: '/components/templates/transaction.html',
               controller: 'transactionCtrl',

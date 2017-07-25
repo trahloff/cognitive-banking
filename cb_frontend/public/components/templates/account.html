@@ -9,7 +9,7 @@
         <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
           <div>
             <md-input-container>
-              <label>Role</label>
+              <label>Account</label>
               <input ng-model="userProfile.role" readonly>
             </md-input-container>
             <md-input-container>
@@ -23,42 +23,42 @@
             <form name="userForm">
               <div layout-gt-xs="row">
                 <md-input-container class="md-block">
-                  <label>Company</label>
+                  <label>Bank Abteilung</label>
                   <input ng-model="userProfile.company" readonly>
                 </md-input-container>
               </div>
               <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>First name</label>
+                  <label>Name</label>
                   <input ng-model="userProfile.firstName" readonly>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>Last Name</label>
+                  <label>Nachname</label>
                   <input ng-model="userProfile.lastName" readonly>
                 </md-input-container>
               </div>
               <md-input-container class="md-block">
-                <label>Address</label>
+                <label>Adresse</label>
                 <input ng-model="userProfile.address" readonly>
               </md-input-container>
               <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>City</label>
+                  <label>Stadt</label>
                   <input ng-model="userProfile.city" readonly>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>Postal Code</label>
+                  <label>Postleitzahl</label>
                   <input name="postalCode" ng-model="userProfile.postalCode" placeholder="12345" ng-pattern="/^[0-9]{5}$/" readonly>
                   <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-                    <div ng-message="pattern" class="my-message">That doesn't look like a valid postal code.
+                    <div ng-message="pattern" class="my-message">Konnte PLZ nicht finden
                     </div>
                   </div>
                 </md-input-container>
               </div>
-              <md-input-container class="md-block">
+              <!-- <md-input-container class="md-block">
                 <label>Last Events</label>
                 <textarea ng-model="user.lastEvents" rows="1" md-select-on-focus readonly></textarea>
-              </md-input-container>
+              </md-input-container> -->
             </form>
           </div>
         </md-content>

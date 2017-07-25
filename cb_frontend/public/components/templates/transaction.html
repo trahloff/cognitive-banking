@@ -15,7 +15,6 @@
         <md-card-content>
 
 
-
           <div ng-cloak>
             <md-content>
               <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
@@ -64,9 +63,9 @@
                 <md-tab label="Details">
                   <md-content class="md-padding">
                     <h1 class="md-display-2"></h1>
+
                     <md-table-container style="font-site:72px">
                       <table md-table>
-
                         <tbody md-body style="font-size:x-large;">
                           <tr md-row>
                             <td md-cell><b>Klassifizierung:</b></td>
@@ -123,12 +122,9 @@
                         </tbody>
                       </table>
                     </md-table-container>
+
                   </md-content>
                 </md-tab>
-
-
-
-
 
               </md-tabs>
             </md-content>
@@ -137,23 +133,24 @@
 
         </md-card-content>
       </md-content>
-      <md-card-actions layout="row" layout-align="end center">
 
+
+      <md-card-actions layout="row" layout-align="end center">
         <md-button class="md-raised flagFraud" ng-if="transaction.type==='N/A'||transaction.type==='Special Interest'||transaction.type==='Harmlos'" ng-click="flagTransaction('Fraud')">
-          Flag Fraudulent
+          Fraud
         </md-button>
         <md-button class="md-raised flagSpecial" ng-if="transaction.type==='N/A'||transaction.type==='Fraud'||transaction.type==='Harmlos'" ng-click="flagTransaction('Special Interest')" style="background:lime;">
-          Flag Special Interest
+          Special Interest
         </md-button>
         <md-button class="md-raised flagInnocent" ng-if="transaction.type==='N/A'||transaction.type==='Fraud'||transaction.type==='Special Interest'" ng-click="flagTransaction('Harmlos')">
-          Flag Innocent
+          Harmlos
         </md-button>
-
         <md-button class="md-raised contactBank" ng-if="transaction" ng-click="">
           Bankberater Kontaktieren
         </md-button>
-
       </md-card-actions>
+
+
     </md-card>
 
   </md-content>
