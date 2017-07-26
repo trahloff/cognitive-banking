@@ -157,6 +157,20 @@ exports.updateTransaction = (e2e_ref, type, callback) => {
   }
 }
 
+/**
+* get's transactions for user
+* @param {string} userName - username for which the transactions are queried
+* @param {integer} limit - how many transactions will be queried
+* @param {function(string, object)} callback
+*/
+exports.getForecast = (userName, month, callback) => {
+  sendQuery(`SELECT * FROM forecasts
+            WHERE name=$1 AND month=$2`,
+    [userName, month], (err, result) => {
+      err ? callback(err, null) : callback(null, result.rows[0].data)
+    })
+}
+
 /* =================================================================================== */
 
 /**

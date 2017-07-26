@@ -50,4 +50,10 @@ api.post('/transactions/:e2e_ref', (req, res) => {
   })
 })
 
+api.get('/forecast/:name/:month', passport.auth, (req, res) => {
+  dbUtil.getForecast(req.params.name, req.params.month, (err, result) => {
+    err ? res.status(500).send(err) : res.send(result)
+  })
+})
+
 module.exports = api
