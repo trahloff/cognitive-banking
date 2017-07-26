@@ -1,6 +1,6 @@
 angular
     .module('transactionCtrls', [])
-    .controller('transactionCtrl', ($mdDialog, $scope, $stateParams, $state, transactionService) => {
+    .controller('transactionCtrl', ($mdDialog, $scope, $stateParams, $state, $http, transactionService) => {
       $scope.transaction = $stateParams.selectedTransaction === null ? {
         e2e_ref: '56023495265563153232232712531',
         konto: 'DE43231913156078414850',
@@ -19,8 +19,32 @@ angular
       $scope.flagTransaction = type => {
         transactionService.updateTransaction($scope.transaction.e2e_ref, type,
             (err, result) => {
-              $scope.transaction.type = type
+              err ? alert(err) : $scope.transaction.type = type
             })
+      }
+
+      /*
+       * shows prompt to change the year
+       */
+      $scope.notifyBank = () => {
+        $mdDialog.show(
+          $mdDialog.prompt()
+           .title('Bank Benachrichtigen')
+           .textContent('Nachricht an Ihren persönlichen Bankberater:')
+           .placeholder('Nachricht')
+           .hasBackdrop(false)
+           .ok('Senden')
+           .cancel('Abbrechen')
+        ).then(message => {
+          $http({
+            method: 'POST',
+            url: `/bank/notify`,
+            data: { message: message }
+          }).then(
+            response => {},
+            err => alert(err)
+          )
+        })
       }
 
       // if (!$stateParams.selectedTransaction) {

@@ -39,7 +39,8 @@ angular
 
       const loadHistory = (year, cb) => {
         const position = year === 2017 ? 1 : 0
-        historyService.getSpendingHistory($rootScope.userProfile.name, year, r => {
+        historyService.getSpendingHistory($rootScope.userProfile.name, year, (err, r) => {
+          if (err) console.error(err)
           $scope.line.labels = r.labels
           $scope.line.data[position] = r.data
           $scope.line.series[position] = year.toString()
@@ -48,7 +49,8 @@ angular
           $scope.bar.data[position] = r.data
           $scope.bar.series[position] = year.toString()
 
-          historyService.getSpendingHabits($rootScope.userProfile.name, year, r => {
+          historyService.getSpendingHabits($rootScope.userProfile.name, year, (err, r) => {
+            if (err) console.error(err)
             $scope.radar.labels = r.labels
             $scope.radar.data[position] = r.data
             $scope.radar.series[position] = year.toString()
@@ -64,7 +66,8 @@ angular
        */
       ;(init => {
         setTimeout(() => { // needs timeout to trigger chart animation
-          allocationService.getAllocation($rootScope.userProfile.name, r => {
+          allocationService.getAllocation($rootScope.userProfile.name, (err, r) => {
+            if (err) console.error(err)
             $scope.doughnut = r
           })
         }, 1)
@@ -73,7 +76,8 @@ angular
           loadHistory($scope.spendingYear)
         })
 
-        historyService.getTransactions($rootScope.userProfile.name, r => {
+        historyService.getTransactions($rootScope.userProfile.name, (err, r) => {
+          if (err) console.error(err)
           $scope.transactions.data = r
           $scope.transactions.count = r.length
         })
@@ -84,23 +88,24 @@ angular
        */
       const changeYear = () => {
         const confirm = $mdDialog.prompt()
-                         .title('Change Year')
-                         .textContent('Compare your spendings in 2017 to:')
-                         .placeholder('Year')
+                         .title('Jahr Ändern')
+                         .textContent('Vergleichen Sie Ihre Ausgaben in 2017 zu:')
+                         .placeholder('Jahr')
                          .initialValue($scope.spendingYear)
                          .hasBackdrop(false)
-                         .ok('Okay!')
-                         .cancel('Cancel')
+                         .ok('OK')
+                         .cancel('Abbrechen')
 
         $mdDialog.show(confirm).then(result => {
           const parsedResult = Number(result)
           if (isNaN(parsedResult) || parsedResult < 2014 || parsedResult > 2017) {
+            const textContent = isNaN(parsedResult) ? 'Bitte eine valide Jahreszahl eingeben' : 'Es liegen keine Aufzeichnungen von diesem Jahr vor'
             $mdDialog.show(
                $mdDialog.alert()
-                 .title('Nope')
-                 .textContent('Please enter a valid year')
+                 .title('Fehler')
+                 .textContent(textContent)
                  .hasBackdrop(false)
-                 .ok('Yep')
+                 .ok('OK')
              ).then(() => changeYear())
           } else {
             $scope.spendingYear = parsedResult

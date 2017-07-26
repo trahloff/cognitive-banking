@@ -1,3 +1,4 @@
+'use strict'
 const request = require('request')
 // create a template with common elements/keys for every request
 const optionsTemplate = {

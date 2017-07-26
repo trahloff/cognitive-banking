@@ -145,7 +145,7 @@
         <md-button class="md-raised flagInnocent" ng-if="transaction.type==='N/A'||transaction.type==='Fraud'||transaction.type==='Special Interest'" ng-click="flagTransaction('Harmlos')">
           Harmlos
         </md-button>
-        <md-button class="md-raised contactBank" ng-if="transaction" ng-click="">
+        <md-button class="md-raised contactBank" ng-if="transaction" ng-click="notifyBank()">
           Bankberater Kontaktieren
         </md-button>
       </md-card-actions>

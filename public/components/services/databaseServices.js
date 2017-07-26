@@ -14,12 +14,8 @@ function historyService ($http) {
       method: 'GET',
       url: `/db/spendingHistory/${name}/${year}`
     }).then(
-      response => {
-        cb(response.data)
-      },
-      err => {
-        console.log(err)
-      }
+      response => cb(null, response.data),
+      err => cb(err, null)
     )
   }
 
@@ -28,12 +24,8 @@ function historyService ($http) {
       method: 'GET',
       url: `/db/spendingHabits/${name}/${year}`
     }).then(
-      response => {
-        cb(response.data)
-      },
-      err => {
-        console.log(err)
-      }
+        response => cb(null, response.data),
+        err => cb(err, null)
     )
   }
 
@@ -49,11 +41,9 @@ function historyService ($http) {
           e.betrag = e.betrag + '€'
           e.type = e.type === null ? 'N/A' : e.type
         })
-        cb(response.data)
+        cb(null, response.data)
       },
-      err => {
-        console.log(err)
-      }
+      err => cb(err, null)
     )
   }
 }
@@ -64,12 +54,8 @@ function allocationService ($http) {
       method: 'GET',
       url: `/db/budgetAllocation/${name}`
     }).then(
-      response => {
-        cb(response.data)
-      },
-      err => {
-        console.log(err)
-      }
+      response => cb(null, response.data),
+      err => cb(err, null)
     )
   }
 }
@@ -81,12 +67,8 @@ function transactionService ($http) {
       url: `/db/transactions/${e2e_ref}`,
       data: { type: type }
     }).then(
-      response => {
-        cb(response.data)
-      },
-      err => {
-        console.log(err)
-      }
+      response => cb(null, response.data),
+      err => cb(err, null)
     )
   }
 }

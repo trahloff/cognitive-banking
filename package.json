@@ -58,6 +58,7 @@
       "**/assets/**"
     ],
     "globals": [
+      "alert",
       "angular",
       "successCallback",
       "errorCallback",

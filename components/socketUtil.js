@@ -1,3 +1,4 @@
+'use strict'
 const socketIO = require('socket.io')
 let io
 

@@ -95,7 +95,7 @@
                 </tr>
               </thead>
               <tbody md-body>
-                <tr md-row ng-class='transaction.type' ng-click="goToTransactionDetails(transaction)" ng-repeat="transaction in transactions.data">
+                <tr md-row ng-class='transaction.type' ng-href="" ng-click="goToTransactionDetails(transaction)" ng-repeat="transaction in transactions.data" style="cursor:pointer;">
                   <!-- <td md-cell>{{transaction.transaktion_art}}</td> -->
                   <td md-cell>{{transaction.empfaenger_or_zahlungspflichtiger}}</td>
                   <td md-cell>{{transaction.betrag}}</td>
