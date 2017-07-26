@@ -23,7 +23,7 @@
     "angular-socket-io": "^0.7.0",
     "angular-ui-notification": "^0.3.6",
     "angular-ui-router": "0.3.2",
-    "bcrypt": "^1.0.2",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",

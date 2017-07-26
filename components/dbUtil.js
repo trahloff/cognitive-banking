@@ -1,13 +1,12 @@
 'use strict'
 const pg = require('pg')
 const host = process.env.DB_HOST || '127.0.0.1' || 'ganymed.me'
-const bcrypt = require('bcrypt')
-const saltRounds = 10
+const bcrypt = require('bcryptjs')
 const pool = new pg.Pool({
   user: 'root',
   password: 'passwd',
   host: host,
-  port: 5431,
+  port: 5432,
   database: 'cBanking'
 })
 
@@ -27,22 +26,6 @@ const sendQuery = (query, values, callback) => {
 /* ================================= User Management ================================= */
 
 /**
- * Creates new user. Duh.
- * @param {object} user - User Object with name and passwd property
- * @param {function(string, object)} callback
- */
-exports.createUser = (user, callback) => {
-  bcrypt
-    .hash(user.passwd, saltRounds)
-    .then(hash => {
-      sendQuery('INSERT INTO users (name, passwd) VALUES ($1, $2)',
-        [user.name, hash], (err, result) => {
-          callback(err, result)
-        })
-    })
-}
-
-/**
 * Checks if attempted login is valid
 * @param {object} user - User Object with name and passwd property
 * @param {function(string, boolean, object)} callback
@@ -50,44 +33,20 @@ exports.createUser = (user, callback) => {
 exports.login = (user, callback) => {
   sendQuery('SELECT * FROM users WHERE name=$1;',
     [user.name], (err, result) => {
-      const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
-      bcrypt
-        .compare(user.passwd, hash)
-        .then(authenticated => {
-          const userProfile = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0] : null
-          callback(err, authenticated, userProfile)
+      if (!err) {
+        const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
+        bcrypt.compare(user.passwd, hash, (err, res) => {
+          if (res) {
+            const userProfile = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0] : null
+            callback(err, res, userProfile)
+          } else {
+            callback(err, null, null)
+          }
         })
+      } else {
+        callback(err, null, null)
+      }
     })
-}
-
-/**
- * Deletes User
- * @param {object} user - User Object with name and passwd property
- * @param {function(string, object)} callback
- */
-exports.deleteUser = (user, callback) => {
-  sendQuery('SELECT passwd FROM users WHERE name=$1;',
-  [user.name], (err, result) => {
-    if (err) {
-      callback(err, null)
-    } else {
-      // when a valid user is entered, the passwd attempt and stored passwd hash will be compared
-      // if not, the passwd will be compared with an empty hash in order to mitigate side-channel attacks (i.e., timing)
-      const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
-      bcrypt
-          .compare(user.passwd, hash)
-          .then(result => {
-            if (!result) {
-              callback('wrong credentials', null)
-            } else {
-              sendQuery('DELETE FROM users WHERE name=$1',
-              [user.name], (err, result) => {
-                callback(err, result)
-              })
-            }
-          })
-    }
-  })
 }
 
 /* =================================================================================== */
