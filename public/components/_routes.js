@@ -60,6 +60,12 @@ angular
               url: 'rules',
               resolve: {check: loggedIn}
             })
+            .state('main.forecast', {
+              templateUrl: '/components/templates/forecast.html',
+              controller: 'forecastCtrl',
+              url: 'forecast',
+              resolve: {check: loggedIn}
+            })
             .state('main.transaction', {
               templateUrl: '/components/templates/transaction.html',
               controller: 'transactionCtrl',
