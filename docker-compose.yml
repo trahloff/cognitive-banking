@@ -24,7 +24,7 @@ services:
 
   cb_frontend:
       container_name: cb_frontend
-      build: ./cb_frontend
+      build: .
       image: trahloff/cb_frontend
       restart: always
       networks:
