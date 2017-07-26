@@ -17,7 +17,7 @@ angular
       }
 
       $scope.radar = {
-        labels: null,
+        labels: ['Essen', 'Fußball', 'Arbeitsmaterial', 'Auto', 'Bars', 'Wohnung', 'Verschiedenes'],
         series: [null, '2017'],
         data: []
       }
@@ -51,7 +51,6 @@ angular
 
           historyService.getSpendingHabits($rootScope.userProfile.name, year, (err, r) => {
             if (err) console.error(err)
-            $scope.radar.labels = r.labels
             $scope.radar.data[position] = r.data
             $scope.radar.series[position] = year.toString()
 
