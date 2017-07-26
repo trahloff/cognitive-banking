@@ -7,7 +7,7 @@ const pool = new pg.Pool({
   user: 'root',
   password: 'passwd',
   host: host,
-  port: 5432,
+  port: 5431,
   database: 'cBanking'
 })
 
