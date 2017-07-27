@@ -29,7 +29,7 @@ api.get('/transactions/:name', passport.auth, (req, res) => {
 })
 
 api.post('/transactions', (req, res) => {
-  if (!req.body.nonPersist) {
+  if (req.body.persist) {
     dbUtil.insertTransaction(req.body, (error, result) => {
       if (error) {
         res.status(400).send(error)

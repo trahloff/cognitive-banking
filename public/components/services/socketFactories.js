@@ -6,11 +6,12 @@ angular
       $rootScope.transaction = transaction
       const config = {
         message: `New ${transaction.type}`,
-        templateUrl: './components/templates/dialogs/transactionNotification.html'
+        templateUrl: './components/templates/dialogs/transactionNotification.html',
+        delay: 10000
       }
       switch (transaction.type) {
         case 'Fraud':
-          Notification.erroror(config)
+          Notification.error(config)
           break
         case 'Special Interest':
           Notification(config)

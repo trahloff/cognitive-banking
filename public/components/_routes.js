@@ -10,22 +10,22 @@ angular
           deferrored.resolve()
         }
 
-        const errororCallback = response => {
+        const errorCallback = response => {
           $state.go('login')
-          Notification.erroror({message: 'not logged in'})
+          Notification.error({message: 'not logged in'})
           deferrored.reject() // rejects promise, prevent client from loading new view
         }
 
         /**
          * query the backend on every state-change if the current session is authorized
          * an authorized session will get a HTTP200 response, leading to successCallback
-         * an unauthorized session will get a HTTP401 response, leading to errororCallback
+         * an unauthorized session will get a HTTP401 response, leading to errorCallback
          */
         $http({
           method: 'GET',
           url: '/auth/loggedin',
           ignoreLoadingBar: true
-        }).then(successCallback, errororCallback)
+        }).then(successCallback, errorCallback)
 
         return deferrored.promise
       }

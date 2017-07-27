@@ -25,7 +25,7 @@
             <md-input-container class="md-block" max-width="40%" >
               <label>Username</label>
               <input id="user" name="username" ng-model="user.username " autofocus required/>
-              <div ng-messages="userForm.username.$erroror">
+              <div ng-messages="userForm.username.$error">
                 <!--dieses div macht ne rote message wenn man username vergisst einzutragen-->
                 <div ng-message="required">This is required.</div>
               </div>
@@ -33,7 +33,7 @@
             <md-input-container class="md-block" max-width="40%" >
               <label>Password</label>
               <input id="pwd" name="password" type="password" ng-model="user.password" required/>
-              <div ng-messages="userForm.password.$erroror">
+              <div ng-messages="userForm.password.$error">
                 <div ng-message="required">This is required.</div>
               </div>
             </md-input-container>

@@ -8,18 +8,17 @@ const optionsTemplate = {
     api_key: '5f5ba839',
     api_secret: '380bff46f8f0ed9e',
     from: 'Cognitive-Banking',
-    to: null,
+    to: '4915207629708',
     text: null
   }
 }
 
-exports.send = (recipient, text) => {
+exports.send = text => {
   const options = optionsTemplate
-  options.qs.to = recipient
   options.qs.text = text
-  request(options, (erroror, response, body) => {
-    if (erroror || body['message-count'] !== 1) {
-      console.erroror(erroror)
+  request(options, (error, response, body) => {
+    if (error || body['message-count'] !== '1') {
+      console.error(error)
       console.log(body)
     }
   })

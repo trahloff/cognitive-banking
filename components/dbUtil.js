@@ -2,6 +2,7 @@
 const pg = require('pg')
 const host = process.env.DB_HOST || '127.0.0.1' || 'ganymed.me'
 const bcrypt = require('bcryptjs')
+const smsUtil = require('./smsUtil')
 const pool = new pg.Pool({
   user: 'root',
   password: 'passwd',
@@ -131,7 +132,18 @@ exports.insertTransaction = (transaction, callback) => {
               transaction.mandatsreferenz,
               transaction.type
             ], (error, result) => {
-              error ? callback(error, null) : callback(null, result.rows)
+              if (!error) {
+                switch (transaction.type) {
+                  case 'Fraud':
+                  case 'Special Interest':
+                    smsUtil.send(`New ${transaction.type}`)
+                    break
+                  default:
+                }
+                callback(null, result.rows)
+              } else {
+                callback(error, null)
+              }
             })
 }
 

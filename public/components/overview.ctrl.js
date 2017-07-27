@@ -40,7 +40,7 @@ angular
       const loadHistory = (year, callback) => {
         const position = year === 2017 ? 1 : 0
         historyService.getSpendingHistory($rootScope.userProfile.name, year, (error, r) => {
-          if (error) console.erroror(error)
+          if (error) console.error(error)
           $scope.line.labels = r.labels
           $scope.line.data[position] = r.data
           $scope.line.series[position] = year.toString()
@@ -50,7 +50,7 @@ angular
           $scope.bar.series[position] = year.toString()
 
           historyService.getSpendingHabits($rootScope.userProfile.name, year, (error, r) => {
-            if (error) console.erroror(error)
+            if (error) console.error(error)
             $scope.radar.data[position] = r.data
             $scope.radar.series[position] = year.toString()
 
@@ -66,7 +66,7 @@ angular
       ;(init => {
         setTimeout(() => { // needs timeout to trigger chart animation
           allocationService.getAllocation($rootScope.userProfile.name, (error, r) => {
-            if (error) console.erroror(error)
+            if (error) console.error(error)
             $scope.doughnut = r
           })
         }, 1)
@@ -76,7 +76,7 @@ angular
         })
 
         historyService.getTransactions($rootScope.userProfile.name, (error, r) => {
-          if (error) console.erroror(error)
+          if (error) console.error(error)
           $scope.transactions.data = r
           $scope.transactions.count = r.length
         })
