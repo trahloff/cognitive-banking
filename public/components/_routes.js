@@ -3,17 +3,17 @@ angular
     .config($stateProvider => {
       const loggedIn = ($q, $http, $state, $rootScope, Notification) => {
         // Initialize a new promise
-        const deferrored = $q.defer()
+        const deferred = $q.defer()
 
         const successCallback = response => {
           $rootScope.userProfile = response.data
-          deferrored.resolve()
+          deferred.resolve() // resolves promise, client can load new view
         }
 
         const errorCallback = response => {
           $state.go('login')
           Notification.error({message: 'not logged in'})
-          deferrored.reject() // rejects promise, prevent client from loading new view
+          deferred.reject() // rejects promise, prevent client from loading new view
         }
 
         /**
@@ -27,7 +27,7 @@ angular
           ignoreLoadingBar: true
         }).then(successCallback, errorCallback)
 
-        return deferrored.promise
+        return deferred.promise
       }
 
       $stateProvider
@@ -72,7 +72,7 @@ angular
               url: 'transaction',
               resolve: {check: loggedIn},
               params: {
-                selectedTransaction: null
+                selectedTransaction: null // has to be set in order to assign a value to it later
               }
             })
     })

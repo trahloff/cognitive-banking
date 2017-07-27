@@ -154,7 +154,7 @@ exports.insertTransaction = (transaction, callback) => {
 * @param {function(string, object)} callback
 */
 exports.updateTransaction = (e2e_ref, type, callback) => {
-  switch (type) {
+  switch (type) { // prevent unkown types
     case 'Fraud':
     case 'Harmlos':
     case 'Special Interest':

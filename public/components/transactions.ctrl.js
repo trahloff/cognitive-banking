@@ -1,6 +1,7 @@
 angular
     .module('transactionCtrls', [])
     .controller('transactionCtrl', ($mdDialog, $scope, $stateParams, $state, $http, transactionService) => {
+      // if no transaction is selected show alert and redirect to overview
       if (!$stateParams.selectedTransaction) {
         $mdDialog.show(
             $mdDialog.alert()
@@ -14,6 +15,7 @@ angular
         $scope.transaction = $stateParams.selectedTransaction
       }
 
+      // flags transaction as type
       $scope.flagTransaction = type => {
         transactionService.updateTransaction($scope.transaction.e2e_ref, type,
             (error, result) => {
@@ -21,6 +23,7 @@ angular
             })
       }
 
+      // show input dialog to send message to bank
       $scope.notifyBank = () => {
         $mdDialog.show(
           $mdDialog.prompt()

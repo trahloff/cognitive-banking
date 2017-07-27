@@ -1,7 +1,7 @@
 angular
     .module('overviewCtrls', [])
     .controller('overviewCtrl', ($scope, $mdDialog, $rootScope, $state, allocationService, historyService) => {
-      // =====================================================================
+      // ==============================Scope Templates=======================================
       $scope.spendingYear = 2016
 
       $scope.line = {
@@ -38,7 +38,7 @@ angular
       // =====================================================================
 
       const loadHistory = (year, callback) => {
-        const position = year === 2017 ? 1 : 0
+        const position = year === 2017 ? 1 : 0 // if it's the current year, insert data at last data-array position, if not at first position
         historyService.getSpendingHistory($rootScope.userProfile.name, year, (error, r) => {
           if (error) console.error(error)
           $scope.line.labels = r.labels
@@ -71,7 +71,7 @@ angular
           })
         }, 1)
 
-        loadHistory(2017, () => {
+        loadHistory(2017, () => { // first load data for current year, than for the year it is compared to
           loadHistory($scope.spendingYear)
         })
 
@@ -91,7 +91,7 @@ angular
                          .textContent('Vergleichen Sie Ihre Ausgaben in 2017 zu:')
                          .placeholder('Jahr')
                          .initialValue($scope.spendingYear)
-                         .hasBackdrop(false)
+                         .hasBackdrop(false) // CSS workaround
                          .ok('OK')
                          .cancel('Abbrechen')
 
