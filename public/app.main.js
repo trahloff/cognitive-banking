@@ -98,6 +98,9 @@ angular.module('cognitive-banking', [
 })
 
   .run(($state, $rootScope, $http, Notification) => {
+    window.onerror = function () {
+      console.log('Error caught')
+    }
     // Logout function is available in any page
     $rootScope.logout = () => {
       $http.post('/auth/logout')
@@ -128,3 +131,7 @@ angular.module('cognitive-banking', [
       $state.go('main.transaction', {selectedTransaction: transaction})
     }
   })
+
+.factory('$exceptionHandler', ($log) => {
+  return function myExceptionHandler (exception, cause) {}
+})
