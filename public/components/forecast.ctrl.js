@@ -16,7 +16,7 @@ angular
               response => {
                 $scope.forecast.data.push(response.data.data)
               },
-              err => alert(err)
+              error => alert(error)
             )
       }())
     })

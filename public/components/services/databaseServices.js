@@ -9,27 +9,27 @@ const convertTimestamp = time => {
 }
 
 function historyService ($http) {
-  this.getSpendingHistory = (name, year, cb) => {
+  this.getSpendingHistory = (name, year, callback) => {
     $http({
       method: 'GET',
       url: `/db/spendingHistory/${name}/${year}`
     }).then(
-      response => cb(null, response.data),
-      err => cb(err, null)
+      response => callback(null, response.data),
+      error => callback(error, null)
     )
   }
 
-  this.getSpendingHabits = (name, year, cb) => {
+  this.getSpendingHabits = (name, year, callback) => {
     $http({
       method: 'GET',
       url: `/db/spendingHabits/${name}/${year}`
     }).then(
-        response => cb(null, response.data),
-        err => cb(err, null)
+        response => callback(null, response.data),
+        error => callback(error, null)
     )
   }
 
-  this.getTransactions = (name, cb) => {
+  this.getTransactions = (name, callback) => {
     $http({
       method: 'GET',
       url: `/db/transactions/${name}`
@@ -41,34 +41,34 @@ function historyService ($http) {
           e.betrag = e.betrag + '€'
           e.type = e.type === null ? 'N/A' : e.type
         })
-        cb(null, response.data)
+        callback(null, response.data)
       },
-      err => cb(err, null)
+      error => callback(error, null)
     )
   }
 }
 
 function allocationService ($http) {
-  this.getAllocation = (name, cb) => {
+  this.getAllocation = (name, callback) => {
     $http({
       method: 'GET',
       url: `/db/budgetAllocation/${name}`
     }).then(
-      response => cb(null, response.data),
-      err => cb(err, null)
+      response => callback(null, response.data),
+      error => callback(error, null)
     )
   }
 }
 
 function transactionService ($http) {
-  this.updateTransaction = (e2e_ref, type, cb) => {
+  this.updateTransaction = (e2e_ref, type, callback) => {
     $http({
       method: 'POST',
       url: `/db/transactions/${e2e_ref}`,
       data: { type: type }
     }).then(
-      response => cb(null, response.data),
-      err => cb(err, null)
+      response => callback(null, response.data),
+      error => callback(error, null)
     )
   }
 }

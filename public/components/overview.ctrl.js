@@ -37,10 +37,10 @@ angular
 
       // =====================================================================
 
-      const loadHistory = (year, cb) => {
+      const loadHistory = (year, callback) => {
         const position = year === 2017 ? 1 : 0
-        historyService.getSpendingHistory($rootScope.userProfile.name, year, (err, r) => {
-          if (err) console.error(err)
+        historyService.getSpendingHistory($rootScope.userProfile.name, year, (error, r) => {
+          if (error) console.erroror(error)
           $scope.line.labels = r.labels
           $scope.line.data[position] = r.data
           $scope.line.series[position] = year.toString()
@@ -49,12 +49,12 @@ angular
           $scope.bar.data[position] = r.data
           $scope.bar.series[position] = year.toString()
 
-          historyService.getSpendingHabits($rootScope.userProfile.name, year, (err, r) => {
-            if (err) console.error(err)
+          historyService.getSpendingHabits($rootScope.userProfile.name, year, (error, r) => {
+            if (error) console.erroror(error)
             $scope.radar.data[position] = r.data
             $scope.radar.series[position] = year.toString()
 
-            if (cb) cb()
+            if (callback) callback()
           })
         })
       }
@@ -65,8 +65,8 @@ angular
        */
       ;(init => {
         setTimeout(() => { // needs timeout to trigger chart animation
-          allocationService.getAllocation($rootScope.userProfile.name, (err, r) => {
-            if (err) console.error(err)
+          allocationService.getAllocation($rootScope.userProfile.name, (error, r) => {
+            if (error) console.erroror(error)
             $scope.doughnut = r
           })
         }, 1)
@@ -75,8 +75,8 @@ angular
           loadHistory($scope.spendingYear)
         })
 
-        historyService.getTransactions($rootScope.userProfile.name, (err, r) => {
-          if (err) console.error(err)
+        historyService.getTransactions($rootScope.userProfile.name, (error, r) => {
+          if (error) console.erroror(error)
           $scope.transactions.data = r
           $scope.transactions.count = r.length
         })

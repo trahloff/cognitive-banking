@@ -18,8 +18,8 @@ angular
 
       $scope.flagTransaction = type => {
         transactionService.updateTransaction($scope.transaction.e2e_ref, type,
-            (err, result) => {
-              err ? alert(err) : $scope.transaction.type = type
+            (error, result) => {
+              error ? alert(error) : $scope.transaction.type = type
             })
       }
 
@@ -42,7 +42,7 @@ angular
             data: { message: message }
           }).then(
             response => {},
-            err => alert(err)
+            error => alert(error)
           )
         })
       }

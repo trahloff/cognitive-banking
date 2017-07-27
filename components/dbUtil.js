@@ -11,13 +11,13 @@ const pool = new pg.Pool({
 })
 
 const sendQuery = (query, values, callback) => {
-  pool.connect((err, client, done) => {
-    if (err) {
-      callback(err, null)
+  pool.connect((error, client, done) => {
+    if (error) {
+      callback(error, null)
     } else {
-      client.query(query, values, (err, result) => {
-        done(err) // releases client back into connection pool
-        err ? callback(err, null) : callback(null, result)
+      client.query(query, values, (error, result) => {
+        done(error) // releases client back into connection pool
+        error ? callback(error, null) : callback(null, result)
       })
     }
   })
@@ -32,19 +32,19 @@ const sendQuery = (query, values, callback) => {
 */
 exports.login = (user, callback) => {
   sendQuery('SELECT * FROM users WHERE name=$1;',
-    [user.name], (err, result) => {
-      if (!err) {
+    [user.name], (error, result) => {
+      if (!error) {
         const hash = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0].passwd : '$2a$10$'
-        bcrypt.compare(user.passwd, hash, (err, res) => {
+        bcrypt.compare(user.passwd, hash, (error, res) => {
           if (res) {
             const userProfile = (result && result.rows[0] && result.rows[0].passwd) ? result.rows[0] : null
-            callback(err, res, userProfile)
+            callback(error, res, userProfile)
           } else {
-            callback(err, null, null)
+            callback(error, null, null)
           }
         })
       } else {
-        callback(err, null, null)
+        callback(error, null, null)
       }
     })
 }
@@ -60,8 +60,8 @@ exports.login = (user, callback) => {
 */
 exports.getAllocation = (userName, callback) => {
   sendQuery('SELECT allocation FROM budget_allocation WHERE name=$1;',
-    [userName], (err, result) => {
-      err ? callback(err, null) : callback(null, result.rows[0].allocation)
+    [userName], (error, result) => {
+      error ? callback(error, null) : callback(null, result.rows[0].allocation)
     })
 }
 
@@ -73,8 +73,8 @@ exports.getAllocation = (userName, callback) => {
 */
 exports.getSpendingHistory = (userName, year, callback) => {
   sendQuery('SELECT data FROM spending_history WHERE name=$1 AND year=$2;',
-    [userName, year], (err, result) => {
-      err ? callback(err, null) : callback(null, result.rows[0].data)
+    [userName, year], (error, result) => {
+      error ? callback(error, null) : callback(null, result.rows[0].data)
     })
 }
 
@@ -86,8 +86,8 @@ exports.getSpendingHistory = (userName, year, callback) => {
 */
 exports.getSpendingHabits = (userName, year, callback) => {
   sendQuery('SELECT data FROM spending_habits WHERE name=$1 AND year=$2;',
-    [userName, year], (err, result) => {
-      err ? callback(err, null) : callback(null, result.rows[0].data)
+    [userName, year], (error, result) => {
+      error ? callback(error, null) : callback(null, result.rows[0].data)
     })
 }
 
@@ -99,10 +99,10 @@ exports.getSpendingHabits = (userName, year, callback) => {
 */
 exports.getTransactions = (userName, limit, callback) => {
   sendQuery(`SELECT * FROM transactions
-            WHERE konto=(SELECT konto FROM konten WHERE name=$1)
+            WHERE konto=(SELECT konto FROM accounts WHERE name=$1)
             ORDER BY buchungstag DESC LIMIT $2;`,
-    [userName, limit], (err, result) => {
-      err ? callback(err, null) : callback(null, result.rows)
+    [userName, limit], (error, result) => {
+      error ? callback(error, null) : callback(null, result.rows)
     })
 }
 
@@ -130,8 +130,8 @@ exports.insertTransaction = (transaction, callback) => {
               transaction.glaeubiger_id,
               transaction.mandatsreferenz,
               transaction.type
-            ], (err, result) => {
-              err ? callback(err, null) : callback(null, result.rows)
+            ], (error, result) => {
+              error ? callback(error, null) : callback(null, result.rows)
             })
 }
 
@@ -148,8 +148,8 @@ exports.updateTransaction = (e2e_ref, type, callback) => {
     case 'Special Interest':
       sendQuery(`UPDATE transactions
             SET type=$1
-            WHERE e2e_ref=$2;`, [type, e2e_ref], (err, result) => {
-              err ? callback(err, null) : callback(null, result.rows)
+            WHERE e2e_ref=$2;`, [type, e2e_ref], (error, result) => {
+              error ? callback(error, null) : callback(null, result.rows)
             })
       break
     default:
@@ -166,8 +166,8 @@ exports.updateTransaction = (e2e_ref, type, callback) => {
 exports.getForecast = (userName, month, callback) => {
   sendQuery(`SELECT * FROM forecasts
             WHERE name=$1 AND month=$2`,
-    [userName, month], (err, result) => {
-      err ? callback(err, null) : callback(null, result.rows[0].data)
+    [userName, month], (error, result) => {
+      error ? callback(error, null) : callback(null, result.rows[0].data)
     })
 }
 

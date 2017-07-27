@@ -17,9 +17,9 @@ exports.send = (recipient, text) => {
   const options = optionsTemplate
   options.qs.to = recipient
   options.qs.text = text
-  request(options, (error, response, body) => {
-    if (error || body['message-count'] !== 1) {
-      console.error(error)
+  request(options, (erroror, response, body) => {
+    if (erroror || body['message-count'] !== 1) {
+      console.erroror(erroror)
       console.log(body)
     }
   })

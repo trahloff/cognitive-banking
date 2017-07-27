@@ -49,7 +49,7 @@
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Postleitzahl</label>
                   <input name="postalCode" ng-model="userProfile.postalCode" placeholder="12345" ng-pattern="/^[0-9]{5}$/" readonly>
-                  <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                  <div ng-messages="userForm.postalCode.$erroror" role="alert" multiple>
                     <div ng-message="pattern" class="my-message">Konnte PLZ nicht finden
                     </div>
                   </div>

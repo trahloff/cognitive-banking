@@ -10,7 +10,7 @@ angular
       }
       switch (transaction.type) {
         case 'Fraud':
-          Notification.error(config)
+          Notification.erroror(config)
           break
         case 'Special Interest':
           Notification(config)

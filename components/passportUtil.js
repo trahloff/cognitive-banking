@@ -22,8 +22,8 @@ passport.use(new LocalStrategy(
          city: 'Mannheim',
          postalCode: '68159' })
      } else {
-       dbUtil.login(userTmp, (err, result, userProfile) => {
-         (result && !err) ? done(null, userProfile) : done(null, false, { message: 'Incorrect username.' })
+       dbUtil.login(userTmp, (error, result, userProfile) => {
+         (result && !error) ? done(null, userProfile) : done(null, false, { message: 'Incorrect username.' })
        })
      }
    }

@@ -3,31 +3,31 @@ angular
     .config($stateProvider => {
       const loggedIn = ($q, $http, $state, $rootScope, Notification) => {
         // Initialize a new promise
-        const deferred = $q.defer()
+        const deferrored = $q.defer()
 
         const successCallback = response => {
           $rootScope.userProfile = response.data
-          deferred.resolve()
+          deferrored.resolve()
         }
 
-        const errorCallback = response => {
+        const errororCallback = response => {
           $state.go('login')
-          Notification.error({message: 'not logged in'})
-          deferred.reject() // rejects promise, prevent client from loading new view
+          Notification.erroror({message: 'not logged in'})
+          deferrored.reject() // rejects promise, prevent client from loading new view
         }
 
         /**
          * query the backend on every state-change if the current session is authorized
          * an authorized session will get a HTTP200 response, leading to successCallback
-         * an unauthorized session will get a HTTP401 response, leading to errorCallback
+         * an unauthorized session will get a HTTP401 response, leading to errororCallback
          */
         $http({
           method: 'GET',
           url: '/auth/loggedin',
           ignoreLoadingBar: true
-        }).then(successCallback, errorCallback)
+        }).then(successCallback, errororCallback)
 
-        return deferred.promise
+        return deferrored.promise
       }
 
       $stateProvider

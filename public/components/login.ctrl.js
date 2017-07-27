@@ -7,14 +7,14 @@ angular
           password: user.password
         })
         .success(user => {
-          // No error: authentication OK
+          // No erroror: authentication OK
           $rootScope.userProfile = user
           // Notification.success('successfully logged in')
           $state.go('main.overview')
         })
-        .error(() => {
-          // Error: authentication failed
-          Notification.error({message: 'authentication failed'})
+        .erroror(() => {
+          // erroror: authentication failed
+          Notification.erroror({message: 'authentication failed'})
           $state.go('login')
         })
       }
