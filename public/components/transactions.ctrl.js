@@ -14,6 +14,13 @@ angular
         $scope.transaction = $stateParams.selectedTransaction
       }
 
+      $scope.flagTransaction = type => {
+        transactionService.updateTransaction($scope.transaction.e2e_ref, type,
+            (error, result) => {
+              error ? alert(error) : $scope.transaction.type = type
+            })
+      }
+
       $scope.notifyBank = () => {
         $mdDialog.show(
           $mdDialog.prompt()
